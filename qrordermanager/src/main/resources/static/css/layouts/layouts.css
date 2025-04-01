@@ -1,0 +1,47 @@
+body {
+    background-color: #e8e8e8;
+}
+
+/* header */
+header {
+    height: 5rem;
+    background-color: #A3C6C4;
+    z-index: 2;
+}
+.bi-list {
+    color: #ffffff;
+    border-radius: .5rem;
+}
+.bi-list:hover, .bi-list.active {
+    background-color: #ffffff;
+    color: #A3C6C4;
+}
+
+/* left menu */
+.leftMenu {
+    margin-top: 5rem !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+}
+.leftMenu.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+.menu-hover:hover {
+    background-color: #dadada;
+}
+
+.container {
+    margin-top: 5rem !important;
+}
+
+/* custom css */
+.cs-p {
+    cursor: pointer;
+}
+.d-flex-toggle {
+    display: flex;
+}
+.toggle-hide {
+    display: none;
+}
