@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고기장인 사장님 사이트</title>
+
+  <!--BootStrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!--CUSTOM CSS-->
+  <link rel="stylesheet" href="/css/layouts/layouts.css">
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+  <!--JS-->
+  <script src="/js/common/common.js"></script>
+
+  <th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="script"></th:block>
+</head>
+<body>
+  <div th:replace="fragments/header::header"></div>
+  <div th:replace="fragments/leftMenu::leftMenu"></div>
+  <div layout:fragment="content"></div>
+</body>
+</html>
