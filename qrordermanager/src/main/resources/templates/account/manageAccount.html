@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content" class="container col-8 p-0 mt-5 d-flex flex-column align-items-center bg-white">
+
+    <div class="col-12 mt-3 d-flex justify-content-start">
+        <button type="button" class="basic-tag-btn border-end">계정추가</button>
+        <button type="button" class="basic-tag-btn active">계정관리</button>
+    </div>
+
+    <hr class="col-12 m-0 mb-3">
+    <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">계정수정</div>
+    <div class="col-11 mt-5 my-3 d-flex justify-content-start">
+        <div class="col-5 ms-3 position-relative">
+            <input type="text" class="col-12 basic-search-bar" placeholder="계정명 혹은 ID로 검색">
+            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+        </div>
+    </div>
+    <div class="bg-table col-11 mb-5 p-3 shadow-sm">
+        <table class="col-12">
+            <thead>
+            <tr class="border-bottom">
+                <th class="col-1 pb-2">
+                    <input type="checkbox" />
+                </th>
+                <th class="col-2 pb-2">계정명</th>
+                <th class="col-2 pb-2">ID</th>
+                <th class="col-3 pb-2">비밀번호</th>
+                <th class="col-4 pb-2">생성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="py-1">
+                    <input type="checkbox" />
+                </td>
+                <td class="py-1">홍길동</td>
+                <td class="py-1">hong123</td>
+                <td class="py-1">********</td>
+                <td class="py-1">2025년 8월 31일 18시 20분</td>
+            </tr>
+            <tr>
+                <td class="py-1">
+                    <input type="checkbox" />
+                </td>
+                <td class="py-1">김철수</td>
+                <td class="py-1">kimcs</td>
+                <td class="py-1">********</td>
+                <td class="py-1">2025년 8월 31일 18시 20분</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="py-1">
+                    <input type="checkbox" />
+                </td>
+                <td class="py-1">이영희</td>
+                <td class="py-1">lee1234</td>
+                <td class="py-1">********</td>
+                <td class="py-1">2025년 8월 31일 18시 20분</td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-danger px-2 py-1 mt-3">
+            <i class="bi bi-trash3-fill"></i>
+            삭제
+        </button>
+    </div>
+
+    <!-- accountDetailPopUp -->
+<!--    <div>-->
+<!--        <div class="basic-popup col-5 position-fixed top-50 start-50 translate-middle z-4">-->
+<!--            <div class="col-12 pe-2 pb-2 d-flex justify-content-between align-items-center border-bottom">-->
+<!--                <div class="ms-3 fs-4 fw-bold">계정정보</div>-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
+<!--                     class="bi bi-x-lg" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5">-->
+<!--                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>-->
+<!--                </svg>-->
+<!--            </div>-->
+<!--            <div class="col-12 border-bottom">-->
+<!--                test-->
+<!--            </div>-->
+<!--            <div class="d-flex justify-content-center gap-4">-->
+<!--                <button type="button" class="btn btn-danger px-2 py-1 mt-3">-->
+<!--                    <i class="bi bi-trash3-fill"></i>-->
+<!--                    삭제-->
+<!--                </button>-->
+<!--                <button type="button" class="btn btn-danger px-2 py-1 mt-3">-->
+<!--                    <i class="bi bi-trash3-fill"></i>-->
+<!--                    저장-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="w-100 h-100 position-fixed top-0 start-0 bg-black opacity-50 z-3"></div>-->
+<!--    </div>-->
+</div>
+</html>
