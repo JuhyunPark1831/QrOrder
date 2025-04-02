@@ -1,11 +1,15 @@
 body {
     background-color: #e8e8e8;
 }
+td {
+    cursor: pointer;
+}
 
 /* header */
 header {
     height: 5rem;
-    background-color: #A3C6C4;
+    background-color: #95d0cc;
+    box-shadow: .2rem 0.2rem .2rem rgba(0, 0, 0, .15);
     z-index: 2;
 }
 .bi-list {
@@ -14,7 +18,7 @@ header {
 }
 .bi-list:hover, .bi-list.active {
     background-color: #ffffff;
-    color: #A3C6C4;
+    color: #95d0cc;
 }
 
 /* left menu */
@@ -44,4 +48,73 @@ header {
 }
 .toggle-hide {
     display: none;
+}
+.input-label {
+    color: #4a4a4a;
+}
+.bg-table {
+    background-color: #fcfcfc;
+    border-radius: .5rem;
+}
+.z-4 {
+    z-index: 4;
+}
+
+/* component */
+.basic-btn {
+    padding: .2rem .7rem .4rem;
+    border-radius: 1.1rem;
+    background-color: #ffffff;
+    border: 2px #000000 solid;
+    font-weight: 600;
+}
+.basic-btn:hover {
+    background-color: #0A62D0;
+    border: unset;
+    color: #ffffff;
+}
+
+.sub-btn {
+    border-radius: .3rem;
+    border: 2px #000000 solid;
+    background-color: #ffffff;
+    font-weight: 600;
+}
+.sub-btn.active {
+    background-color: #ebebeb;
+    border: 2px #777777 solid;
+    color: #777777;
+    cursor: unset;
+}
+
+.basic-input {
+    height: 2.5rem;
+    padding: .5rem 1rem;
+    border: .2rem #d7d7d7 solid;
+    border-radius: .2rem;
+}
+
+.basic-tag-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: unset;
+    background: unset;
+}
+.basic-tag-btn:hover, .basic-tag-btn.active {
+    background-color: #0A62D0;
+    color: #ffffff;
+}
+
+.basic-search-bar {
+    border-radius: 2rem;
+    border: 2px #676767 solid;
+    padding: .2rem 3rem .2rem 1rem;
+}
+
+.basic-popup {
+    border-radius: 2rem;
+    padding: .5rem 1rem;
+    height: 18rem;
+    background-color: #f8fafb;
 }
