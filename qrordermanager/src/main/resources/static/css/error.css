@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Katuri';
+    src: url('/font/Katuri.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.error-title {
+    font-family: 'Katuri', sans-serif !important;
+    margin-top: 5rem;
+    font-size: 5rem;
+    color: #354649;
+}
+.error-btn {
+    padding: .5rem 1rem;
+    border: #354649 .2rem solid;
+    border-radius: .1rem;
+    color: #354649;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.error-btn:hover {
+    background-color: #354649;
+    color: #ffffff;
+}
