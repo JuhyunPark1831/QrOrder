@@ -10,11 +10,16 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "account/manageAccount";
+        return "login/login";
+    }
+
+    @GetMapping("/1")
+    public String test1() {
+        return "account/createAccount";
     }
 
     @GetMapping("/2")
-    public String test1() {
-        return "account/createAccount";
+    public String test2() {
+        return "account/manageAccount";
     }
 }
