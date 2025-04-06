@@ -33,12 +33,10 @@ public class Order extends BaseEntity {
     private String orPhone;
 
     @Builder
-    public Order (Long orId,
-                  String orUuid,
+    public Order (String orUuid,
                   OrderStatus orderStatus,
                   OrderPayment orderPayment,
                   String orPhone) {
-        this.orId = orId;
         this.orUuid = orUuid;
         this.orStatus = orderStatus;
         this.orPayment = orderPayment;

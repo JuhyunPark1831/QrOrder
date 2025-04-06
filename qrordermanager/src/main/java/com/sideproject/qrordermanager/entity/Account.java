@@ -18,21 +18,19 @@ public class Account extends BaseEntity {
     @Column(name = "AC_ID")
     private Long acId;
 
-    @Column(name = "AC_LOGIN_ID", nullable = false)
+    @Column(name = "AC_LOGIN_ID", unique = true, nullable = false)
     private String acLoginId;
 
     @Column(name = "AC_PASSWORD", nullable = false)
     private String acPassword;
 
-    @Column(name = "AC_NAME", nullable = false)
+    @Column(name = "AC_NAME", unique = true, nullable = false)
     private String acName;
 
     @Builder
-    public Account (Long acId,
-                    String acLoginId,
+    public Account (String acLoginId,
                     String acPassword,
                     String acName) {
-        this.acId = acId;
         this.acLoginId = acLoginId;
         this.acPassword = acPassword;
         this.acName = acName;

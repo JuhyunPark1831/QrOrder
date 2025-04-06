@@ -27,17 +27,15 @@ public class MenuManage extends BaseEntity {
     private LocalDateTime mmEnd;
 
     @ManyToOne
-    @JoinColumn(name = "MM_MN_ID", nullable = false)
-    private Menu mmMn;
+    @JoinColumn(name = "MM_ME_ID", nullable = false)
+    private Menu mmMe;
 
     @Builder
-    public MenuManage (Long mmId,
-                       LocalDateTime mmStart,
+    public MenuManage (LocalDateTime mmStart,
                        LocalDateTime mmEnd,
-                       Menu mmMn) {
-        this.mmId = mmId;
+                       Menu mmMe) {
         this.mmStart = mmStart;
         this.mmEnd = mmEnd;
-        this.mmMn = mmMn;
+        this.mmMe = mmMe;
     }
 }
