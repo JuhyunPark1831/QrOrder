@@ -16,38 +16,40 @@ public class Menu extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MN_ID")
-    private Long mnId;
+    @Column(name = "ME_ID")
+    private Long meId;
 
-    @Column(name = "MN_NAME", nullable = false)
-    private String mnName;
+    @Column(name = "ME_NAME", unique = true, nullable = false)
+    private String meName;
 
-    @Column(name = "MN_PRICE", nullable = false)
-    private int mnPrice;
+    @Column(name = "ME_PRICE", nullable = false)
+    private int mePrice;
 
-    @Column(name = "MN_STATUS", nullable = false)
-    private MenuStatus mnStatus;
+    @Column(name = "ME_STATUS", nullable = false)
+    private MenuStatus meStatus;
 
-    @Column(name = "MN_DESCRIPTION")
-    private String mnDescription;
+    @Column(name = "ME_DESCRIPTION")
+    private String meDescription;
 
-    @Column(name = "MN_IMAGE_PATH")
-    private String mnImagePath;
+    @Column(name = "ME_IMAGE_PATH")
+    private String meImagePath;
+
+    @ManyToOne
+    @JoinColumn(name = "ME_CA_ID", nullable = false)
+    private Category meCa;
 
     @Builder
-    public Menu (Long mnId,
-                String mnName,
-                int mnPrice,
-                MenuStatus menuStatus,
-                String mnDescription,
-                String mnImagePath) {
-        this.mnId = mnId;
-        this.mnName = mnName;
-        this.mnPrice = mnPrice;
-        this.mnStatus = menuStatus;
-        this.mnDescription = mnDescription;
-        this.mnImagePath = mnImagePath;
+    public Menu (String meName,
+                 int mePrice,
+                 MenuStatus meStatus,
+                 String meDescription,
+                 String meImagePath,
+                 Category meCa) {
+        this.meName = meName;
+        this.mePrice = mePrice;
+        this.meStatus = meStatus;
+        this.meDescription = meDescription;
+        this.meImagePath = meImagePath;
+        this.meCa = meCa;
     }
 }
-//todo: 메뉴 depth 지정해서 메뉴 옵션 등 처리하기
-//todo: 메뉴 카테고리 추가

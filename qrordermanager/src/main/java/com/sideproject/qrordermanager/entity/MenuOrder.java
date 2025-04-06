@@ -22,21 +22,19 @@ public class MenuOrder extends BaseEntity {
     private int moCount;
 
     @ManyToOne
-    @JoinColumn(name = "MO_MN_ID", nullable = false)
-    private Menu moMn;
+    @JoinColumn(name = "MO_ME_ID", nullable = false)
+    private Menu moMe;
 
     @ManyToOne
     @JoinColumn(name = "MO_OR_ID", nullable = false)
     private Order moOr;
 
     @Builder
-    public MenuOrder (Long moId,
-                      int moCount,
-                      Menu moMn,
+    public MenuOrder (int moCount,
+                      Menu moMe,
                       Order moOr) {
-        this.moId = moId;
         this.moCount = moCount;
-        this.moMn = moMn;
+        this.moMe = moMe;
         this.moOr = moOr;
     }
 }
