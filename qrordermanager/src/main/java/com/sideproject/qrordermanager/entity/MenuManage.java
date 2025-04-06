@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 @Table(name = "TB_MENU_MANAGE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
 public class MenuManage extends BaseEntity {
 
     @Id

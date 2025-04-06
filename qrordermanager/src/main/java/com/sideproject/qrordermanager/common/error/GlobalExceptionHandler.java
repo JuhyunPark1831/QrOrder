@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
         return createApiErrorResponse(ex.getErrorCode());
     }
 
-    @ExceptionHandler({NoHandlerFoundException.class, NoResourceFoundException.class}) // 404 에러 처리
+    @ExceptionHandler({NoHandlerFoundException.class, NoResourceFoundException.class}) // 404 Not Found 처리
     protected Object handleNotFoundException(HttpServletRequest request) {
         return handleCustomError(ErrorCode.NOT_FOUND, request);
     }
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
     }
 
     private Object handleCustomError(ErrorCode errorCode, HttpServletRequest request) {
-        if (request.getRequestURI().contains("api")) {
+        if (request.getRequestURI().contains("api") || request.getRequestURI().contains("replace")) {
             return createApiErrorResponse(errorCode);
         } else {
             return createViewErrorResponse(errorCode.getHttpStatus());

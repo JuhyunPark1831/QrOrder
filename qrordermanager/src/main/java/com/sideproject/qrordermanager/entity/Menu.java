@@ -9,9 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @Table(name = "TB_MENU")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
 public class Menu extends BaseEntity {
 
     @Id
@@ -49,3 +49,5 @@ public class Menu extends BaseEntity {
         this.mnImagePath = mnImagePath;
     }
 }
+//todo: 메뉴 depth 지정해서 메뉴 옵션 등 처리하기
+//todo: 메뉴 카테고리 추가

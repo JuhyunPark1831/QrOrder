@@ -8,9 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @Table(name = "TB_MENU_ORDER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
 public class MenuOrder extends BaseEntity {
 
     @Id
