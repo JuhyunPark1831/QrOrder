@@ -32,6 +32,12 @@ function commonErrorCallBack(xhr, status, error) {
         if (originalRequestSettings) {
             $.ajax(originalRequestSettings);
         }
+    } else if (response && response.code === '650') { // 500 에러
+        alert("서버에 문제가 발생했습니다.\n잠시 후 다시 시도해 주세요.\n문제가 계속될 시 고객센터에 문의해주세요.");
+    } else if (response && response.code === '651') { // 404 에러
+        alert("요청하신 정보를 찾을 수 없습니다.");
+    } else if (response && response.code === '652') { // 405 에러
+        alert("잘못된 요청 방식입니다.\n잠시 후 다시 시도해 주세요.");
     } else {
         commonErrorMessageCallBack(response);
     }
