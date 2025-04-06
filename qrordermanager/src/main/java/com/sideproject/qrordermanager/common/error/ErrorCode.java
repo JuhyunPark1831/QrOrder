@@ -3,8 +3,8 @@ package com.sideproject.qrordermanager.common.error;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public enum ErrorCode {
 
     /*
@@ -27,6 +27,12 @@ public enum ErrorCode {
     */
 
     TEST_ERROR(403, "999", "테스트 에러 처리"),
+
+    INCORRECT_PASSWORD(401, "010", "아이디, 비밀번호를 다시 확인해주세요"),
+    ACCESS_TOKEN_AUTHENTICATION_FAILED(401, "020", "ACCESS TOKEN 인증 실패"),
+    REFRESH_TOKEN_AUTHENTICATION_FAILED(401, "021", "ACCESS TOKEN 인증 실패"),
+    TOKEN_REGENERATE(401, "022", "TOKEN 재발급"),
+    NOT_FOUND_ACCOUNT(404, "030", "아이디, 비밀번호를 다시 확인해주세요"),
 
     ECT_ERROR(500, "650", "기타 서버 에러"),
     NOT_FOUND(404, "651", "기본 404 에러"),

@@ -8,9 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @Table(name = "TB_ACCOUNT")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
 public class Account extends BaseEntity {
 
     @Id

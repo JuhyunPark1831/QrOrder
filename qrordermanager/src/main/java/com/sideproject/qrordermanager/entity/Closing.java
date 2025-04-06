@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 @Table(name = "TB_CLOSING")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
 public class Closing extends BaseEntity {
 
     @Id

@@ -6,8 +6,8 @@ import com.sideproject.qrordermanager.common.error.ErrorCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-@Getter
 @JsonPropertyOrder({"code", "message", "data"})
+@Getter
 public class ApiResponse<T> {
 
     private final int httpStatus;
