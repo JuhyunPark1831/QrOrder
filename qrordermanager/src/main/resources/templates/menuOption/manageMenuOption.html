@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+    <div class="col-12 mt-3 d-flex justify-content-start">
+        <button type="button" class="basic-tag-btn border-end">옵션추가</button>
+        <button type="button" class="basic-tag-btn active">옵션관리</button>
+    </div>
+
+    <hr class="col-12 m-0 mb-3">
+
+    <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">옵션관리</div>
+
+    <div class="col-6 my-4 d-flex justify-content-between align-items-center">
+        <div class="col-9 ms-3 position-relative">
+            <input type="text" class="col-12 basic-search-bar" placeholder="옵션그룹명 혹은 옵션명으로 검색">
+            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+        </div>
+        <div class="me-3">
+            <svg class="plus-icon cs-p" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M5 12H19" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="col-12 d-flex flex-column align-items-center gap-4">
+        <div class="basic-card col-7 mb-3 d-flex flex-column align-items-center">
+            <div class="col-12 px-3 py-2 mb-3 d-flex justify-content-between border-bottom border-2">
+                <div class="fs-5 fw-bold">흑미밥 추가</div>
+                <div class="d-flex gap-2">
+                    <div class="align-content-center text-primary fs-7">최소 1개 최대 3개</div>
+                    <button type="button" class="btn btn-primary px-2 py-1">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger px-2 p-1">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-11 d-flex flex-column align-items-center gap-1">
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 추가 안함</div>
+                    <div class="fw-bold">+0원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 1개 추가</div>
+                    <div class="fw-bold">+1000원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 2개 추가</div>
+                    <div class="fw-bold">+2000원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 3개 추가</div>
+                    <div class="fw-bold">+3000원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between">
+                    <div>흑미밥 4개 추가</div>
+                    <div class="fw-bold">+4000원</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="basic-card col-7 mb-3 d-flex flex-column align-items-center">
+            <div class="col-12 px-3 py-2 mb-3 d-flex justify-content-between border-bottom border-2">
+                <div class="fs-5 fw-bold">흑미밥 추가</div>
+                <div class="d-flex gap-2">
+                    <div class="align-content-center text-primary fs-7">최소 1개 최대 3개</div>
+                    <button type="button" class="btn btn-primary px-2 py-1">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger px-2 p-1">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-11 d-flex flex-column align-items-center gap-1">
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 추가 안함</div>
+                    <div class="fw-bold">+0원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 1개 추가</div>
+                    <div class="fw-bold">+1000원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 2개 추가</div>
+                    <div class="fw-bold">+2000원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom">
+                    <div>흑미밥 3개 추가</div>
+                    <div class="fw-bold">+3000원</div>
+                </div>
+                <div class="col-12 px-3 d-flex justify-content-between">
+                    <div>흑미밥 4개 추가</div>
+                    <div class="fw-bold">+4000원</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

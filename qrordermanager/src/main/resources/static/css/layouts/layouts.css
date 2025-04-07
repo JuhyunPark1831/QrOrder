@@ -57,8 +57,18 @@ header {
     background-color: #fcfcfc;
     border-radius: .5rem;
 }
+.form-check-input {
+    width: 1.3rem;
+    height: 1.3rem;
+}
 .z-4 {
     z-index: 4;
+}
+.fs-7 {
+    font-size: .9rem;
+}
+.p-for-checkbox {
+    padding-top: .2rem;
 }
 
 /* component */
@@ -129,4 +139,23 @@ header {
     padding: .5rem 1rem;
     height: 18rem;
     background-color: #f8fafb;
+}
+
+.basic-card {
+    border: 2px #e0e0e0 solid;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    box-shadow: .1rem 0.1rem .4rem rgba(0, 0, 0, .15);
+}
+
+.plus-icon:hover {
+    background-color: #e4e4e4;
+    border-radius: .5rem;
+}
+
+/* ETC */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
