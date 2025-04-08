@@ -1,5 +1,6 @@
 package com.sideproject.qrordermanager.entity;
 
+import com.sideproject.qrordermanager.entity.Common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "TB_MENU_ORDER_OPTION")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MenuOrderOption {
+public class MenuOrderOption extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
