@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+    <div class="col-12 mt-3 d-flex justify-content-start">
+        <button type="button" class="basic-tag-btn border-end active">메뉴추가</button>
+        <button type="button" class="basic-tag-btn">메뉴관리</button>
+    </div>
+
+    <hr class="col-12 m-0 mb-3">
+
+    <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">메뉴추가</div>
+
+    <div class="col-11 mt-5 d-flex flex-column align-items-start gap-4 mb-5">
+        <div class="col-12 d-flex align-items-center">
+            <label for="meName" class="col-2 fs-6 fw-bold input-label">
+                메뉴 이름
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" id="meName" class="basic-input col-6" placeholder="메뉴 이름을 입력해주세요"/>
+        </div>
+
+        <hr class="col-12 m-0">
+
+        <div class="col-12 d-flex align-items-center">
+            <label for="meCaId" class="col-2 fs-6 fw-bold input-label">
+                메뉴 카테고리
+                <span class="text-danger">*</span>
+            </label>
+            <select id="meCaId" class="basic-input col-6">
+                <option>test1</option>
+                <option>test2</option>
+            </select>
+        </div>
+
+        <hr class="col-12 m-0">
+
+        <div class="col-12 d-flex align-items-center">
+            <label for="mePrice" class="col-2 fs-6 fw-bold input-label">
+                메뉴 가격
+                <span class="text-danger">*</span>
+            </label>
+            <input type="number" id="mePrice" class="basic-input col-3 text-end" placeholder="메뉴 가격을 입력해주세요"/>
+            <span class="ms-3 fw-bold">원</span>
+        </div>
+
+        <hr class="col-12 m-0">
+
+        <div class="col-12 d-flex align-items-center">
+            <label for="meDescription" class="col-2 fs-6 fw-bold input-label">메뉴 설명</label>
+            <textarea id="meDescription" class="basic-input col-6" placeholder="메뉴의 간단한 설명을 입력해주세요"></textarea>
+        </div>
+
+        <hr class="col-12 m-0">
+
+        <div class="col-12 d-flex align-items-center">
+            <label for="meImagePath" class="col-2 fs-6 fw-bold input-label">메뉴 사진</label>
+            <div class="basic-input col-6 d-flex align-items-center gap-3">
+                <div class="upload-file-btn col-2">업로드</div>
+                <div class="col-9 pt-1 text-truncate">asdfdafsfsasdfasdfdafsfsasdfasdfdafsfsasdfasdfdafsfsasdfasdfdafsfsasdfasdfdafsfsasdf</div>
+            </div>
+            <input type="file" id="meImagePath" class="d-none" placeholder="메뉴의 대표 사진을 첨부해주세요" />
+        </div>
+        <div class="col-12 d-flex flex-column align-items-center">
+            <span class="text-secondary fw-semibold">미리보기</span>
+            <div class="img-div">
+                <img src="/images/test.png" class="w-100 h-100">
+            </div>
+        </div>
+
+        <hr class="col-12 m-0">
+
+        <div class="col-12 d-flex flex-column align-items-start">
+            <label class="input-label col-2 fs-6 fw-bold mb-3">
+                옵션 선택
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-12">
+                <div class="col-12 d-flex justify-content-start align-items-center">
+                    <select id="mjOgId" class="basic-input col-6">
+                        <option>test1</option>
+                        <option>test2</option>
+                    </select>
+                    <button type="button" class="btn btn-danger px-2 pt-1 pb-0 ms-4">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary col-2 px-2 pt-1 pb-0 mt-3">
+                <i class="bi bi-plus-circle"></i>
+                추가
+            </button>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+            <button type="button" class="basic-icon-btn my-4">
+                <i class="bi bi-file-earmark-plus fs-5 py-1"></i>
+                메뉴생성
+            </button>
+        </div>
+    </div>
+</div>
+</html>
