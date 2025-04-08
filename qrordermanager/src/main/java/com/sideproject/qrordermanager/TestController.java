@@ -1,11 +1,7 @@
 package com.sideproject.qrordermanager;
 
-import com.sideproject.qrordermanager.common.util.CookieUtil;
-import com.sideproject.qrordermanager.dto.account.response.JwtResponseDto;
-import com.sideproject.qrordermanager.service.account.AccountService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
     @GetMapping
-    public String test(HttpServletResponse response) {
-        return "menuOption/createMenuOption";
+    public String test() {
+        return "menu/modifyMenu";
     }
 
     //todo: leftMenu z-index 관련 해결

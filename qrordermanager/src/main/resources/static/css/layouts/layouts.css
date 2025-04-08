@@ -5,6 +5,10 @@ body {
 td {
     cursor: pointer;
 }
+textarea {
+    height: 6.25em !important;
+    resize: none;
+}
 
 /* header */
 header {
@@ -151,6 +155,44 @@ header {
 .plus-icon:hover {
     background-color: #e4e4e4;
     border-radius: .5rem;
+}
+
+.upload-file-btn {
+    width: 5rem;
+    height: 1.5rem;
+    align-content: center;
+    text-align: center;
+    background-color: #333D51;
+    color: #ffffff;
+    font-size: .9rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.upload-file-btn:hover {
+    background-color: #1e2430;
+}
+
+.img-div {
+    width: 15rem;
+    height: 15rem;
+}
+.img-div.sm-ver {
+    width: 8rem;
+    height: 8rem;
+}
+
+.status-select {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #ffffff;
+    border: #c5c5c5 1px solid;
+    border-radius: .5rem;
+    top: 120%;
+    left: -4%;
+}
+.status-select-inner:hover {
+    background-color: #e3e3e3;
 }
 
 /* ETC */

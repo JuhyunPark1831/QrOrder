@@ -38,7 +38,8 @@ public class SecurityConfig {
                                 "/error",
                                 "/css/**",
                                 "/js/**",
-                                "/image/**",
+                                "/images/**",
+                                "/font/**",
                                 "/favicon.ico",
                                 "/api/account/createAdmin" // 추후 삭제
                         ).permitAll()
