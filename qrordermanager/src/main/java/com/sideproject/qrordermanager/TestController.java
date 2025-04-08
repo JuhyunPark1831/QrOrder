@@ -1,6 +1,5 @@
 package com.sideproject.qrordermanager;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,6 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "menu/modifyMenu";
+        return "account/manageAccount";
     }
-
-    //todo: leftMenu z-index 관련 해결
 }
