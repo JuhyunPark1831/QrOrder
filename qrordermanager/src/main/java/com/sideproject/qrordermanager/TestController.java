@@ -12,6 +12,6 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "account/manageAccount";
+        return "category/manageCategory";
     }
 }
