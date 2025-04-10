@@ -49,6 +49,9 @@ header {
 .cs-p {
     cursor: pointer;
 }
+.cs-n {
+    cursor: unset;
+}
 .d-flex-toggle {
     display: flex;
 }
