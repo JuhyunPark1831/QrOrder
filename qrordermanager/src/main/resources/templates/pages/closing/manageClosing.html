@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<th:block layout:fragment="script">
+  <script th:src="@{/js/closing/manageClosing.js}"></script>
+</th:block>
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+  <div class="col-12 mt-3 d-flex justify-content-start">
+    <button type="button" class="basic-tag-btn border-end active">임시휴무 관리</button>
+    <button type="button" class="basic-tag-btn">정기휴무 관리</button>
+  </div>
+
+  <hr class="col-12 m-0 mb-3">
+  <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">임시휴무 관리</div>
+  <div class="bg-table col-11 my-5 p-3 shadow-sm">
+    <table class="col-12">
+      <thead>
+      <tr class="border-bottom">
+        <th class="col-1 pb-2">
+          <input type="checkbox" />
+        </th>
+        <th class="col-5 pb-2">시작 날짜 / 시간</th>
+        <th class="col-5 pb-2">종료 날짜 / 시간</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="py-1">
+          <input type="checkbox" />
+        </td>
+        <td class="py-1">
+          2025년 3월 18일 오후 5시 10분
+        </td>
+        <td class="py-1">
+          2025년 3월 18일 오후 5시 10분
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div id="create-div" class="col-12 mt-3 p-2 d-flex flex-column bg-white border d-none">
+      <div class="col-12 d-flex fw-semibold">
+        <div class="col-6 text-center">시작 날짜 / 시간</div>
+        <div class="col-6 text-center">종료 날짜 / 시간</div>
+      </div>
+      <div class="col-12 d-flex gap-1">
+        <div class="col-6 d-flex">
+          <div class="input-group p-2 text-center" id="clStartDate" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#clStartDate"/>
+            <span class="input-group-text" data-td-target="#clStartDate" data-td-toggle="datetimepicker">
+            <i class="bi bi-calendar"></i>
+            </span>
+          </div>
+          <div class="input-group  p-2 text-center" id="clStartTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#clStartTime"/>
+            <span class="input-group-text" data-td-target="#clStartTime" data-td-toggle="datetimepicker">
+            <i class="bi bi-clock"></i>
+          </span>
+          </div>
+        </div>
+        <div class="col-6 d-flex">
+          <div class="input-group p-2 text-center" id="clEndDate" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#clEndDate"/>
+            <span class="input-group-text" data-td-target="#clEndDate" data-td-toggle="datetimepicker">
+            <i class="bi bi-calendar"></i>
+            </span>
+          </div>
+          <div class="input-group  p-2 text-center" id="clEndTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#clEndTime"/>
+            <span class="input-group-text" data-td-target="#clEndTime" data-td-toggle="datetimepicker">
+            <i class="bi bi-clock"></i>
+          </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-center gap-3">
+        <button type="button" class="btn btn-primary px-2 py-1">
+          <i class="bi bi-floppy fs-5 py-1"></i>
+          저장
+        </button>
+        <button type="button" id="close-create-btn" class="btn btn-danger px-2 py-1">
+          <i class="bi bi-x-circle"></i>
+          취소
+        </button>
+      </div>
+    </div>
+    <div class="col-12 d-flex justify-content-between gap-3">
+      <button type="button" class="btn btn-danger px-2 pt-1 pb-0 mt-3">
+        <i class="bi bi-trash3-fill"></i>
+        삭제
+      </button>
+      <button type="button" id="open-create-btn" class="btn btn-primary px-2 pt-1 pb-0 mt-3">
+        <i class="bi bi-plus-circle"></i>
+        추가
+      </button>
+    </div>
+  </div>
+</div>
+</html>
