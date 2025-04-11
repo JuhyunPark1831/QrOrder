@@ -12,7 +12,7 @@ public enum ErrorCode {
         0: Account
         1: Closing
         2: Menu
-        3: MenuManage
+        3: MenuSoldOut
         4: MenuOrder
         5: Order
         6: Etc

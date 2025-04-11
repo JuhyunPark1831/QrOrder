@@ -12,6 +12,6 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "/pages/closing/manageClosingFixed";
+        return "/pages/manageSoldOut/manageMenuOptionSoldOut";
     }
 }

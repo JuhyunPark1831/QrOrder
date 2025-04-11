@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+  <div class="col-12 mt-3 d-flex justify-content-start">
+    <button type="button" class="basic-tag-btn border-end">메뉴품절 관리</button>
+    <button type="button" class="basic-tag-btn active">옵션품절 관리</button>
+  </div>
+
+  <hr class="col-12 m-0 mb-3">
+
+  <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">옵션품절 관리</div>
+
+  <div class="col-6 my-4 d-flex justify-content-center align-items-center">
+    <div class="col-11 ms-3 position-relative">
+      <input type="text" class="col-12 basic-search-bar" placeholder="옵션그룹명 혹은 옵션명으로 검색">
+      <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+    </div>
+  </div>
+
+  <div class="col-12 d-flex flex-column align-items-center gap-4">
+    <div class="basic-card col-7 mb-3 d-flex flex-column align-items-center">
+      <div class="col-12 px-3 py-2 mb-3 d-flex border-bottom border-2">
+        <div class="fs-5 fw-bold">흑미밥 추가</div>
+      </div>
+      <div class="col-11 mb-3 d-flex flex-column align-items-center gap-1">
+        <div class="col-12 px-3 d-flex-column border-bottom">
+          <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>흑미밥 추가 안함</div>
+            <button type="button" class="btn btn-secondary col-3 my-1 py-1 cs-p">품절 취소</button>
+          </div>
+          <div class="col-12 text-end text-danger">2025년 8월 30일 오후 3시 00분 까지 품절</div>
+        </div>
+        <div class="col-12 px-3 d-flex justify-content-between align-items-center border-bottom">
+          <div>흑미밥 1개 추가</div>
+          <button type="button" class="btn btn-danger col-3 my-1 py-1 cs-p">품절</button>
+        </div>
+        <div class="col-12 px-3 d-flex justify-content-between align-items-center border-bottom">
+          <div>흑미밥 2개 추가</div>
+          <button type="button" class="btn btn-danger col-3 my-1 py-1 cs-p">품절</button>
+        </div>
+        <div class="col-12 px-3 d-flex justify-content-between align-items-center border-bottom">
+          <div>흑미밥 3개 추가</div>
+          <button type="button" class="btn btn-danger col-3 my-1 py-1 cs-p">품절</button>
+        </div>
+        <div class="col-12 px-3 d-flex justify-content-between align-items-center border-bottom">
+          <div>흑미밥 4개 추가</div>
+          <button type="button" class="btn btn-danger col-3 my-1 py-1 cs-p">품절</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

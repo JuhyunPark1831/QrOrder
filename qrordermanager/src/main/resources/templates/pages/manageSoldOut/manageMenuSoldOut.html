@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<th:block layout:fragment="script">
+  <script th:src="@{/js/closing/manageClosingFixed.js}"></script>
+</th:block>
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+  <div class="col-12 mt-3 d-flex justify-content-start">
+    <button type="button" class="basic-tag-btn border-end active">메뉴품절 관리</button>
+    <button type="button" class="basic-tag-btn">옵션품절 관리</button>
+  </div>
+
+  <hr class="col-12 m-0 mb-3">
+  <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">메뉴품절 관리</div>
+  <div class="col-12 mt-3 text-secondary text-center">
+    * 품절 처리는 고객님들에게 보여집니다.<br>
+    메뉴판에서 보이지 않길 원하시면 '숨김'으로 변경해주세요.
+  </div>
+  <div class="col-6 my-4 d-flex justify-content-center align-items-center">
+    <div class="col-11 ms-3 position-relative">
+      <input type="text" class="col-12 basic-search-bar" placeholder="메뉴명으로 검색">
+      <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+    </div>
+  </div>
+
+  <div id="menu-list" class="col-9">
+    <div class="col-12 mb-3">
+      <div class="ms-3 fs-5 fw-bold">메인메뉴</div>
+
+      <hr class="col-12 m-0 mb-3">
+
+      <div class="col-12 d-flex flex-column align-items-center">
+        <div class="basic-card col-10 mb-3 d-flex flex-column align-items-center">
+          <div class="col-12 px-3 py-2 d-flex justify-content-between">
+            <div class="fs-5 fw-bold">고기만 500g</div>
+            <button type="button" class="btn btn-danger col-2 cs-p">품절</button>
+          </div>
+        </div>
+        <div class="basic-card col-10 mb-3 d-flex flex-column align-items-center">
+          <div class="col-12 px-3 py-2 d-flex justify-content-between">
+            <div class="fs-5 fw-bold">고기만 500g</div>
+            <button type="button" class="btn btn-secondary col-2 cs-p">품절취소</button>
+          </div>
+          <div class="col-12 text-danger text-end">
+            2025년 8월 11일 오후 6시 30분 까지 품절
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
