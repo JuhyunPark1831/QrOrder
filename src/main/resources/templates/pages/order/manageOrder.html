@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/order/manageOrder.js}"></script>
+</th:block>
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+    <div class="col-12 mt-3 d-flex justify-content-start">
+        <button type="button" class="basic-tag-btn border-end active">주문내역 관리</button>
+    </div>
+
+    <hr class="col-12 m-0 mb-3">
+
+    <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">주문내역 관리</div>
+
+    <div class="col-6 my-4 d-flex flex-column align-items-center gap-4">
+        <div class="d-flex justify-content-between">
+            <div class="input-group p-2 text-center" id="orCreatedAtStart" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                <input type="text" class="form-control border-2 border-secondary" data-td-target="#orCreatedAtStart"/>
+                <span class="input-group-text border-2 border-secondary border-start-0" data-td-target="#orCreatedAtStart" data-td-toggle="datetimepicker">
+                    <i class="bi bi-calendar"></i>
+                </span>
+            </div>
+            <div class="align-content-center">
+                <i class="bi bi-dash fs-4"></i>
+            </div>
+            <div class="input-group p-2 text-center" id="orCreatedAtEnd" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                <input type="text" class="form-control border-2 border-secondary" data-td-target="#orCreatedAtEnd"/>
+                <span class="input-group-text border-2 border-secondary border-start-0" data-td-target="#orCreatedAtEnd" data-td-toggle="datetimepicker">
+                    <i class="bi bi-calendar"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-11 ms-3 position-relative">
+            <input type="text" class="col-12 basic-search-bar border border-2 border-secondary" placeholder="주문메뉴명으로 검색">
+            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+        </div>
+    </div>
+
+    <div class="col-12 d-flex flex-column align-items-center">
+        <div class="col-12 d-flex border-top">
+            <div class="col-3 py-5 align-content-center border-end fs-1 fw-semibold text-center">
+                21:24
+            </div>
+            <div class="col-7 px-3 py-2 d-flex flex-column justify-content-center border-end cs-p">
+                <div>
+                    <span class="fs-5 fw-semibold">[메뉴] </span>
+                    고기만 500g 외 2
+                </div>
+                <div class="text-secondary text-truncate">
+                    고기만 500g / 장인의 실속 보따리 /
+                </div>
+                <div class="fs-4 fw-semibold">18,000원</div>
+            </div>
+            <div class="col-2 align-content-center text-center fs-4 fw-bold cs-p">주문접수</div>
+            <!--            <div class="col-2 d-flex flex-column justify-content-end text-center fs-4 fw-bold cs-p">-->
+            <!--                조리중-->
+            <!--                <div class="text-hover mt-2 text-primary fs-7">-->
+            <!--                    완료알림-->
+            <!--                </div>-->
+            <!--                <div class="text-hover mb-2 text-primary fs-7">-->
+            <!--                    전달완료-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="col-2 align-content-center text-center fs-4 fw-bold cs-p">조리완료</div>-->
+            <!--            <div class="col-2 align-content-center text-center fs-4 fw-bold cs-p">전달완료</div>-->
+            <!--            <div class="col-2 align-content-center text-center fs-4 fw-bold cs-p">주문취소</div>-->
+        </div>
+    </div>
+
+    <!-- 주문 상세 팝업 -->
+    <div class="d-none" id="order-detail-pop">
+        <div class="basic-popup col-6 position-fixed top-50 start-50 translate-middle z-4">
+            <div class="col-12 pe-2 pb-2 d-flex justify-content-between align-items-center">
+                <div class="ms-3 mt-2 fs-4 fw-bold">주문 정보</div>
+                <svg id="close-seq-pop-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-x-lg cs-p" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+            </div>
+            <div class="col-12 py-4 d-flex flex-column align-items-center">
+                <div class="col-10 px-4 py-3 d-flex flex-column border border-2 rounded overflow-scroll gap-3">
+                    <div class="col-12 pb-3 d-flex justify-content-between border-bottom">
+                        <div class="fs-5 fw-semibold">픽업 예상 시간</div>
+                        <div class="fs-5 text-secondary">25분</div>
+                    </div>
+
+                    <div class="col-12 pb-3 d-flex flex-column gap-3 border-bottom">
+                        <div class="col-12 d-flex flex-column">
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="fs-5 fw-semibold">고기만 500g</div>
+                                <div class="fs-5">18,000원</div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between fs-6 text-secondary">
+                                <div class="ps-4">삼겹 500g</div>
+                                <div>+ 1,000</div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between fs-6 text-secondary">
+                                <div class="ps-4">흑미밥 선택안함</div>
+                                <div>0</div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between fs-6 text-secondary">
+                                <div class="ps-4">쌈채소 추가</div>
+                                <div>+ 2,000</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex flex-column">
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="fs-5 fw-semibold">합계</div>
+                                <div class="fs-5">21,000원</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex">
+                        <div class="col-4 fw-semibold">주문시간</div>
+                        <div class="col-8 text-end">2025년 8월 31일 17시 38분</div>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <div class="col-4 fw-semibold">주문요청사항</div>
+                        <div class="col-8 text-end">(수저포크 O) 잘부탁드립니다</div>
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="col-12 mb-3 d-flex justify-content-center">-->
+            <!--                <div class="px-3 py-2 d-flex gap-2 border border-3 border-dark rounded-pill fw-semibold fs-5">-->
+            <!--                    <button class="border-0 bg-transparent">-->
+            <!--                        <i class="bi bi-plus fs-4"></i>-->
+            <!--                    </button>-->
+            <!--                    <div class="align-content-center">20분</div>-->
+            <!--                    <button class="border-0 bg-transparent">-->
+            <!--                        <i class="bi bi-dash fs-4"></i>-->
+            <!--                    </button>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="col-12 d-flex justify-content-center gap-4">-->
+            <!--                <button type="button" class="btn btn-secondary col-2 px-2 py-1 mb-3">-->
+            <!--                    주문거절-->
+            <!--                </button>-->
+            <!--                <button type="button" class="btn btn-primary col-3 px-2 py-1 mb-3">-->
+            <!--                    주문수락-->
+            <!--                </button>-->
+            <!--            </div>-->
+            <div class="col-12 d-flex justify-content-center gap-4">
+                <button type="button" class="btn btn-success col-2 px-2 py-1 mb-3">
+                    완료알림
+                </button>
+                <button type="button" class="btn btn-primary col-2 px-2 py-1 mb-3">
+                    전달완료
+                </button>
+            </div>
+        </div>
+        <div id="seq-pop-dark-area" class="w-100 h-100 position-fixed top-0 start-0 bg-black opacity-50 z-3"></div>
+    </div>
+</div>
+</html>
