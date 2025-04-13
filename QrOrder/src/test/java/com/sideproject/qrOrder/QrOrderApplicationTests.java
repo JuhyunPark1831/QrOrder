@@ -1,10 +1,10 @@
-package com.sideproject.qrordermanager;
+package com.sideproject.qrOrder;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class QrordermanagerApplicationTests {
+class QrOrderApplicationTests {
 
 	@Test
 	void contextLoads() {

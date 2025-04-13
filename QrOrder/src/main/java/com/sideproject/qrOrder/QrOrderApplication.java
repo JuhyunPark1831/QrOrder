@@ -1,13 +1,13 @@
-package com.sideproject.qrordermanager;
+package com.sideproject.qrOrder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class QrordermanagerApplication {
+public class QrOrderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(QrordermanagerApplication.class, args);
+		SpringApplication.run(QrOrderApplication.class, args);
 	}
 
 }
