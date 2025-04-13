@@ -76,3 +76,72 @@ function closeMenu () {
     $("#leftMenu").removeClass("active");
     $("#darkArea").hide();
 }
+
+/* Date, Time Picker */
+
+const today = new Date();
+const roundedTime = getNextRoundedTime(10);
+
+const datePickerAfterTodayOptions = {
+    restrictions: {
+        minDate: today
+    },
+    display: {
+        components: {
+            calendar: true,
+            date: true,
+            month: true,
+            year: true,
+            decades: true,
+        }
+    },
+    defaultDate: new Date(),
+    localization: {
+        format: 'yyyy-MM-dd'
+    }
+};
+const datePickerBeforeTodayOptions = {
+    restrictions: {
+        maxDate: today
+    },
+    display: {
+        components: {
+            calendar: true,
+            date: true,
+            month: true,
+            year: true,
+            decades: true,
+        }
+    },
+    defaultDate: new Date(),
+    localization: {
+        format: 'yyyy-MM-dd'
+    }
+};
+
+const timePickerOptions = {
+    display: {
+        components: {
+            calendar: false,
+            clock: true,
+            hours: true,
+            minutes: true,
+        },
+        buttons: {
+            close: true
+        }
+    },
+    stepping: 10,
+    defaultDate: roundedTime,
+    localization: {
+        format: 'HH:mm'
+    }
+};
+
+function getNextRoundedTime(stepMinutes) {
+    const now = new Date();
+    const ms = 1000 * 60 * stepMinutes;
+    return new Date(Math.ceil(now.getTime() / ms) * ms);
+}
+
+/* Date, Time Picker 종료 */

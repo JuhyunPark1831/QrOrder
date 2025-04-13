@@ -12,6 +12,7 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "/pages/manageSoldOut/manageMenuOptionSoldOut";
+        return "/pages/order/manageOrder";
+//        return "/pages/manageSoldOut/manageMenuOptionSoldOut";
     }
 }

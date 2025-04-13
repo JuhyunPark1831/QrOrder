@@ -3,10 +3,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
 
-<th:block layout:fragment="script">
-  <script th:src="@{/js/closing/manageClosingFixed.js}"></script>
-</th:block>
-
 <div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
 
   <div class="col-12 mt-3 d-flex justify-content-start">
@@ -22,7 +18,7 @@
   </div>
   <div class="col-6 my-4 d-flex justify-content-center align-items-center">
     <div class="col-11 ms-3 position-relative">
-      <input type="text" class="col-12 basic-search-bar" placeholder="메뉴명으로 검색">
+      <input type="text" class="col-12 basic-search-bar border border-2 border-secondary" placeholder="메뉴명으로 검색">
       <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
     </div>
   </div>
