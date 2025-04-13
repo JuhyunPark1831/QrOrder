@@ -1,0 +1,19 @@
+.order-container {
+    height: 35rem;
+    max-height: 35rem;
+    overflow-y: scroll;
+}
+.left-tag {
+    height: 2rem;
+    top: -0.2rem;
+    transition: top 0.2s ease-in-out;
+}
+.left-tag.active, .left-tag:hover {
+    top: -0.5rem;
+}
+.text-hover:hover {
+    color: #063e85 !important;
+}
+.order-option-list {
+    max-height: 30rem;
+}

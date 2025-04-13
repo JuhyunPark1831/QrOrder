@@ -5,5 +5,5 @@ public enum OrderStatus {
     PENDING,   // 접수 대기
     RECEIVED,   // 주문 접수
     PREPARED,   // 조리 완료
-    DELIVERED   // 전달 완료
+    COMPLETED   // 전달 완료
 }
