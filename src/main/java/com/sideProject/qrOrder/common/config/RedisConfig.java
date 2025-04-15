@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.common.config;
+package com.sideProject.qrOrder.common.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

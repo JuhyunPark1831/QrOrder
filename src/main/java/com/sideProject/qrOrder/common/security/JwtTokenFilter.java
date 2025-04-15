@@ -1,8 +1,8 @@
-package com.sideproject.qrOrder.common.security;
+package com.sideProject.qrOrder.common.security;
 
-import com.sideproject.qrOrder.common.error.ApiCustomException;
-import com.sideproject.qrOrder.common.error.ErrorCode;
-import com.sideproject.qrOrder.common.util.JwtUtil;
+import com.sideProject.qrOrder.common.error.ApiCustomException;
+import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;

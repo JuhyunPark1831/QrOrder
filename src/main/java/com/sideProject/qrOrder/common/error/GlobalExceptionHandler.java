@@ -1,6 +1,6 @@
-package com.sideproject.qrOrder.common.error;
+package com.sideProject.qrOrder.common.error;
 
-import com.sideproject.qrOrder.common.response.ApiResponse;
+import com.sideProject.qrOrder.common.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;

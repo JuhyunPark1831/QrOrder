@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.entity;
+package com.sideProject.qrOrder.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

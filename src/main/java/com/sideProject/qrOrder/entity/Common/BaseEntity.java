@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.entity.Common;
+package com.sideProject.qrOrder.entity.Common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

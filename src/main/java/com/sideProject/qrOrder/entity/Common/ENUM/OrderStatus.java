@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.entity.Common.ENUM;
+package com.sideProject.qrOrder.entity.Common.ENUM;
 
 public enum OrderStatus {
     CANCELED,   // 주문 취소

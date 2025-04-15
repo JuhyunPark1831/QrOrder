@@ -1,8 +1,8 @@
-package com.sideproject.qrOrder.common.response;
+package com.sideProject.qrOrder.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sideproject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.error.ErrorCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

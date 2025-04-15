@@ -1,8 +1,8 @@
-package com.sideproject.qrOrder.entity;
+package com.sideProject.qrOrder.entity;
 
-import com.sideproject.qrOrder.entity.Common.BaseEntity;
-import com.sideproject.qrOrder.entity.Common.ENUM.OrderPayment;
-import com.sideproject.qrOrder.entity.Common.ENUM.OrderStatus;
+import com.sideProject.qrOrder.entity.Common.BaseEntity;
+import com.sideProject.qrOrder.entity.Common.ENUM.OrderPayment;
+import com.sideProject.qrOrder.entity.Common.ENUM.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
