@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.entity.Common.ENUM;
+package com.sideProject.qrOrder.entity.Common.ENUM;
 
 public enum OrderPayment {
     CASH,       // 현금 결제

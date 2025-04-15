@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.common.util;
+package com.sideProject.qrOrder.common.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

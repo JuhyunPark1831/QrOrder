@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.common.error;
+package com.sideProject.qrOrder.common.error;
 
 import lombok.Getter;
 

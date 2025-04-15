@@ -1,8 +1,8 @@
-package com.sideproject.qrOrder.controller.account;
+package com.sideProject.qrOrder.controller.account;
 
-import com.sideproject.qrOrder.common.response.ApiResponse;
-import com.sideproject.qrOrder.dto.account.request.LoginRequestDto;
-import com.sideproject.qrOrder.service.account.AccountService;
+import com.sideProject.qrOrder.common.response.ApiResponse;
+import com.sideProject.qrOrder.dto.account.request.LoginRequestDto;
+import com.sideProject.qrOrder.service.account.AccountService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

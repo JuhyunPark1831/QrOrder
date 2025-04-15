@@ -1,7 +1,7 @@
-package com.sideproject.qrOrder.service.account;
+package com.sideProject.qrOrder.service.account;
 
-import com.sideproject.qrOrder.dto.account.request.LoginRequestDto;
-import com.sideproject.qrOrder.dto.account.response.JwtResponseDto;
+import com.sideProject.qrOrder.dto.account.request.LoginRequestDto;
+import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface AccountService {

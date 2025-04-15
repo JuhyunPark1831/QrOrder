@@ -1,6 +1,6 @@
-package com.sideproject.qrOrder.repository;
+package com.sideProject.qrOrder.repository;
 
-import com.sideproject.qrOrder.entity.Account;
+import com.sideProject.qrOrder.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

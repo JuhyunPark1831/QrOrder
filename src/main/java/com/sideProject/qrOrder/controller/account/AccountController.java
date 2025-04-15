@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.controller.account;
+package com.sideProject.qrOrder.controller.account;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
