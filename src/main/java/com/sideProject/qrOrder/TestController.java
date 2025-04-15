@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder;
+package com.sideProject.qrOrder;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,6 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "/pages/order/manageOrder";
-//        return "/pages/manageSoldOut/manageMenuOptionSoldOut";
+        return "/client/pages/orderList";
     }
 }

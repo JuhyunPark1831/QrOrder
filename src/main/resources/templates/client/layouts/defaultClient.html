@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>고기장인 사장님 사이트</title>
+  <title>고기장인 주문하기</title>
 
   <!--BootStrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,29 +13,24 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!--CUSTOM CSS-->
-  <link rel="stylesheet" href="/css/manager/layouts/font.css">
-  <link rel="stylesheet" href="/css/manager/layouts/layouts.css">
+  <link rel="stylesheet" href="/css/client/font.css">
+  <link rel="stylesheet" href="/css/client/layoutsClient.css">
 
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-  <!-- Tempus Dominus CSS -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
   <!--JS-->
-  <script src="/js/manager/common/common.js"></script>
+  <script src="/js/client/commonClient.js"></script>
 
   <th:block layout:fragment="css"></th:block>
   <th:block layout:fragment="script"></th:block>
 </head>
 <body>
-  <div th:replace="manager/fragments/header::header"></div>
-  <div th:replace="manager/fragments/leftMenu::leftMenu"></div>
+  <div th:replace="client/fragments/headerClient::headerClient"></div>
   <div layout:fragment="content"></div>
 </body>
 </html>

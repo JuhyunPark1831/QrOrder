@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/default}">
+      layout:decorate="~{/manager/layouts/default}">
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <th:block layout:fragment="script">
-    <script th:src="@{/js/category/manageCategory.js}"></script>
+    <script th:src="@{/js/manager/category/manageCategory.js}"></script>
 </th:block>
 
 <div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <!-- CategoryOrderPopup -->
+    <!-- 카테고리 순서 팝업 -->
     <div class="d-none" id="seq-pop">
         <div class="basic-popup col-5 position-fixed top-50 start-50 translate-middle z-4">
             <div class="col-12 pe-2 pb-2 d-flex justify-content-between align-items-center">
