@@ -4,14 +4,59 @@
       layout:decorate="~{/client/layouts/defaultClient}">
 
 <th:block layout:fragment="script">
-    <script th:src="@{/js/client/menuList/menuList.js}"></script>
+    <script th:src="@{/js/client/menuList.js}"></script>
 </th:block>
 
 <div layout:fragment="content" class="container p-0 pt-2">
-    <div class="col-12 d-flex flex-column gap-2">
+    <div class="col-12 d-flex flex-column gap-2" style="margin-bottom: 9rem">
         <div class="col-12 d-flex flex-column bg-white">
             <div class="ps-3 mt-3 fs-3 fw-semibold">메인메뉴</div>
             <div class="col-12 p-3 d-flex justify-content-between border-bottom">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+
+            <div class="col-12 p-3 d-flex justify-content-between">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 d-flex flex-column bg-white">
+            <div class="ps-3 mt-3 fs-3 fw-semibold">메인메뉴</div>
+            <div class="col-12 p-3 d-flex justify-content-between border-bottom">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+
+            <div class="col-12 p-3 d-flex justify-content-between">
                 <div class="col-6 d-flex flex-column justify-content-between">
                     <div class="fs-5">고기만 500g</div>
                     <div class="text-secondary text-truncate">
@@ -41,7 +86,7 @@
     </div>
 
     <!-- 메뉴 상세 팝업 -->
-    <div class="d-none" id="menu-detail-pop">
+    <div class="" id="menu-detail-pop">
         <div class="w-100 h-100 position-fixed top-0 start-0 z-3 overflow-scroll bg-default">
             <div class="col-12 d-flex flex-column" style="margin-bottom: 7rem">
                 <div class="col-12 bg-white">
@@ -71,7 +116,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-12 p-3 bg-white">
                         <div class="mb-3 d-flex justify-content-between fs-4 fw-semibold gap-1">
                             <div>찰진 흑미밥 선택</div>
@@ -100,7 +144,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col-12 position-fixed start-0 bottom-0 bg-white shadow-bar z-3">
                 <div class="col-12 p-4 d-flex justify-content-between">
