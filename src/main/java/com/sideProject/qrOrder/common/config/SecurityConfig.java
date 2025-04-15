@@ -43,7 +43,8 @@ public class SecurityConfig {
                                 "/favicon.ico",
                                 "/api/account/createAdmin" // 추후 삭제
                         ).permitAll()
-                        .anyRequest().authenticated()
+//                        .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .addFilterBefore(
                         new JwtTokenFilter(jwtUtil),

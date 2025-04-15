@@ -12,6 +12,16 @@ public class AccountController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "account/login";
+        return "/manager/pages/account/login";
+    }
+
+    @GetMapping("/create")
+    public String createAccountPage() {
+        return "/manager/pages/account/createAccount";
+    }
+
+    @GetMapping("/manage")
+    public String manageAccountPage() {
+        return "/manager/pages/account/manageAccount";
     }
 }
