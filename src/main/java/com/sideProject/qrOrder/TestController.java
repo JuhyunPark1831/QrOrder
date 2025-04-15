@@ -12,7 +12,6 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return "/pages/order/manageOrder";
-//        return "/pages/manageSoldOut/manageMenuOptionSoldOut";
+        return "/client/pages/menuList";
     }
 }
