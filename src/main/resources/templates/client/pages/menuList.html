@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/client/layouts/defaultClient}">
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/client/menuList.js}"></script>
+</th:block>
+
+<div layout:fragment="content" class="container p-0 pt-2">
+    <div class="col-12 d-flex flex-column gap-2" style="margin-bottom: 9rem">
+        <div class="col-12 d-flex flex-column bg-white">
+            <div class="ps-3 mt-3 fs-3 fw-semibold">메인메뉴</div>
+            <div class="col-12 p-3 d-flex justify-content-between border-bottom">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+
+            <div class="col-12 p-3 d-flex justify-content-between">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 d-flex flex-column bg-white">
+            <div class="ps-3 mt-3 fs-3 fw-semibold">메인메뉴</div>
+            <div class="col-12 p-3 d-flex justify-content-between border-bottom">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+
+            <div class="col-12 p-3 d-flex justify-content-between">
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <div class="fs-5">고기만 500g</div>
+                    <div class="text-secondary text-truncate">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                    <div class="fs-5 fw-semibold">19,000원 ~</div>
+                </div>
+                <div class="img-div">
+                    <img src="/images/test.png" class="w-100 h-100 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-bar col-12 p-3 position-fixed start-0 bottom-0 bg-white z-1">
+        <div class="mb-3 d-flex justify-content-between">
+            <div class="fs-5 fw-semibold">주문금액</div>
+            <div class="fs-5 fw-semibold">43,000원</div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary col-8 fs-5 fw-bold">
+                <span class="me-2 d-inline-flex justify-content-center align-items-center bg-light text-primary fw-bold rounded-circle" style="width: 1.5rem; height: 1.5rem;">2</span>
+                장바구니
+            </button>
+        </div>
+    </div>
+
+    <!-- 메뉴 상세 팝업 -->
+    <div class="" id="menu-detail-pop">
+        <div class="w-100 h-100 position-fixed top-0 start-0 z-3 overflow-scroll bg-default">
+            <div class="col-12 d-flex flex-column" style="margin-bottom: 7rem">
+                <div class="col-12 bg-white">
+                    <i class="bi bi-arrow-left-circle p-2 ps-3 fs-1"></i>
+                </div>
+                <div class="menu-img-div col-12 d-flex align-items-center overflow-hidden">
+                    <img src="/images/test.png" class="w-100">
+                </div>
+                <div class="py-2 px-3 d-flex flex-column gap-2 bg-white">
+                    <div class="ps-1 fs-4 fw-semibold">고기만 500g</div>
+                    <div class="text-secondary">
+                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
+                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
+                    </div>
+                </div>
+                <div class="col-12 mt-1 d-flex flex-column gap-1">
+                    <div class="col-12 p-3 bg-white">
+                        <div class="mb-3 d-flex justify-content-between fs-4 fw-semibold gap-1">
+                            <div>가격</div>
+                            <div class="fs-6 text-secondary">(필수)</div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="fs-5 fw-semibold">고기만 500g</div>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="fs-5 fw-semibold">19,900원</div>
+                                <input type="radio" class="form-select-size m-0 border-2" checked/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 p-3 bg-white">
+                        <div class="mb-3 d-flex justify-content-between fs-4 fw-semibold gap-1">
+                            <div>찰진 흑미밥 선택</div>
+                            <div class="fs-6 text-secondary">(필수)</div>
+                        </div>
+                        <div class="col-12 mb-1 d-flex justify-content-between">
+                            <div class="fs-5 fw-semibold">흑미밥 선택안함</div>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="fs-5 fw-semibold">+ 0원</div>
+                                <input type="checkbox" class="form-select-size m-0 border-2"/>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-1 d-flex justify-content-between">
+                            <div class="fs-5 fw-semibold">흑미밥 1개추가</div>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="fs-5 fw-semibold">+ 1,000원</div>
+                                <input type="checkbox" class="form-select-size m-0 border-2"/>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-1 d-flex justify-content-between">
+                            <div class="fs-5 fw-semibold">흑미밥 2개추가</div>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="fs-5 fw-semibold">+ 2,000원</div>
+                                <input type="checkbox" class="form-select-size m-0 border-2"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 position-fixed start-0 bottom-0 bg-white shadow-bar z-3">
+                <div class="col-12 p-4 d-flex justify-content-between">
+                    <button type="button" class="col-6 btn btn-primary col-5 fs-5 fw-bold">장바구니 담기</button>
+                    <div class="fs-4 fw-semibold align-content-center">23,000원</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

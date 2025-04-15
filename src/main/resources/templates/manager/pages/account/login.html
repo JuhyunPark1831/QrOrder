@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/default}">
+      layout:decorate="~{/manager/layouts/default}">
 
 <th:block layout:fragment="css">
-  <link rel="stylesheet" th:href="@{/css/account/login.css}">
+  <link rel="stylesheet" th:href="@{/css/manager/account/login.css}">
 </th:block>
 
 <th:block layout:fragment="script">
-    <script th:src="@{/js/account/login.js}"></script>
+    <script th:src="@{/js/manager/account/login.js}"></script>
 </th:block>
 
 <div layout:fragment="content" class="login-container container col-4 p-3 bg-white rounded shadow">
