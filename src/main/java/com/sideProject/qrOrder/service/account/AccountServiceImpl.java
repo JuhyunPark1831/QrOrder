@@ -1,15 +1,15 @@
-package com.sideproject.qrOrder.service.account;
+package com.sideProject.qrOrder.service.account;
 
-import com.sideproject.qrOrder.common.error.ApiCustomException;
-import com.sideproject.qrOrder.common.error.ErrorCode;
-import com.sideproject.qrOrder.common.util.CookieUtil;
-import com.sideproject.qrOrder.common.util.JwtTokenProvider;
-import com.sideproject.qrOrder.common.util.JwtUtil;
-import com.sideproject.qrOrder.common.util.RedisUtil;
-import com.sideproject.qrOrder.dto.account.request.LoginRequestDto;
-import com.sideproject.qrOrder.dto.account.response.JwtResponseDto;
-import com.sideproject.qrOrder.entity.Account;
-import com.sideproject.qrOrder.repository.AccountRepository;
+import com.sideProject.qrOrder.common.error.ApiCustomException;
+import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.util.CookieUtil;
+import com.sideProject.qrOrder.common.util.JwtTokenProvider;
+import com.sideProject.qrOrder.common.util.JwtUtil;
+import com.sideProject.qrOrder.common.util.RedisUtil;
+import com.sideProject.qrOrder.dto.account.request.LoginRequestDto;
+import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
+import com.sideProject.qrOrder.entity.Account;
+import com.sideProject.qrOrder.repository.AccountRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

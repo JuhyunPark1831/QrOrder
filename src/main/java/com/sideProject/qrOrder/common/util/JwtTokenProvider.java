@@ -1,4 +1,4 @@
-package com.sideproject.qrOrder.common.util;
+package com.sideProject.qrOrder.common.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

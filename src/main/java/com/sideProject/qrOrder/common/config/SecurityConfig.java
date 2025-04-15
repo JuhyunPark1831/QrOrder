@@ -1,8 +1,8 @@
-package com.sideproject.qrOrder.common.config;
+package com.sideProject.qrOrder.common.config;
 
-import com.sideproject.qrOrder.common.security.JwtAuthenticationEntryPoint;
-import com.sideproject.qrOrder.common.security.JwtTokenFilter;
-import com.sideproject.qrOrder.common.util.JwtUtil;
+import com.sideProject.qrOrder.common.security.JwtAuthenticationEntryPoint;
+import com.sideProject.qrOrder.common.security.JwtTokenFilter;
+import com.sideProject.qrOrder.common.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

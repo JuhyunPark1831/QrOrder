@@ -1,11 +1,11 @@
-package com.sideproject.qrOrder.common.security;
+package com.sideProject.qrOrder.common.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sideproject.qrOrder.common.error.ErrorCode;
-import com.sideproject.qrOrder.common.response.ApiResponse;
-import com.sideproject.qrOrder.common.util.CookieUtil;
-import com.sideproject.qrOrder.dto.account.response.JwtResponseDto;
-import com.sideproject.qrOrder.service.account.AccountService;
+import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.response.ApiResponse;
+import com.sideProject.qrOrder.common.util.CookieUtil;
+import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
+import com.sideProject.qrOrder.service.account.AccountService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
