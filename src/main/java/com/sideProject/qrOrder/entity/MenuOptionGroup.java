@@ -28,7 +28,7 @@ public class MenuOptionGroup extends BaseEntity {
     private int ogMaxSelect;
 
     @Builder
-    public MenuOptionGroup (String ogName,
+    public MenuOptionGroup(String ogName,
                             int ogMinSelect,
                             int ogMaxSelect) {
         this.ogName = ogName;

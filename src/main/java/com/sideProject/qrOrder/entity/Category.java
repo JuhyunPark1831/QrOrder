@@ -21,7 +21,7 @@ public class Category {
     private String caName;
 
     @Builder
-    public Category (String caName) {
+    public Category(String caName) {
         this.caName = caName;
     }
 }

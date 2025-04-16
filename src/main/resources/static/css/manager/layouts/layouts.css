@@ -2,9 +2,6 @@ body {
     background-color: #e8e8e8;
     font-family: 'Pretendard', sans-serif !important;
 }
-td {
-    cursor: pointer;
-}
 textarea {
     height: 6.25em !important;
     resize: none;
@@ -110,7 +107,11 @@ header {
     background-color: #ffffff;
     font-weight: 600;
 }
-.sub-btn.active {
+.sub-btn:hover {
+    border: 2px #ffffff solid;
+    background-color: #cccccc;
+}
+.sub-btn:disabled {
     background-color: #ebebeb;
     border: 2px #777777 solid;
     color: #777777;

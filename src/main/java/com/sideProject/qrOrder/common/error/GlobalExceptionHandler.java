@@ -2,6 +2,8 @@ package com.sideProject.qrOrder.common.error;
 
 import com.sideProject.qrOrder.common.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ApiCustomException.class)
     protected ResponseEntity<ApiResponse<?>> handleApiCustomException(ApiCustomException ex) {
         return createApiErrorResponse(ex.getErrorCode());
+    }
+
+    @ExceptionHandler({DataIntegrityViolationException.class, ConstraintViolationException.class})
+    protected ResponseEntity<ApiResponse<?>> handleDataIntegrityViolationException(Exception ex) {
+        return createApiErrorResponse(ErrorCode.DATA_INTEGRITY_VIOLATION);
     }
 
     @ExceptionHandler({NoHandlerFoundException.class, NoResourceFoundException.class}) // 404 Not Found 처리
@@ -50,7 +57,7 @@ public class GlobalExceptionHandler {
 
 
     private ModelAndView createViewErrorResponse(int httpStatus) {
-        ModelAndView mav = new ModelAndView("error"); // "error.html" 또는 "error.jsp"
+        ModelAndView mav = new ModelAndView("manager/error"); // "error.html" 또는 "error.jsp"
         mav.setStatus(HttpStatusCode.valueOf(httpStatus));
         mav.addObject("httpStatus", httpStatus);
         return mav;

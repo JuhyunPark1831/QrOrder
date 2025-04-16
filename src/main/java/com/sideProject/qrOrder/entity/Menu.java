@@ -39,7 +39,7 @@ public class Menu extends BaseEntity {
     private Category meCa;
 
     @Builder
-    public Menu (String meName,
+    public Menu(String meName,
                  int mePrice,
                  MenuStatus meStatus,
                  String meDescription,

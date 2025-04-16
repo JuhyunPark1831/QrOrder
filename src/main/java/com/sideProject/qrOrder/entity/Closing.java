@@ -27,7 +27,7 @@ public class Closing extends BaseEntity {
     private LocalDateTime clEnd;
 
     @Builder
-    public Closing (LocalDateTime clStart,
+    public Closing(LocalDateTime clStart,
                     LocalDateTime clEnd) {
         this.clStart = clStart;
         this.clEnd = clEnd;

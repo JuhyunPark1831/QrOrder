@@ -33,7 +33,7 @@ public class Order extends BaseEntity {
     private String orPhone;
 
     @Builder
-    public Order (String orUuid,
+    public Order(String orUuid,
                   OrderStatus orderStatus,
                   OrderPayment orderPayment,
                   String orPhone) {

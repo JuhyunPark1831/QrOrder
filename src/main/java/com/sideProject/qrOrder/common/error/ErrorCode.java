@@ -29,11 +29,13 @@ public enum ErrorCode {
     TEST_ERROR(403, "999", "테스트 에러 처리"),
 
     INCORRECT_PASSWORD(401, "010", "아이디, 비밀번호를 다시 확인해주세요"),
+    NOT_UNIQUE_LOGIN_ID(401, "011", "아이디가 중복되었습니다."),
     ACCESS_TOKEN_AUTHENTICATION_FAILED(401, "020", "ACCESS TOKEN 인증 실패"),
     REFRESH_TOKEN_AUTHENTICATION_FAILED(401, "021", "ACCESS TOKEN 인증 실패"),
     TOKEN_REGENERATE(401, "022", "TOKEN 재발급"),
     NOT_FOUND_ACCOUNT(404, "030", "아이디, 비밀번호를 다시 확인해주세요"),
 
+    DATA_INTEGRITY_VIOLATION(401, "600", "필수값이 비어있습니다."),
     ECT_ERROR(500, "650", "기타 서버 에러"),
     NOT_FOUND(404, "651", "기본 404 에러"),
     NOT_SUPPORTED(405, "652", "기본 405 에러");

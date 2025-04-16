@@ -6,16 +6,20 @@ import com.sideProject.qrOrder.common.util.CookieUtil;
 import com.sideProject.qrOrder.common.util.JwtTokenProvider;
 import com.sideProject.qrOrder.common.util.JwtUtil;
 import com.sideProject.qrOrder.common.util.RedisUtil;
-import com.sideProject.qrOrder.dto.account.request.LoginRequestDto;
+import com.sideProject.qrOrder.dto.account.request.AccountRequestDto;
+import com.sideProject.qrOrder.dto.account.response.AccountResponseDto;
 import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
 import com.sideProject.qrOrder.entity.Account;
-import com.sideProject.qrOrder.repository.AccountRepository;
+import com.sideProject.qrOrder.repository.account.AccountRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -31,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public void login(HttpServletResponse response, LoginRequestDto requestDto) {
+    public void login(HttpServletResponse response, AccountRequestDto requestDto) {
 
         Account loginAccount = accountRepository.findByAcLoginId(requestDto.getAcLoginId()).orElseThrow(() ->
                 new ApiCustomException(ErrorCode.NOT_FOUND_ACCOUNT));
@@ -66,9 +70,44 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
+    public void createAccount(AccountRequestDto requestDto) {
+
+        checkAcLoginId(requestDto);
+
+        accountRepository.save(Account.builder()
+                .acLoginId(requestDto.getAcLoginId())
+                .acName(requestDto.getAcName())
+                .acPassword(passwordEncoder.encode(requestDto.getAcPassword()))
+                .build());
+    }
+
+    @Override
+    public Page<AccountResponseDto> selectAccount(Pageable pageable, AccountRequestDto requestDto) {
+
+        Page<Account> accountPage = accountRepository.findAccount(pageable, requestDto);
+
+        return accountPage.map(AccountResponseDto :: from);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAccount(List<Long> acIds) {
+
+        accountRepository.deleteAllById(acIds);
+    }
+
+    @Override
+    public void checkAcLoginId(AccountRequestDto requestDto) {
+        if (accountRepository.findByAcLoginId(requestDto.getAcLoginId()).isPresent()) {
+            throw new ApiCustomException(ErrorCode.NOT_UNIQUE_LOGIN_ID);
+        }
+    }
+
+    @Override
+    @Transactional
     public void createAccountForAdmin() {
         accountRepository.save(Account.builder()
-                        .acLoginId("admin123")
+                        .acLoginId("")
                         .acPassword(passwordEncoder.encode("`1q`1q`1q"))
                         .acName("최초관리자")
                 .build());

@@ -36,10 +36,10 @@ $(function () {
     });
 
     // 카테고리 순서 수정 팝업 열고 닫기
-    $("#open-seq-pop-btn").on("click", function() {
+    $("#open-seq-pop-btn").on("click", function () {
         $('#seq-pop').removeClass("d-none");
     });
-    $("#close-seq-pop-btn, #seq-pop-dark-area").on("click", function() {
+    $("#close-seq-pop-btn, #seq-pop-dark-area").on("click", function () {
         closeSeqPop();
     });
 
