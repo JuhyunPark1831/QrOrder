@@ -27,7 +27,7 @@ public class MenuOrderOption extends BaseEntity {
     private MenuOption ooOp;
 
     @Builder
-    public MenuOrderOption (MenuOrder ooMo,
+    public MenuOrderOption(MenuOrder ooMo,
                             MenuOption ooOp) {
         this.ooMo = ooMo;
         this.ooOp = ooOp;

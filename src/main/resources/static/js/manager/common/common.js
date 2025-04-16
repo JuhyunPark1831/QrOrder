@@ -3,7 +3,7 @@
 var originalRequestSettings = null;
 
 $.ajaxSetup({
-    beforeSend: function(xhr, settings) {
+    beforeSend: function (xhr, settings) {
         originalRequestSettings = settings;
     }
 })
@@ -137,12 +137,12 @@ $(document).ready(function () {
     })
 });
 
-function openMenu () {
+function openMenu() {
     $("#leftMenu").addClass("active");
     $("#darkArea").show();
 }
 
-function closeMenu () {
+function closeMenu() {
     $("#leftMenu").removeClass("active");
     $("#darkArea").hide();
 }
@@ -151,6 +151,6 @@ function closeMenu () {
 
 /* 공통함수 */
 
-function commonRedirect (url) {
+function commonRedirect(url) {
     location.href = url;
 }

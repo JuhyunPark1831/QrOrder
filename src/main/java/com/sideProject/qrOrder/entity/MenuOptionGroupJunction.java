@@ -30,7 +30,7 @@ public class MenuOptionGroupJunction extends BaseEntity {
     private Menu mjMe;
 
     @Builder
-    public MenuOptionGroupJunction (int mjSeq,
+    public MenuOptionGroupJunction(int mjSeq,
                                     MenuOptionGroup mjOg,
                                     Menu mjMe) {
         this.mjSeq = mjSeq;

@@ -29,7 +29,7 @@ public class MenuOption extends BaseEntity {
     private MenuOptionGroup opOg;
 
     @Builder
-    public MenuOption (String opName,
+    public MenuOption(String opName,
                        int opPrice,
                        MenuOptionGroup opOg) {
         this.opName = opName;

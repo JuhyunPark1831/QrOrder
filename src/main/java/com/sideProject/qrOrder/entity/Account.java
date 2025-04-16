@@ -2,6 +2,7 @@ package com.sideProject.qrOrder.entity;
 
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,17 +19,20 @@ public class Account extends BaseEntity {
     @Column(name = "AC_ID")
     private Long acId;
 
+    @NotBlank
     @Column(name = "AC_LOGIN_ID", unique = true, nullable = false)
     private String acLoginId;
 
+    @NotBlank
     @Column(name = "AC_PASSWORD", nullable = false)
     private String acPassword;
 
-    @Column(name = "AC_NAME", unique = true, nullable = false)
+    @NotBlank
+    @Column(name = "AC_NAME", nullable = false)
     private String acName;
 
     @Builder
-    public Account (String acLoginId,
+    public Account(String acLoginId,
                     String acPassword,
                     String acName) {
         this.acLoginId = acLoginId;

@@ -6,7 +6,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#login-submit').on("click", function() {
+    $('#login-submit').on("click", function () {
         login();
     });
 })

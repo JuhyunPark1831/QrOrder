@@ -30,7 +30,7 @@ public class MenuOrder extends BaseEntity {
     private Order moOr;
 
     @Builder
-    public MenuOrder (int moCount,
+    public MenuOrder(int moCount,
                       Menu moMe,
                       Order moOr) {
         this.moCount = moCount;
