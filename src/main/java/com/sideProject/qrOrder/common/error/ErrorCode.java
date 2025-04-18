@@ -37,6 +37,7 @@ public enum ErrorCode {
     NOT_FOUND_ACCOUNT(404, "030", "아이디, 비밀번호를 다시 확인해주세요"),
 
     NOT_UNIQUE_CATEGORY_NAME(404, "610", "카테고리명이 이미 존재합니다"),
+    CATEGORY_HAS_MENU(404, "611", "해당 카테고리에 메뉴가 있습니다. 메뉴를 먼저 이동하여 카테고리를 비워주세요"),
     NOT_FOUND_CATEGORY(404, "630", "존재하지 않는 카테고리 입니다."),
 
     DATA_INTEGRITY_VIOLATION(401, "900", "필수값이 비어있습니다."),
