@@ -2,18 +2,18 @@ let isLoginIdChecked = false;
 
 $(document).ready(function () {
 
-    $('#check-acLoginId-btn').on("click", function () {
+    $("#check-acLoginId-btn").on("click", function () {
         checkAcLoginId();
     });
 
-    $('#btn-submit').on("click", function () {
+    $("#btn-submit").on("click", function () {
        createAccount();
     });
 })
 
 function checkAcLoginId() {
 
-    const $acLoginId = $('#acLoginId');
+    const $acLoginId = $("#acLoginId");
 
     if (!$acLoginId.val()) {
         alert("아이디를 입력하세요");
@@ -22,16 +22,16 @@ function checkAcLoginId() {
     }
 
     $.ajax({
-        url: '/api/account/check',
-        type: 'POST',
-        contentType: 'application/json',
+        url: "/api/account/check",
+        type: "POST",
+        contentType: "application/json",
         data: JSON.stringify({
             "acLoginId": $acLoginId.val(),
         }),
         success: function () {
-            const $checkAcLoginIdBtn = $('#check-acLoginId-btn')
-            $checkAcLoginIdBtn.prop('disabled', true);
-            $acLoginId.prop('disabled', true);
+            const $checkAcLoginIdBtn = $("#check-acLoginId-btn")
+            $checkAcLoginIdBtn.prop("disabled", true);
+            $acLoginId.prop("disabled", true);
             alert("중복 확인 완료");
             isLoginIdChecked = true;
         },
@@ -93,9 +93,9 @@ function createAccount() {
     }
 
     $.ajax({
-        url: '/api/account/create',
-        type: 'POST',
-        contentType: 'application/json',
+        url: "/api/account/create",
+        type: "POST",
+        contentType: "application/json",
         data: JSON.stringify({
             "acName": $acName.val(),
             "acLoginId": $acLoginId.val(),

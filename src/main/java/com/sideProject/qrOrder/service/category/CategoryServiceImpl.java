@@ -7,6 +7,7 @@ import com.sideProject.qrOrder.dto.category.CategoryRequestDto;
 import com.sideProject.qrOrder.dto.category.CategoryResponseDto;
 import com.sideProject.qrOrder.entity.Account;
 import com.sideProject.qrOrder.entity.Category;
+import com.sideProject.qrOrder.repository.MenuRepository;
 import com.sideProject.qrOrder.repository.category.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final MenuRepository menuRepository;
 
     @Override
     @Transactional
@@ -73,8 +75,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void deleteCategory(List<Long> caIds) {
 
-        categoryRepository.shiftDownCaSeq(caIds);
+        for (Long caId : caIds) {
+            if (!menuRepository.findByMeCa_CaId(caId).isEmpty()) {
+                throw new ApiCustomException(ErrorCode.CATEGORY_HAS_MENU);
+            }
+        }
 
+        categoryRepository.shiftDownCaSeq(caIds);
         categoryRepository.deleteAllById(caIds);
     }
 

@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
-    $('#acLoginId, #acPassword').on("keydown", function (e) {
+    $("#acLoginId, #acPassword").on("keydown", function (e) {
         if (e.key === "Enter") {
             login();
         }
     });
 
-    $('#login-submit').on("click", function () {
+    $("#login-submit").on("click", function () {
         login();
     });
 })
@@ -29,9 +29,9 @@ function login() {
     }
 
     $.ajax({
-        url: '/api/account/login',
-        type: 'POST',
-        contentType: 'application/json',
+        url: "/api/account/login",
+        type: "POST",
+        contentType: "application/json",
         data: JSON.stringify({
             "acLoginId": $acLoginId.val(),
             "acPassword": $acPassword.val()

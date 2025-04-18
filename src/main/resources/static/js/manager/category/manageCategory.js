@@ -1,15 +1,15 @@
 $(function () {
     // 카테고리 추가 Div 처리
-    $("#open-create-btn").on("click", function () {
+    $(document).on("click", "#open-create-btn", function () {
         $("#create-row").removeClass("d-none");
         $("#caName").focus();
     });
-    $("#close-create-row-btn").on("click", function () {
+    $(document).on("click", "#close-create-row-btn", function () {
         $("#create-row").addClass("d-none");
     })
 
     // 카테고리명 수정 Div 처리
-    $(".category-name").on("dblclick", function () {
+    $(document).on("dblclick", ".category-name", function () {
         const $div = $(this);
         const $td = $div.closest("td");
 
@@ -26,7 +26,7 @@ $(function () {
 
         $td.find("button").removeClass("d-none");
     });
-    $(".changeAcName-cancel-btn").on("click", function () {
+    $(document).on("click", ".changeAcName-cancel-btn", function () {
         const $td = $(this).closest("td");
 
         $td.find("input[type='text'].category-name-input").remove();
@@ -35,16 +35,16 @@ $(function () {
     })
 
     // 카테고리 순서 변경 UI
-    $("#open-seq-pop-btn").on("click", function () {
-        $('#seq-pop').removeClass("d-none");
+    $(document).on("click", "#open-seq-pop-btn", function () {
+        $("#seq-pop").removeClass("d-none");
     });
-    $("#close-seq-pop-btn, #seq-pop-dark-area").on("click", function () {
-        $('#seq-pop').addClass("d-none");
+    $(document).on("click", "#close-seq-pop-btn, #seq-pop-dark-area", function () {
+        $("#seq-pop").addClass("d-none");
     });
     $("#category-order-list").sortable({
-        handle: '.handle',
-        axis: 'y',
-        containment: 'parent'
+        handle: ".handle",
+        axis: "y",
+        containment: "parent"
     });
 
     // 추가
@@ -70,9 +70,9 @@ $(function () {
         }
 
         $.ajax({
-            url: '/api/category/modify',
-            type: 'PUT',
-            contentType: 'application/json',
+            url: "/api/category/modify",
+            type: "PUT",
+            contentType: "application/json",
             data: JSON.stringify({
                 "caId": caId,
                 "caName": $input.val()
@@ -91,7 +91,7 @@ $(function () {
         modifyCaSeq();
     });
     // 삭제
-    $("#delete-btn").on("click", function () {
+    $(document).on("click", "#delete-btn", function () {
         deleteCategory();
     })
 });
@@ -107,9 +107,9 @@ function createCategory() {
     }
 
     $.ajax({
-        url: '/api/category/create',
-        type: 'POST',
-        contentType: 'application/json',
+        url: "/api/category/create",
+        type: "POST",
+        contentType: "application/json",
         data: JSON.stringify({
             "caName": $caName.val()
         }),
@@ -125,17 +125,17 @@ function createCategory() {
 
 function viewPage(pageNum) {
 
-    const searchWord = $('#search-word').val();
+    const searchWord = $("#search-word").val();
 
     $.ajax({
-        url: '/category/replace/manage/search?page=' + (pageNum-1),
-        type: 'POST',
-        contentType: 'application/json',
+        url: "/category/replace/manage/search?page=" + (pageNum-1),
+        type: "POST",
+        contentType: "application/json",
         data: JSON.stringify({
             "searchWord": searchWord
         }),
         success: function (fragment) {
-            $('#category-list').replaceWith(fragment);
+            $("#category-list").replaceWith(fragment);
         },
         error: function (xhr, status, error) {
             commonErrorCallBack(xhr, status, error);
@@ -145,15 +145,15 @@ function viewPage(pageNum) {
 
 function modifyCaSeq() {
     const newOrder = [];
-    $('#category-order-list > div').each(function (index) {
-        const id = $(this).data('id');
+    $("#category-order-list > div").each(function (index) {
+        const id = $(this).data("id");
         newOrder.push({ "caId": id, "caSeq": index + 1 });
     });
 
     $.ajax({
-        url: '/api/category/modify/order',
-        method: 'PUT',
-        contentType: 'application/json',
+        url: "/api/category/modify/order",
+        method: "PUT",
+        contentType: "application/json",
         data: JSON.stringify(newOrder),
         success: function (response) {
             alert(response.data);
@@ -169,26 +169,26 @@ function deleteCategory() {
 
     const selectedIds = [];
 
-    $('input.category-check:checked').each(function () {
-        const caId = $(this).closest('tr').data('id');
+    $("input.category-check:checked").each(function () {
+        const caId = $(this).closest("tr").data("id");
         if (caId !== undefined) {
             selectedIds.push(caId);
         }
     });
 
     if (selectedIds.length === 0) {
-        alert('삭제할 카테고리를 선택하세요.');
+        alert("삭제할 카테고리를 선택하세요.");
         return;
     }
 
-    if (!confirm('정말 삭제하시겠습니까?')) {
+    if (!confirm("정말 삭제하시겠습니까?")) {
         return;
     }
 
     $.ajax({
-        url: '/api/category/delete',
-        type: 'DELETE',
-        contentType: 'application/json',
+        url: "/api/category/delete",
+        type: "DELETE",
+        contentType: "application/json",
         data: JSON.stringify(selectedIds),
         success: function (response) {
             alert(response.data);

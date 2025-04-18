@@ -142,16 +142,14 @@ $(document).ready(function () {
     /* LeftMenu 처리 종료 */
 
     /* table checkbox 공통 */
-    const $checkAll = $('thead input[type="checkbox"]');
-    const $checkboxes = $('tbody input[type="checkbox"]');
-
-    $checkAll.on('change', function () {
-        $checkboxes.prop('checked', $(this).is(':checked'));
+    $(document).on("change", 'thead input[type="checkbox"]', function () {
+        const isChecked = $(this).is(':checked');
+        $('tbody input[type="checkbox"]').prop('checked', isChecked);
     });
-
-    $checkboxes.on('change', function () {
+    $(document).on("change", "input[type='checkbox']", function () {
+        const $checkboxes = $('tbody input[type="checkbox"]');
         const allChecked = $checkboxes.length === $checkboxes.filter(':checked').length;
-        $checkAll.prop('checked', allChecked);
+        $('thead input[type="checkbox"]').prop('checked', allChecked);
     });
     /* table checkbox 종료 */
 });
