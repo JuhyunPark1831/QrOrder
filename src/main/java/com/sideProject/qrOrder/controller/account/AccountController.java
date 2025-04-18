@@ -1,7 +1,7 @@
 package com.sideProject.qrOrder.controller.account;
 
-import com.sideProject.qrOrder.dto.account.request.AccountRequestDto;
-import com.sideProject.qrOrder.dto.account.response.AccountResponseDto;
+import com.sideProject.qrOrder.dto.account.AccountRequestDto;
+import com.sideProject.qrOrder.dto.account.AccountResponseDto;
 import com.sideProject.qrOrder.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
