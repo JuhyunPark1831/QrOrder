@@ -15,7 +15,8 @@ public enum ErrorCode {
         3: MenuSoldOut
         4: MenuOrder
         5: Order
-        6: Etc
+        6: Category
+        9: Etc
 
     - 두번째 자리: 에러 종류
         0: 도메인 / Dto 객체 생성 오류 (MethodArgumentValidException, ConstraintViolationException 등)
@@ -35,10 +36,13 @@ public enum ErrorCode {
     TOKEN_REGENERATE(401, "022", "TOKEN 재발급"),
     NOT_FOUND_ACCOUNT(404, "030", "아이디, 비밀번호를 다시 확인해주세요"),
 
-    DATA_INTEGRITY_VIOLATION(401, "600", "필수값이 비어있습니다."),
-    ECT_ERROR(500, "650", "기타 서버 에러"),
-    NOT_FOUND(404, "651", "기본 404 에러"),
-    NOT_SUPPORTED(405, "652", "기본 405 에러");
+    NOT_UNIQUE_CATEGORY_NAME(404, "610", "카테고리명이 이미 존재합니다"),
+    NOT_FOUND_CATEGORY(404, "630", "존재하지 않는 카테고리 입니다."),
+
+    DATA_INTEGRITY_VIOLATION(401, "900", "필수값이 비어있습니다."),
+    ECT_ERROR(500, "950", "기타 서버 에러"),
+    NOT_FOUND(404, "951", "기본 404 에러"),
+    NOT_SUPPORTED(405, "952", "기본 405 에러");
 
     private final int httpStatus;
     private final String code;

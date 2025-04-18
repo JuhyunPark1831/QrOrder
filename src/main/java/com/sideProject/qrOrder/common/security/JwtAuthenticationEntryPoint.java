@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.common.response.ApiResponse;
 import com.sideProject.qrOrder.common.util.CookieUtil;
-import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
+import com.sideProject.qrOrder.dto.account.JwtResponseDto;
 import com.sideProject.qrOrder.service.account.AccountService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

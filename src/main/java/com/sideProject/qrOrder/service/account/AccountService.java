@@ -1,8 +1,8 @@
 package com.sideProject.qrOrder.service.account;
 
-import com.sideProject.qrOrder.dto.account.request.AccountRequestDto;
-import com.sideProject.qrOrder.dto.account.response.AccountResponseDto;
-import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
+import com.sideProject.qrOrder.dto.account.AccountRequestDto;
+import com.sideProject.qrOrder.dto.account.AccountResponseDto;
+import com.sideProject.qrOrder.dto.account.JwtResponseDto;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

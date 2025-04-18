@@ -8,13 +8,13 @@
                 th:onclick="'viewPage('+${currentPage - (currentPage % 5) - 4}+')'">
             이전
         </button>
-        <div class="page-link cs-p rounded-2"
+        <button class="page-link cs-p rounded-2"
              th:each="i : ${#numbers.sequence(startPage, endPage)}"
              th:if="${i <= totalPage}"
              th:text="${i}"
              th:disabled="${i == (currentPage + 1)} ? 'current-page'"
              th:onclick="'viewPage('+${i}+')'">
-        </div>
+        </button>
         <button type="button"
                 class="page-link cs-p rounded-2"
                 th:disabled="${(currentPage + 1 == totalPage)}"

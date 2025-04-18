@@ -2,7 +2,7 @@ package com.sideProject.qrOrder.repository.account;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sideProject.qrOrder.dto.account.request.AccountRequestDto;
+import com.sideProject.qrOrder.dto.account.AccountRequestDto;
 import com.sideProject.qrOrder.entity.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

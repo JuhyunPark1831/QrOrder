@@ -1,4 +1,4 @@
-package com.sideProject.qrOrder.dto.account.response;
+package com.sideProject.qrOrder.dto.account;
 
 import lombok.AccessLevel;
 import lombok.Builder;

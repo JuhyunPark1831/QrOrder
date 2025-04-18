@@ -1,16 +1,4 @@
 $(document).ready(function () {
-    const $checkAll = $('thead input[type="checkbox"]');
-    const $checkboxes = $('tbody input[type="checkbox"]');
-
-    $checkAll.on('change', function () {
-        $checkboxes.prop('checked', $(this).is(':checked'));
-    });
-
-    $checkboxes.on('change', function () {
-        const allChecked = $checkboxes.length === $checkboxes.filter(':checked').length;
-        $checkAll.prop('checked', allChecked);
-    });
-
     $('#search-word').on('input', function () {
         viewPage(1);
     });
@@ -66,7 +54,7 @@ function deleteAccount() {
         contentType: 'application/json',
         data: JSON.stringify(selectedIds),
         success: function (response) {
-            alert('삭제가 완료되었습니다.');
+            alert(response.data);
             location.reload();
         },
         error: function (xhr, status, error) {

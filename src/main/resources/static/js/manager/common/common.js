@@ -1,13 +1,10 @@
 /* JWT 인증 처리 */
-
 var originalRequestSettings = null;
-
 $.ajaxSetup({
     beforeSend: function (xhr, settings) {
         originalRequestSettings = settings;
     }
 })
-
 function commonErrorMessageCallBack(response) {
 
     if (!response) {
@@ -20,7 +17,6 @@ function commonErrorMessageCallBack(response) {
         }
     }
 }
-
 function commonErrorCallBack(xhr, status, error) {
 
     var response = xhr.responseJSON;
@@ -32,24 +28,21 @@ function commonErrorCallBack(xhr, status, error) {
         if (originalRequestSettings) {
             $.ajax(originalRequestSettings);
         }
-    } else if (response && response.code === '650') { // 500 에러
+    } else if (response && response.code === '950') { // 500 에러
         alert("서버에 문제가 발생했습니다.\n잠시 후 다시 시도해 주세요.\n문제가 계속될 시 고객센터에 문의해주세요.");
-    } else if (response && response.code === '651') { // 404 에러
+    } else if (response && response.code === '951') { // 404 에러
         alert("요청하신 정보를 찾을 수 없습니다.");
-    } else if (response && response.code === '652') { // 405 에러
+    } else if (response && response.code === '952') { // 405 에러
         alert("잘못된 요청 방식입니다.\n잠시 후 다시 시도해 주세요.");
     } else {
         commonErrorMessageCallBack(response);
     }
 }
-
 /* JWT 인증 처리 끝*/
 
 /* Date, Time Picker */
-
 const today = new Date();
 const roundedTime = getNextRoundedTime(10);
-
 const datePickerAfterTodayOptions = {
     restrictions: {
         minDate: today
@@ -86,7 +79,6 @@ const datePickerBeforeTodayOptions = {
         format: 'yyyy-MM-dd'
     }
 };
-
 const timePickerOptions = {
     display: {
         components: {
@@ -105,19 +97,32 @@ const timePickerOptions = {
         format: 'HH:mm'
     }
 };
-
 function getNextRoundedTime(stepMinutes) {
     const now = new Date();
     const ms = 1000 * 60 * stepMinutes;
     return new Date(Math.ceil(now.getTime() / ms) * ms);
 }
-
 /* Date, Time Picker 종료 */
 
-/* LeftMenu 처리 */
+/* 공통 함수 */
+function openMenu() {
+    $("#leftMenu").addClass("active");
+    $("#darkArea").show();
+}
+function closeMenu() {
+    $("#leftMenu").removeClass("active");
+    $("#darkArea").hide();
+}
+function commonRedirect(url) {
+    location.href = url;
+}
+/* 공통 함수 종료 */
+
+/* 로드 후 */
 $(document).ready(function () {
 
-     $("#leftMenu-icon").on("click", function () {
+    /* LeftMenu 처리 */
+    $("#leftMenu-icon").on("click", function () {
         let $this = $(this);
         let currentClass = $this.attr("class");
 
@@ -129,28 +134,24 @@ $(document).ready(function () {
             openMenu();
         }
     })
-
     $("#darkArea").on("click", function () {
         let $leftMenuIcon = $("#leftMenu-icon");
         $leftMenuIcon.attr("class", $leftMenuIcon.attr("class").replace("active", "").trim());
         closeMenu();
     })
+    /* LeftMenu 처리 종료 */
+
+    /* table checkbox 공통 */
+    const $checkAll = $('thead input[type="checkbox"]');
+    const $checkboxes = $('tbody input[type="checkbox"]');
+
+    $checkAll.on('change', function () {
+        $checkboxes.prop('checked', $(this).is(':checked'));
+    });
+
+    $checkboxes.on('change', function () {
+        const allChecked = $checkboxes.length === $checkboxes.filter(':checked').length;
+        $checkAll.prop('checked', allChecked);
+    });
+    /* table checkbox 종료 */
 });
-
-function openMenu() {
-    $("#leftMenu").addClass("active");
-    $("#darkArea").show();
-}
-
-function closeMenu() {
-    $("#leftMenu").removeClass("active");
-    $("#darkArea").hide();
-}
-
-/* LeftMenu 처리 종료 */
-
-/* 공통함수 */
-
-function commonRedirect(url) {
-    location.href = url;
-}

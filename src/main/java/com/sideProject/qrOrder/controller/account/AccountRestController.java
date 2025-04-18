@@ -1,7 +1,7 @@
 package com.sideProject.qrOrder.controller.account;
 
 import com.sideProject.qrOrder.common.response.ApiResponse;
-import com.sideProject.qrOrder.dto.account.request.AccountRequestDto;
+import com.sideProject.qrOrder.dto.account.AccountRequestDto;
 import com.sideProject.qrOrder.service.account.AccountService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class AccountRestController {
 
         accountService.createAccount(requestDto);
 
-        return ApiResponse.ok("계정 등록 완료");
+        return ApiResponse.ok("계정이 등록되었습니다");
     }
 
     @DeleteMapping("/delete")
@@ -37,7 +37,7 @@ public class AccountRestController {
 
         accountService.deleteAccount(acIds);
 
-        return ApiResponse.ok("계정 삭제 완료");
+        return ApiResponse.ok("계정이 삭제되었습니다");
     }
 
     @PostMapping("/check")
@@ -45,7 +45,7 @@ public class AccountRestController {
 
         accountService.checkAcLoginId(requestDto);
 
-        return ApiResponse.ok("중복 확인 완료");
+        return ApiResponse.ok("중복확인이 완료되었습니다");
     }
 
     @GetMapping("/createAdmin")

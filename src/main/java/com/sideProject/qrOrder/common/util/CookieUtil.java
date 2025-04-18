@@ -1,6 +1,6 @@
 package com.sideProject.qrOrder.common.util;
 
-import com.sideProject.qrOrder.dto.account.response.JwtResponseDto;
+import com.sideProject.qrOrder.dto.account.JwtResponseDto;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
