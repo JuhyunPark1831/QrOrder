@@ -1,3 +1,6 @@
+// 시간 OffSet 처리
+const offset = new Date().getTimezoneOffset() * 60000;
+
 /* JWT 인증 처리 */
 var originalRequestSettings = null;
 $.ajaxSetup({
@@ -42,10 +45,16 @@ function commonErrorCallBack(xhr, status, error) {
 
 /* Date, Time Picker */
 const today = new Date();
+
+const todayMin = new Date(today);
+todayMin.setHours(0, 0, 0, 0);
+const todayMax = new Date(today);
+todayMax.setHours(23, 59, 59, 999);
+
 const roundedTime = getNextRoundedTime(10);
 const datePickerAfterTodayOptions = {
     restrictions: {
-        minDate: today
+        minDate: todayMin
     },
     display: {
         components: {
@@ -54,9 +63,29 @@ const datePickerAfterTodayOptions = {
             month: true,
             year: true,
             decades: true,
+            clock: false
         }
     },
     defaultDate: new Date(),
+    localization: {
+        format: 'yyyy-MM-dd'
+    }
+};
+const datePickerAfterTodayOneYearsTermOptions = {
+    restrictions: {
+        minDate: todayMin
+    },
+    display: {
+        components: {
+            calendar: true,
+            date: true,
+            month: true,
+            year: true,
+            decades: true,
+            clock: false
+        }
+    },
+    defaultDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
     localization: {
         format: 'yyyy-MM-dd'
     }
@@ -72,6 +101,7 @@ const datePickerBeforeTodayOptions = {
             month: true,
             year: true,
             decades: true,
+            clock: false
         }
     },
     defaultDate: new Date(),
@@ -153,3 +183,7 @@ $(document).ready(function () {
     });
     /* table checkbox 종료 */
 });
+
+
+
+//todo: replace하는 div 분리 작업
