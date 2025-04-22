@@ -3,11 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/manager/layouts/default}">
 
+<th:block layout:fragment="script">
+    <script th:src="@{/js/manager/menuOptionGroup/createMenuOptionGroup.js}"></script>
+</th:block>
+
 <div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
 
     <div class="col-12 mt-3 d-flex justify-content-start">
         <button type="button" class="basic-tag-btn border-end active">옵션그룹추가</button>
-        <button type="button" class="basic-tag-btn">옵션그룹관리</button>
+        <button type="button" class="basic-tag-btn" onclick="commonRedirect('/menu-option-group/manage')">옵션그룹관리</button>
     </div>
 
     <hr class="col-12 m-0 mb-3">
@@ -26,12 +30,12 @@
             <div class="col-6 d-flex align-items-center justify-content-start gap-3">
                 <input type="checkbox" class="form-check-input m-0 border-2" />
                 <label for="ogMinSelect" class="input-label p-for-checkbox col-2 fw-bold fs-6">최소 선택</label>
-                <input type="number" id="ogMinSelect" class="basic-input col-2" />
+                <input type="number" id="ogMinSelect" class="basic-input col-2" disabled/>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-start gap-3">
                 <input type="checkbox" class="form-check-input m-0 border-2" />
                 <label for="ogMaxSelect" class="input-label p-for-checkbox col-2 fw-bold fs-6">최소 선택</label>
-                <input type="number" id="ogMaxSelect" class="basic-input col-2" />
+                <input type="number" id="ogMaxSelect" class="basic-input col-2" disabled/>
             </div>
         </div>
 

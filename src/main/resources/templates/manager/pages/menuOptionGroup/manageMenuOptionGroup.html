@@ -6,7 +6,7 @@
 <div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
 
     <div class="col-12 mt-3 d-flex justify-content-start">
-        <button type="button" class="basic-tag-btn border-end">옵션추가</button>
+        <button type="button" class="basic-tag-btn border-end" onclick="commonRedirect('/menu-option-group/create')">옵션추가</button>
         <button type="button" class="basic-tag-btn active">옵션관리</button>
     </div>
 
@@ -15,14 +15,9 @@
     <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">옵션관리</div>
 
     <div class="col-6 my-4 d-flex justify-content-between align-items-center">
-        <div class="col-9 ms-3 position-relative">
+        <div class="col-12 position-relative">
             <input type="text" class="col-12 basic-search-bar border border-2 border-secondary" placeholder="옵션그룹명 혹은 옵션명으로 검색">
             <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
-        </div>
-        <div class="me-3">
-            <svg class="plus-icon cs-p" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5V19M5 12H19" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
         </div>
     </div>
 
