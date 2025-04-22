@@ -25,48 +25,51 @@
         </div>
     </div>
 
-    <div class="bg-table col-9 mb-5 p-3 shadow-sm" id="category-list">
+    <div class="bg-table col-9 mb-5 p-3 shadow-sm">
         <div class="col-12 mb-3 text-secondary text-center">* 카테고리명을 더블클릭하면 수정할 수 있습니다</div>
-        <table class="col-12">
-            <thead>
-            <tr class="border-bottom">
-                <th class="col-1 pb-2">
-                    <input type="checkbox" />
-                </th>
-                <th class="col-3 pb-2">카테고리명</th>
-                <th class="col-2 pb-2">메뉴판 내 순서</th>
-                <th class="col-2 pb-2">메뉴 개수</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="category : ${categoryList}" th:attr="data-id=${category.caId}">
-                <td class="py-1">
-                    <input type="checkbox" class="category-check" />
-                </td>
-                <td class="py-1 d-flex justify-content-between">
-                    <div class="category-name col-8 text-truncate" th:text="${category.caName}"></div>
-                    <button type="button" class="changeAcName-btn d-none btn btn-primary p-0 px-2">수정</button>
-                    <button type="button" class="changeAcName-cancel-btn d-none btn btn-secondary p-0 px-2 me-2">취소</button>
-                </td>
-                <td class="py-1" th:text="${category.caSeq} + '번째'"></td>
-                <td class="py-1" th:text="${category.caMenuCount} + '개'"></td>
-            </tr>
-            <tr id="create-row" class="d-none">
-                <td class="py-1 text-end cs-p">
-                    <i id="close-create-row-btn" class="bi bi-x-circle me-2"></i>
-                </td>
-                <td class="py-1 d-flex justify-content-between">
-                    <input id="caName" class="col-8 border-0" type="text" placeholder="카테고리명" />
-                    <button type="button" id="create-btn" class="btn btn-primary p-0 px-2">
-                        <i class="bi bi-floppy fs-5 py-1"></i>
-                        저장
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div th:if="${categoryList.totalElements == 0}" class="col-12 mt-3 text-center text-secondary">
-            계정을 찾을 수 없습니다
+        <div id="category-list" class="col-12">
+            <table class="col-12 mb-3">
+                <thead>
+                <tr class="border-bottom">
+                    <th class="col-1 pb-2">
+                        <input type="checkbox" />
+                    </th>
+                    <th class="col-3 pb-2">카테고리명</th>
+                    <th class="col-2 pb-2">메뉴판 내 순서</th>
+                    <th class="col-2 pb-2">메뉴 개수</th>
+                </tr>
+                </thead>
+                <tbody class="border-bottom">
+                <tr th:each="category : ${categoryList}" th:attr="data-id=${category.caId}">
+                    <td class="py-1">
+                        <input type="checkbox" class="category-check" />
+                    </td>
+                    <td class="py-1 d-flex justify-content-between">
+                        <div class="category-name col-8 text-truncate" th:text="${category.caName}"></div>
+                        <button type="button" class="changeAcName-btn d-none btn btn-primary p-0 px-2">수정</button>
+                        <button type="button" class="changeAcName-cancel-btn d-none btn btn-secondary p-0 px-2 me-2">취소</button>
+                    </td>
+                    <td class="py-1" th:text="${category.caSeq} + '번째'"></td>
+                    <td class="py-1" th:text="${category.caMenuCount} + '개'"></td>
+                </tr>
+                <tr id="create-row" class="d-none">
+                    <td class="py-1 text-end cs-p">
+                        <i id="close-create-btn" class="bi bi-x-circle me-2"></i>
+                    </td>
+                    <td class="py-1 d-flex justify-content-between">
+                        <input id="caName" class="col-8 border-0" type="text" placeholder="카테고리명" />
+                        <button type="button" id="create-btn" class="btn btn-primary p-0 px-2">
+                            <i class="bi bi-floppy fs-5 py-1"></i>
+                            저장
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:if="${categoryList.totalElements == 0}" class="col-12 mt-3 text-center text-secondary">
+                계정을 찾을 수 없습니다
+            </div>
+            <div th:if="${categoryList.totalElements != 0}" th:include="manager/fragments/pagination :: pagination(${currentPage}, ${totalPage})"></div>
         </div>
         <div class="col-12 d-flex justify-content-between gap-3">
             <button type="button" id="delete-btn" class="btn btn-danger px-2 pt-1 pb-0 mt-3">
@@ -84,7 +87,6 @@
                 </button>
             </div>
         </div>
-        <div th:if="${categoryList.totalElements != 0}" th:include="manager/fragments/pagination :: pagination(${currentPage}, ${totalPage})"></div>
     </div>
 
     <!-- 카테고리 순서 팝업 -->

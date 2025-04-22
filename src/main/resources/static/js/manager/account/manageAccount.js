@@ -3,7 +3,7 @@ $(document).ready(function () {
         viewPage(1);
     });
 
-    $(document).on("click", "#delete-btn", function () {
+    $("#delete-btn").on("click", function () {
         deleteAccount();
     });
 });

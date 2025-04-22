@@ -1,12 +1,12 @@
 $(function () {
     // 카테고리 추가 Div 처리
-    $(document).on("click", "#open-create-btn", function () {
+    $("#open-create-btn").on("click", function () {
         $("#create-row").removeClass("d-none");
         $("#caName").focus();
     });
-    $(document).on("click", "#close-create-row-btn", function () {
+    $("#close-create-btn").on("click", function () {
         $("#create-row").addClass("d-none");
-    })
+    });
 
     // 카테고리명 수정 Div 처리
     $(document).on("dblclick", ".category-name", function () {
@@ -35,12 +35,12 @@ $(function () {
     })
 
     // 카테고리 순서 변경 UI
-    $(document).on("click", "#open-seq-pop-btn", function () {
+    $("#open-seq-pop-btn").on("click", function () {
         $("#seq-pop").removeClass("d-none");
-    });
-    $(document).on("click", "#close-seq-pop-btn, #seq-pop-dark-area", function () {
+    })
+    $("#close-seq-pop-btn, #seq-pop-dark-area").on("click", function () {
         $("#seq-pop").addClass("d-none");
-    });
+    })
     $("#category-order-list").sortable({
         handle: ".handle",
         axis: "y",
@@ -48,7 +48,7 @@ $(function () {
     });
 
     // 추가
-    $("#create-btn").on("click", function () {
+    $(document).on("click", "#create-btn", function () {
         createCategory();
     });
     // 검색
@@ -56,7 +56,7 @@ $(function () {
         viewPage(1);
     });
     // 이름 수정
-    $(".changeAcName-btn").on("click", function () {
+    $(document).on("click", ".changeAcName-btn", function () {
         const $td = $(this).closest("td");
         const $tr = $(this).closest("tr");
 
@@ -91,9 +91,9 @@ $(function () {
         modifyCaSeq();
     });
     // 삭제
-    $(document).on("click", "#delete-btn", function () {
+    $("#delete-btn").on("click", function () {
         deleteCategory();
-    })
+    });
 });
 
 function createCategory() {
