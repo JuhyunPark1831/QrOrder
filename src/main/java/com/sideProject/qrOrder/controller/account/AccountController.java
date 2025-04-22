@@ -40,7 +40,7 @@ public class AccountController {
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageAccountPage(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody AccountRequestDto requestDto, Model model) {
+    public String manageAccountPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody AccountRequestDto requestDto, Model model) {
 
         Page<AccountResponseDto> accountResponseDtoPage = accountService.selectAccount(pageable, requestDto);
         model.addAttribute("accountList", accountResponseDtoPage);

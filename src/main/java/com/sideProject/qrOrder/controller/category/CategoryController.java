@@ -35,7 +35,7 @@ public class CategoryController {
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageAccountPage(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody CategoryRequestDto requestDto, Model model) {
+    public String manageCategoryPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody CategoryRequestDto requestDto, Model model) {
 
         Page<CategoryResponseDto> categoryResponseDtoPage = categoryService.selectCategory(pageable, requestDto);
         model.addAttribute("categoryList", categoryResponseDtoPage);

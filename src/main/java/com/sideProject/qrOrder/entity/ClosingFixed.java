@@ -1,6 +1,7 @@
 package com.sideProject.qrOrder.entity;
 
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
+import com.sideProject.qrOrder.entity.Common.ENUM.UseStatus;
 import com.sideProject.qrOrder.entity.Common.ENUM.WeekDay;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Entity
@@ -22,10 +24,11 @@ public class ClosingFixed extends BaseEntity {
     private Long cfId;
 
     @Column(name = "CF_WEEK_NUM")
-    public int cfWeekNum;
+    private int cfWeekNum;
+    // -1 이면 전체
 
     @Column(name = "CF_WEEK_DAY")
-    public WeekDay cfWeekDay;
+    private WeekDay cfWeekDay;
 
     @Column(name = "CF_START_TIME", nullable = false)
     private LocalTime cfStartTime;
@@ -33,14 +36,27 @@ public class ClosingFixed extends BaseEntity {
     @Column(name = "CF_END_TIME", nullable = false)
     private LocalTime cfEndTime;
 
+    @Column(name = "CF_USE_STATUS", nullable = false)
+    private UseStatus cfUseStatus;
+
     @Builder
     public ClosingFixed(int cfWeekNum,
                         WeekDay cfWeekDay,
                         LocalTime cfStartTime,
-                        LocalTime cfEndTime) {
+                        LocalTime cfEndTime,
+                        UseStatus cfUseStatus) {
         this.cfWeekNum = cfWeekNum;
         this.cfWeekDay = cfWeekDay;
         this.cfStartTime = cfStartTime;
         this.cfEndTime = cfEndTime;
+        this.cfUseStatus = cfUseStatus;
+    }
+
+    public void toggleUseStatus() {
+        if (this.cfUseStatus == UseStatus.USING) {
+            this.cfUseStatus = UseStatus.NOT_USING;
+        } else {
+            this.cfUseStatus = UseStatus.USING;
+        }
     }
 }
