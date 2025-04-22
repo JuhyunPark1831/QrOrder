@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="col-11 bg-table mt-0 my-5 p-3 shadow-sm">
+  <div class="col-11 bg-table mb-5 p-3 shadow-sm">
     <div id="closing-list" class="col-12">
       <table class="col-12 mb-3">
         <thead>
@@ -49,7 +49,7 @@
           <th class="col-5 pb-2">종료 날짜 / 시간</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="border-bottom">
         <tr th:each="closing : ${closingList}" th:attr="data-id=${closing.clId}">
           <td class="py-1">
             <input type="checkbox" class="closing-check" />
