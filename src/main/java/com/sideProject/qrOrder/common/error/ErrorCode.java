@@ -16,6 +16,7 @@ public enum ErrorCode {
         4: MenuOrder
         5: Order
         6: Category
+        7: ClosingFixed
         9: Etc
 
     - 두번째 자리: 에러 종류
@@ -39,6 +40,8 @@ public enum ErrorCode {
     NOT_UNIQUE_CATEGORY_NAME(404, "610", "카테고리명이 이미 존재합니다"),
     CATEGORY_HAS_MENU(404, "611", "해당 카테고리에 메뉴가 있습니다. 메뉴를 먼저 이동하여 카테고리를 비워주세요"),
     NOT_FOUND_CATEGORY(404, "630", "존재하지 않는 카테고리 입니다."),
+
+    NOT_FOUND_CLOSING_FIXED(404, "730", "존재하지 않는 정기휴무 입니다."),
 
     DATA_INTEGRITY_VIOLATION(401, "900", "필수값이 비어있습니다."),
     ECT_ERROR(500, "950", "기타 서버 에러"),

@@ -40,7 +40,7 @@ public class ClosingController {
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageAccountPage(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody ClosingRequestDto requestDto, Model model) {
+    public String manageClosingPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody ClosingRequestDto requestDto, Model model) {
 
         Page<ClosingResponseDto> closingResponseDtoPage = closingService.selectClosing(pageable, requestDto);
         model.addAttribute("closingList", closingResponseDtoPage);
