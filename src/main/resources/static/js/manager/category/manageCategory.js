@@ -32,15 +32,15 @@ $(function () {
         $td.find("input[type='text'].category-name-input").remove();
         $td.find(".category-name").show();
         $td.find("button").addClass("d-none");
-    })
+    });
 
     // 카테고리 순서 변경 UI
     $("#open-seq-pop-btn").on("click", function () {
         $("#seq-pop").removeClass("d-none");
-    })
+    });
     $("#close-seq-pop-btn, #seq-pop-dark-area").on("click", function () {
         $("#seq-pop").addClass("d-none");
-    })
+    });
     $("#category-order-list").sortable({
         handle: ".handle",
         axis: "y",
