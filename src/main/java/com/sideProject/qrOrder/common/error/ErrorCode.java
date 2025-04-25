@@ -17,7 +17,9 @@ public enum ErrorCode {
         5: Order
         6: Category
         7: ClosingFixed
+        8: MenuOptionGroup
         9: Etc
+        10: MenuOption
 
     - 두번째 자리: 에러 종류
         0: 도메인 / Dto 객체 생성 오류 (MethodArgumentValidException, ConstraintViolationException 등)
@@ -39,14 +41,19 @@ public enum ErrorCode {
 
     NOT_UNIQUE_CATEGORY_NAME(404, "610", "카테고리명이 이미 존재합니다"),
     CATEGORY_HAS_MENU(404, "611", "해당 카테고리에 메뉴가 있습니다. 메뉴를 먼저 이동하여 카테고리를 비워주세요"),
-    NOT_FOUND_CATEGORY(404, "630", "존재하지 않는 카테고리 입니다."),
+    NOT_FOUND_CATEGORY(404, "630", "존재하지 않는 카테고리 입니다"),
 
-    NOT_FOUND_CLOSING_FIXED(404, "730", "존재하지 않는 정기휴무 입니다."),
+    NOT_FOUND_CLOSING_FIXED(404, "730", "존재하지 않는 정기휴무 입니다"),
 
-    DATA_INTEGRITY_VIOLATION(401, "900", "필수값이 비어있습니다."),
+    NOT_UNIQUE_MENU_OPTION_GROUP_NAME(404, "810", "메뉴옵션그룹명이 이미 존재합니다"),
+    NOT_FOUND_MENU_OPTION_GROUP(404, "830", "존재하지 않는 메뉴옵션그룹입니댜"),
+
+    DATA_INTEGRITY_VIOLATION(401, "900", "필수값이 비어있습니다"),
     ECT_ERROR(500, "950", "기타 서버 에러"),
     NOT_FOUND(404, "951", "기본 404 에러"),
-    NOT_SUPPORTED(405, "952", "기본 405 에러");
+    NOT_SUPPORTED(405, "952", "기본 405 에러"),
+
+    NOT_FOUND_MENU_OPTION(403, "1030", "존재하지 않는 메뉴 옵션입니다");
 
     private final int httpStatus;
     private final String code;

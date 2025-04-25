@@ -1,5 +1,6 @@
 package com.sideProject.qrOrder.entity;
 
+import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -34,5 +35,11 @@ public class MenuOptionGroup extends BaseEntity {
         this.ogName = ogName;
         this.ogMinSelect = ogMinSelect;
         this.ogMaxSelect = ogMaxSelect;
+    }
+
+    public void modify(MenuOptionGroupDto requestDto) {
+        this.ogName = requestDto.getOgName();
+        this.ogMinSelect = requestDto.getOgMinSelect();
+        this.ogMaxSelect = requestDto.getOgMaxSelect();
     }
 }

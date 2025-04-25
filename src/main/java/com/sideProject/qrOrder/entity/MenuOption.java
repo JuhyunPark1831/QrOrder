@@ -1,5 +1,6 @@
 package com.sideProject.qrOrder.entity;
 
+import com.sideProject.qrOrder.dto.menuOption.MenuOptionDto;
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -18,7 +19,7 @@ public class MenuOption extends BaseEntity {
     @Column(name = "OP_ID")
     private Long opId;
 
-    @Column(name = "OP_NAME", unique = true, nullable = false)
+    @Column(name = "OP_NAME", nullable = false)
     private String opName;
 
     @Column(name = "OP_PRICE")
@@ -35,5 +36,10 @@ public class MenuOption extends BaseEntity {
         this.opName = opName;
         this.opPrice = opPrice;
         this.opOg = opOg;
+    }
+
+    public void modify(MenuOptionDto requestDto) {
+        this.opName = requestDto.getOpName();
+        this.opPrice = requestDto.getOpPrice();
     }
 }
