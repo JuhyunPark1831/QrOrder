@@ -182,8 +182,15 @@ $(document).ready(function () {
         $('thead input[type="checkbox"]').prop('checked', allChecked);
     });
     /* table checkbox 종료 */
+
+    /* 숫자 입력 처리 */
+    $(document).on("input", ".price-input", function () {
+        let rawValue = $(this).val().replace(/[^0-9]/g, '');
+        if (rawValue !== '') {
+            $(this).val(Number(rawValue).toLocaleString());
+        } else {
+            $(this).val('');
+        }
+    });
+    /* 숫자 입력 처리 종료 */
 });
-
-
-
-//todo: replace하는 div 분리 작업

@@ -26,7 +26,7 @@ function addMenuOption() {
     const optionItem = `
         <div class="d-flex justify-content-start align-items-center">
             <input type="text" name="menuOptions[${index}].name" class="basic-input me-4 option-name" placeholder="옵션이름"/>
-            <input type="number" name="menuOptions[${index}].price" class="basic-input me-2 text-end option-price" placeholder="옵션가격"/>
+            <input type="text" name="menuOptions[${index}].price" class="basic-input me-2 text-end option-price price-input" placeholder="옵션가격"/>
             <span class="fw-bold">원</span>
             <button type="button" class="btn btn-danger px-2 pt-1 pb-0 ms-4 remove-option-btn">
                 <i class="bi bi-trash3-fill"></i>
@@ -119,8 +119,8 @@ function modifyMenuOptionGroup() {
         }
 
         const option = {
-            opName: $name.val(),
-            opPrice: parseInt($price.val(), 10)
+            "opName": $name.val(),
+            "opPrice": parseInt($price.val().replace(/,/g, ''), 10)
         };
 
         const id = $(el).data("id");
