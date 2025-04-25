@@ -1,19 +1,28 @@
+const deleteOpIds = [];
+
 $(function () {
 
     $("#add-menu-option-btn").on("click", function () {
         addMenuOption();
     });
     $(document).on("click", ".remove-option-btn", function () {
-        $(this).closest(".d-flex").remove();
+        const $item = $(this).closest(".d-flex");
+        const id = $item.data("id");
+
+        if (id !== undefined) {
+            deleteOpIds.push(id);
+        }
+
+        $item.remove();
     });
 
-    $("#create-btn").on("click", function () {
-       createMenuOptionGroup();
+    $("#modify-btn").on("click", function () {
+        modifyMenuOptionGroup();
     });
 });
 
 function addMenuOption() {
-    const index = $("#menu-option-list > div").length; // 현재 옵션 개수 기준 index
+    const index = $("#menu-option-list > div").length;
     const optionItem = `
         <div class="d-flex justify-content-start align-items-center">
             <input type="text" name="menuOptions[${index}].name" class="basic-input me-4 option-name" placeholder="옵션이름"/>
@@ -27,13 +36,19 @@ function addMenuOption() {
     $("#menu-option-list").append(optionItem);
 }
 
-function createMenuOptionGroup() {
+function modifyMenuOptionGroup() {
 
+    const $ogId = $("#ogId");
     const $ogName = $("#ogName");
     const $ogMinSelectCheck = $("#ogMinSelect-check");
     const $ogMinSelect = $("#ogMinSelect");
     const $ogMaxSelectCheck = $("#ogMaxSelect-check");
     const $ogMaxSelect = $("#ogMaxSelect");
+
+    if (!$ogId.val()) {
+        alert("잘못된 접근입니다");
+        location.href = "/menu-option-group/manage";
+    }
 
     if (!$ogName.val()) {
         alert("옵션그룹명을 입력하세요");
@@ -103,10 +118,18 @@ function createMenuOptionGroup() {
             return false;
         }
 
-        options.push({
-            "opName": $name.val(),
-            "opPrice": parseInt($price.val(), 10)
-        });
+        const option = {
+            opName: $name.val(),
+            opPrice: parseInt($price.val(), 10)
+        };
+
+        const id = $(el).data("id");
+        if (id !== undefined) {
+            option.opId = id;
+        }
+
+        options.push(option);
+
     });
 
     if (hasInvalidOption) {
@@ -114,14 +137,16 @@ function createMenuOptionGroup() {
     }
 
     $.ajax({
-        url: "/api/menu-option-group/create",
-        type: "POST",
+        url: "/api/menu-option-group/modify",
+        type: "PUT",
         contentType: "application/json",
         data: JSON.stringify({
+            "ogId": $ogId.val(),
             "ogName": $ogName.val(),
             "ogMinSelect": $ogMinSelectCheck.is(":checked") ? parseInt($ogMinSelect.val(), 10) : null,
             "ogMaxSelect": $ogMaxSelectCheck.is(":checked") ? parseInt($ogMaxSelect.val(), 10) : null,
-            "menuOptionDtoList": options
+            "menuOptionDtoList": options,
+            "deleteOpIds": deleteOpIds
         }),
         success: function (response) {
             alert(response.data);
