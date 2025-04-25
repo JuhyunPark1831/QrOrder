@@ -58,10 +58,10 @@
                  th:value="${menuOption.opName}"
                  class="basic-input me-4 option-name"
                  placeholder="옵션이름"/>
-          <input type="number"
+          <input type="text"
                  th:name="'menuOptions[' + ${iterStat.index} + '].price'"
-                 th:value="${menuOption.opPrice}"
-                 class="basic-input me-2 text-end option-price"
+                 th:value="${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')}"
+                 class="basic-input me-2 text-end option-price price-input"
                  placeholder="옵션가격"/>
           <span class="fw-bold">원</span>
           <button type="button" class="btn btn-danger px-2 pt-1 pb-0 ms-4 remove-option-btn">

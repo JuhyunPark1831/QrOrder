@@ -57,7 +57,7 @@
                 <div class="col-12 px-3 d-flex justify-content-between border-bottom"
                      th:each="menuOption : ${menuOptionGroup.menuOptionDtoList}" th:attr="data-id=${menuOption.opId}">
                     <div th:text="${menuOption.opName}"></div>
-                    <div class="fw-bold" th:text="'+' + ${menuOption.opPrice} + '원'"></div>
+                    <div class="fw-bold" th:text="'+' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'"></div>
                 </div>
             </div>
         </div>
