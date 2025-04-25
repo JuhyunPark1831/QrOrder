@@ -18,7 +18,7 @@ public class MenuOptionGroupJunction extends BaseEntity {
     @Column(name = "MJ_ID")
     private Long mjId;
 
-    @Column(name = "MJ_SEQ", unique = true)
+    @Column(name = "MJ_SEQ")
     private int mjSeq;
 
     @ManyToOne

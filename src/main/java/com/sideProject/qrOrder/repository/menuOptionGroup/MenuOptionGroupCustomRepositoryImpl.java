@@ -1,6 +1,7 @@
 package com.sideProject.qrOrder.repository.menuOptionGroup;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
@@ -30,12 +31,16 @@ public class MenuOptionGroupCustomRepositoryImpl implements MenuOptionGroupCusto
             builder.and(menuOptionGroup.ogName.containsIgnoreCase(requestDto.getSearchWord()));
         }
 
-        List<MenuOptionGroup> content = jpaQueryFactory
+        JPAQuery<MenuOptionGroup> query = jpaQueryFactory
                 .selectFrom(menuOptionGroup)
-                .where(builder)
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
+                .where(builder);
+
+        if (pageable.isPaged()) {
+            query.offset(pageable.getOffset())
+                    .limit(pageable.getPageSize());
+        }
+
+        List<MenuOptionGroup> content = query.fetch();
 
         long total = Optional.ofNullable(
                 jpaQueryFactory
