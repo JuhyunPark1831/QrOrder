@@ -54,6 +54,9 @@ public enum ErrorCode {
     NOT_FOUND_MENU_OPTION_GROUP(404, "630", "존재하지 않는 메뉴옵션그룹입니댜"),
 
     DATA_INTEGRITY_VIOLATION(401, "2000", "필수값이 비어있습니다"),
+    IMAGE_SAVE_FAILED(404, "2010", "이미지 파일 저장을 실패했습니다"),
+    IMAGE_DOWNLOAD_FAILED(404, "2010", "이미지 파일을 가져오지 못했습니다"),
+    NOT_FOUND_FILE(404, "2030", "파일을 찾지 못했습니다"),
     ECT_ERROR(500, "2050", "기타 서버 에러"),
     NOT_FOUND(404, "2051", "기본 404 에러"),
     NOT_SUPPORTED(405, "2052", "기본 405 에러");
