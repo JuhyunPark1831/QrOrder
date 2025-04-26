@@ -82,7 +82,7 @@ function createMenu() {
     formData.append("meName", $meName.val());
     formData.append("meCaId", $meCaId.val());
     formData.append("mePrice", parseInt($mePrice.val().replace(/,/g, ''), 10));
-    formData.append("meDescription", $meDescription.val());
+    formData.append("meDescription", $meDescription.val().replace(/\n/g, '<br/>'));
 
     if ($meImage) {
         formData.append("meImage", $meImage);
@@ -98,10 +98,34 @@ function createMenu() {
         data: formData,
         success: function (response) {
             alert(response.data);
-            location.href = "/menu/create";
+            location.href = "/menu/manage";
         },
         error: function (xhr, status, error) {
             commonErrorCallBack(xhr, status, error);
+        }
+    });
+}
+
+function scrollDown(pageNum) {
+
+    const searchWord = $("#search-word").val();
+
+    $.ajax({
+        url: "/menu/replace/manage/search?page=" + (pageNum - 1),
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            searchWord: searchWord
+        }),
+        success: function(fragment) {
+            $("#menu-option-group-list").append(fragment);
+            hideLoadingIndicator();
+            isLoading = false;
+        },
+        error: function(xhr, status, error) {
+            commonErrorCallBack(xhr, status, error);
+            hideLoadingIndicator();
+            isLoading = false;
         }
     });
 }

@@ -7,12 +7,14 @@ import com.sideProject.qrOrder.dto.menu.MenuDto;
 import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
 import com.sideProject.qrOrder.entity.Menu;
 import com.sideProject.qrOrder.entity.MenuOptionGroupJunction;
-import com.sideProject.qrOrder.repository.MenuRepository;
+import com.sideProject.qrOrder.repository.menu.MenuRepository;
 import com.sideProject.qrOrder.repository.category.CategoryRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroup.MenuOptionGroupRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroupJunction.MenuOptionGroupJunctionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +44,8 @@ public class MenuServiceImpl implements MenuService {
                 .mePrice(requestDto.getMePrice())
                 .meStatus(MenuStatus.AVAILABLE)
                 .meDescription(requestDto.getMeDescription())
-                .meImagePath(fileUtil.saveImage(requestDto.getMeImage(), path + File.separator + requestDto.getMeName()))
+                .meImagePath(requestDto.getMeImage() == null ?
+                        null : fileUtil.saveImage(requestDto.getMeImage(), path + File.separator + requestDto.getMeName()))
                 .meCa(categoryRepository.findById(requestDto.getMeCaId()).orElseThrow(() ->
                         new ApiCustomException(ErrorCode.NOT_FOUND_CATEGORY)))
                 .build());
@@ -56,5 +59,13 @@ public class MenuServiceImpl implements MenuService {
                     .mjMe(menu)
                     .build());
         }
+    }
+
+    @Override
+    public Page<MenuDto> selectMenu(Pageable pageable, MenuDto requestDto) {
+
+        Page<Menu> menuList = menuRepository.findMenu(pageable, requestDto);
+
+        return menuList.map(MenuDto :: from);
     }
 }

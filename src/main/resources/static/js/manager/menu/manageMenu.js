@@ -1,9 +1,7 @@
 $(function () {
     $("#search-word").on("input", function () {
         window.scrollTo(0, 0);
-        $("#menu-option-group-list").empty();
-        currentPage = 1;
-        scrollDown(currentPage);
+        searchMenu();
     });
 
     $(document).on("click", ".modify-btn", function () {
@@ -38,29 +36,25 @@ $(function () {
 
     $("#delete-btn").on("click", function () {
         deleteMenuOptionGroup();
-    });
+    })
 });
 
-function scrollDown(pageNum) {
+function searchMenu() {
 
     const searchWord = $("#search-word").val();
 
     $.ajax({
-        url: "/menu-option-group/replace/manage/search?page=" + (pageNum - 1),
+        url: "/menu/replace/manage/search",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
             searchWord: searchWord
         }),
         success: function(fragment) {
-            $("#menu-option-group-list").append(fragment);
-            hideLoadingIndicator();
-            isLoading = false;
+            $("#menu-list").replaceWith(fragment);
         },
         error: function(xhr, status, error) {
             commonErrorCallBack(xhr, status, error);
-            hideLoadingIndicator();
-            isLoading = false;
         }
     });
 }
@@ -83,18 +77,4 @@ function deleteMenuOptionGroup() {
             commonErrorCallBack(xhr, status, error);
         }
     });
-}
-
-function openDeletePop(menuList) {
-
-    const $menuListDiv = $("#menu-list-div");
-
-    if (menuList.length > 0) {
-        $("#menu-list").html(menuList.join("<br>"));
-        $menuListDiv.removeClass("d-none");
-    } else {
-        $menuListDiv.addClass("d-none");
-    }
-
-    $("#delete-pop").removeClass("d-none");
 }
