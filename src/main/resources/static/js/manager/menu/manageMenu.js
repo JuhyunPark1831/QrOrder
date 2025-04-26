@@ -5,38 +5,33 @@ $(function () {
     });
 
     $(document).on("click", ".modify-btn", function () {
-        const ogId = $(this).closest(".basic-card").data("id");
+        const meId = $(this).closest(".basic-card").data("id");
 
-        location.href = "/menu-option-group/modify/" + ogId;
+        location.href = "/menu/modify/" + meId;
     });
     $(document).on("click", ".delete-btn", function () {
-        const ogId = $(this).closest(".basic-card").data("id");
-        $("#delete-pop").data("id", ogId);
+        const meId = $(this).closest(".basic-card").data("id");
+
+        if (!confirm("정말 삭제하시겠습니까?")) {
+            return;
+        }
 
         $.ajax({
-            url: "/api/menu-option-group-junction/find/menu-name",
-            type: "POST",
+            url: "/api/menu/delete",
+            type: "DELETE",
             contentType: "application/json",
             data: JSON.stringify({
-                "ogId": ogId
+                "meId": meId
             }),
             success: function (response) {
-                openDeletePop(response.data);
+                alert(response.data);
+                location.reload();
             },
             error: function(xhr, status, error) {
                 commonErrorCallBack(xhr, status, error);
-                hideLoadingIndicator();
-                isLoading = false;
             }
         });
     });
-    $("#close-delete-pop-btn, #delete-pop-dark-area").on("click", function () {
-        $("#delete-pop").addClass("d-none");
-    });
-
-    $("#delete-btn").on("click", function () {
-        deleteMenuOptionGroup();
-    })
 });
 
 function searchMenu() {
@@ -54,26 +49,6 @@ function searchMenu() {
             $("#menu-list").replaceWith(fragment);
         },
         error: function(xhr, status, error) {
-            commonErrorCallBack(xhr, status, error);
-        }
-    });
-}
-
-function deleteMenuOptionGroup() {
-    const ogId = $("#delete-pop").data("id");
-
-    $.ajax({
-        url: "/api/menu-option-group/delete",
-        type: "DELETE",
-        contentType: "application/json",
-        data: JSON.stringify({
-            "ogId": ogId
-        }),
-        success: function (response) {
-            alert(response.data);
-            location.reload();
-        },
-        error: function (xhr, status, error) {
             commonErrorCallBack(xhr, status, error);
         }
     });

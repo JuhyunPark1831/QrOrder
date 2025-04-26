@@ -8,4 +8,5 @@ public interface MenuService {
 
     public void createMenu(MenuDto requestDto);
     public Page<MenuDto> selectMenu(Pageable pageable, MenuDto requestDto);
+    public void deleteMenu(MenuDto requestDto);
 }

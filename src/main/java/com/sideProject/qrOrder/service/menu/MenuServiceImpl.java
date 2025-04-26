@@ -68,4 +68,12 @@ public class MenuServiceImpl implements MenuService {
 
         return menuList.map(MenuDto :: from);
     }
+
+    @Override
+    @Transactional
+    public void deleteMenu(MenuDto requestDto) {
+
+        menuOptionGroupJunctionRepository.deleteByMjMe_MeId(requestDto.getMeId());
+        menuRepository.deleteById(requestDto.getMeId());
+    }
 }

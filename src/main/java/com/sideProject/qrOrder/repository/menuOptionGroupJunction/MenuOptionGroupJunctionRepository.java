@@ -10,4 +10,5 @@ public interface MenuOptionGroupJunctionRepository extends JpaRepository<MenuOpt
 
     List<MenuOptionGroupJunction> findByMjOg_OgId(Long ogId);
     public void deleteByMjOg_OgId(Long ogId);
+    public void deleteByMjMe_MeId(Long meId);
 }

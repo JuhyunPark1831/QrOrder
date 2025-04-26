@@ -19,6 +19,14 @@ public class MenuRestController {
 
         menuService.createMenu(requestDto);
 
-        return ApiResponse.ok("메뉴 등록이 완료되었습니다");
+        return ApiResponse.ok("메뉴가 등록되었습니다");
+    }
+
+    @DeleteMapping("/delete")
+    public ApiResponse<String> deleteMenu(@RequestBody MenuDto requestDto) {
+
+        menuService.deleteMenu(requestDto);
+
+        return ApiResponse.ok("메뉴가 삭제되었습니다");
     }
 }

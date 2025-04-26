@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MenuDto {
 
+    private Long meId;
     private String meName;
     private Long meCaId;
     private int mePrice;
@@ -25,7 +26,8 @@ public class MenuDto {
     private String searchWord;
 
     @Builder
-    public MenuDto(String meName,
+    public MenuDto(Long meId,
+                   String meName,
                    Long meCaId,
                    int mePrice,
                    String meDescription,
@@ -34,6 +36,7 @@ public class MenuDto {
                    List<Long> ogIdList,
                    MenuStatus meStatus,
                    String searchWord) {
+        this.meId = meId;
         this.meName = meName;
         this.meCaId = meCaId;
         this.mePrice = mePrice;
@@ -47,6 +50,7 @@ public class MenuDto {
 
     public static MenuDto from(Menu menu) {
         return MenuDto.builder()
+                .meId(menu.getMeId())
                 .meName(menu.getMeName())
                 .meCaId(menu.getMeCa().getCaId())
                 .mePrice(menu.getMePrice())
