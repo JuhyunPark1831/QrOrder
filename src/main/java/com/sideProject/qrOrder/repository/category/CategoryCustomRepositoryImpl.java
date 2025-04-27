@@ -2,12 +2,14 @@ package com.sideProject.qrOrder.repository.category;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sideProject.qrOrder.dto.account.AccountRequestDto;
 import com.sideProject.qrOrder.dto.category.CategoryRequestDto;
 import com.sideProject.qrOrder.dto.category.CategoryResponseDto;
 import com.sideProject.qrOrder.entity.Account;
 import com.sideProject.qrOrder.entity.Category;
+import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,6 +23,7 @@ import java.util.Optional;
 import static com.sideProject.qrOrder.entity.QAccount.account;
 import static com.sideProject.qrOrder.entity.QCategory.category;
 import static com.sideProject.qrOrder.entity.QMenu.menu;
+import static com.sideProject.qrOrder.entity.QMenuOptionGroup.menuOptionGroup;
 
 @Repository
 @RequiredArgsConstructor
@@ -37,7 +40,7 @@ public class CategoryCustomRepositoryImpl implements CategoryCustomRepository {
             builder.and(category.caName.containsIgnoreCase(requestDto.getSearchWord()));
         }
 
-        List<CategoryResponseDto> content = jpaQueryFactory
+        JPAQuery<CategoryResponseDto> query = jpaQueryFactory
                 .select(Projections.constructor(
                         CategoryResponseDto.class,
                         category.caId,
@@ -49,10 +52,14 @@ public class CategoryCustomRepositoryImpl implements CategoryCustomRepository {
                 .leftJoin(menu).on(menu.meCa.eq(category))
                 .where(builder)
                 .groupBy(category.caId, category.caName, category.caSeq)
-                .orderBy(category.caSeq.asc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
+                .orderBy(category.caSeq.asc());
+
+        if (pageable.isPaged()) {
+            query.offset(pageable.getOffset())
+                    .limit(pageable.getPageSize());
+        }
+
+        List<CategoryResponseDto> content = query.fetch();
 
         long total = Optional.ofNullable(
                 jpaQueryFactory

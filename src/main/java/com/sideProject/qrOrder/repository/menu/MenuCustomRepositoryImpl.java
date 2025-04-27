@@ -1,51 +1,59 @@
-package com.sideProject.qrOrder.repository.menuOptionGroup;
+package com.sideProject.qrOrder.repository.menu;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
-import com.sideProject.qrOrder.entity.MenuOptionGroup;
+import com.sideProject.qrOrder.dto.category.CategoryResponseDto;
+import com.sideProject.qrOrder.dto.menu.MenuDto;
+import com.sideProject.qrOrder.entity.Closing;
+import com.sideProject.qrOrder.entity.Menu;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.sideProject.qrOrder.entity.QMenuOptionGroup.menuOptionGroup;
+import static com.sideProject.qrOrder.entity.QCategory.category;
+import static com.sideProject.qrOrder.entity.QClosing.closing;
+import static com.sideProject.qrOrder.entity.QMenu.menu;
 
 @Repository
 @RequiredArgsConstructor
-public class MenuOptionGroupCustomRepositoryImpl implements MenuOptionGroupCustomRepository {
+public class MenuCustomRepositoryImpl implements MenuCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Page<MenuOptionGroup> findMenuOptionGroupList(Pageable pageable, MenuOptionGroupDto requestDto) {
+    public Page<Menu> findMenu(Pageable pageable, MenuDto requestDto) {
 
         BooleanBuilder builder = new BooleanBuilder();
 
         if (requestDto != null && requestDto.getSearchWord() != null && !requestDto.getSearchWord().isEmpty()) {
-            builder.and(menuOptionGroup.ogName.containsIgnoreCase(requestDto.getSearchWord()));
+            builder.and(menu.meName.containsIgnoreCase(requestDto.getSearchWord()));
         }
 
-        JPAQuery<MenuOptionGroup> query = jpaQueryFactory
-                .selectFrom(menuOptionGroup)
-                .where(builder);
+        JPAQuery<Menu> query = jpaQueryFactory
+                .selectFrom(menu)
+                .where(builder)
+                .orderBy(menu.meCa.caSeq.asc());
 
         if (pageable.isPaged()) {
             query.offset(pageable.getOffset())
                     .limit(pageable.getPageSize());
         }
 
-        List<MenuOptionGroup> content = query.fetch();
+        List<Menu> content = query.fetch();
 
         long total = Optional.ofNullable(
                 jpaQueryFactory
-                        .select(menuOptionGroup.count())
-                        .from(menuOptionGroup)
+                        .select(menu.count())
+                        .from(menu)
                         .where(builder)
                         .fetchOne()
         ).orElse(0L);

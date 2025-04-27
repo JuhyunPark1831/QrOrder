@@ -1,16 +1,4 @@
-let currentPage = 1;
-let isLoading = false;
-
 $(function () {
-
-    $(window).on("scroll", function() {
-        if (!isLoading && $(window).scrollTop() + $(window).height() >= $(document).height()) {
-            isLoading = true;
-            showLoadingIndicator();
-            currentPage++;
-            scrollDown(currentPage);
-        }
-    });
     $("#search-word").on("input", function () {
         window.scrollTo(0, 0);
         $("#menu-option-group-list").empty();
@@ -50,7 +38,7 @@ $(function () {
 
     $("#delete-btn").on("click", function () {
         deleteMenuOptionGroup();
-    })
+    });
 });
 
 function scrollDown(pageNum) {
@@ -109,12 +97,4 @@ function openDeletePop(menuList) {
     }
 
     $("#delete-pop").removeClass("d-none");
-}
-
-function showLoadingIndicator() {
-    $("#loading-indicator").show();
-}
-
-function hideLoadingIndicator() {
-    $("#loading-indicator").hide();
 }

@@ -48,6 +48,7 @@ function modifyMenuOptionGroup() {
     if (!$ogId.val()) {
         alert("잘못된 접근입니다");
         location.href = "/menu-option-group/manage";
+        return;
     }
 
     if (!$ogName.val()) {

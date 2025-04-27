@@ -18,7 +18,7 @@ public class MenuOptionGroupJunction extends BaseEntity {
     @Column(name = "MJ_ID")
     private Long mjId;
 
-    @Column(name = "MJ_SEQ", unique = true)
+    @Column(name = "MJ_SEQ")
     private int mjSeq;
 
     @ManyToOne
@@ -36,5 +36,11 @@ public class MenuOptionGroupJunction extends BaseEntity {
         this.mjSeq = mjSeq;
         this.mjOg = mjOg;
         this.mjMe = mjMe;
+    }
+
+    public void modify(Menu menu, MenuOptionGroup menuOptionGroup, int mjSeq) {
+        this.mjMe = menu;
+        this.mjOg = menuOptionGroup;
+        this.mjSeq = mjSeq;
     }
 }

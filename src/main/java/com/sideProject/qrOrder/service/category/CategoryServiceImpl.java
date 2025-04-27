@@ -2,12 +2,10 @@ package com.sideProject.qrOrder.service.category;
 
 import com.sideProject.qrOrder.common.error.ApiCustomException;
 import com.sideProject.qrOrder.common.error.ErrorCode;
-import com.sideProject.qrOrder.dto.account.AccountResponseDto;
 import com.sideProject.qrOrder.dto.category.CategoryRequestDto;
 import com.sideProject.qrOrder.dto.category.CategoryResponseDto;
-import com.sideProject.qrOrder.entity.Account;
 import com.sideProject.qrOrder.entity.Category;
-import com.sideProject.qrOrder.repository.MenuRepository;
+import com.sideProject.qrOrder.repository.menu.MenuRepository;
 import com.sideProject.qrOrder.repository.category.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
