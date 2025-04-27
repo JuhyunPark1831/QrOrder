@@ -10,10 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/menu")
@@ -55,8 +52,14 @@ public class MenuController {
         return "/manager/pages/menu/manageMenu :: #menu-list";
     }
 
-    @GetMapping("/modify")
-    public String modifyMenuPage() {
+    @GetMapping("/modify/{meId}")
+    public String modifyMenuPage(@PathVariable Long meId, Model model) {
+
+        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(Pageable.unpaged(), null));
+
+        model.addAttribute("menuDetail", menuService.selectMenuDetail(meId));
+
         return "/manager/pages/menu/modifyMenu";
     }
 }

@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import static org.springframework.util.FileSystemUtils.deleteRecursively;
+
 @Component
 @RequiredArgsConstructor
 public class FileUtil {
@@ -65,6 +67,12 @@ public class FileUtil {
         } catch (IOException e) {
             throw new ApiCustomException(ErrorCode.IMAGE_DOWNLOAD_FAILED);
         }
+    }
+
+    public void deleteImage(String imagePath) {
+        File directory = new File(imagePath);
+
+        deleteRecursively(directory);
     }
 
     public String extractExt(String fileName) {

@@ -26,12 +26,14 @@ public class MenuOptionGroupDto {
                               int ogMinSelect,
                               int ogMaxSelect,
                               List<MenuOptionDto> menuOptionDtoList,
-                              String searchWord) {
+                              String searchWord,
+                              List<Long> deleteOpIds) {
         this.ogId = ogId;
         this.ogName = ogName;
         this.ogMinSelect = ogMinSelect;
         this.ogMaxSelect = ogMaxSelect;
         this.menuOptionDtoList = menuOptionDtoList;
         this.searchWord = searchWord;
+        this.deleteOpIds = deleteOpIds;
     }
 }

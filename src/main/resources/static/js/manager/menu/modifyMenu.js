@@ -1,15 +1,33 @@
+let isDeleted = false;
+
 $(function () {
-    $("#create-btn").on("click", function () {
-        createMenu();
+    $("#modify-btn").on("click", function () {
+        modifyMenu();
+    });
+
+    $('#delete-img-btn').on('click', function() {
+        // 삭제 처리
+        $('.img-div img').hide();
+        $('#delete-img-btn').hide();
+        isDeleted = true;
+        $('.img-div').append('<img class="w-100 h-100">');
     });
 });
 
-function createMenu() {
+function modifyMenu() {
+
+    const $meId = $("#meId");
     const $meName = $("#meName");
     const $meCaId = $("#meCaId");
     const $mePrice = $("#mePrice");
     const $meDescription = $("#meDescription");
     const $meImage = $("#meImage")[0].files[0];
+
+    if (!$meId) {
+        alert("잘못된 접근입니다");
+        location.href = "/menu/manage";
+        return;
+    }
 
     if (!$meName.val()) {
         alert("메뉴명을 입력하세요");
@@ -29,7 +47,20 @@ function createMenu() {
         return;
     }
 
-    let menuOptionGroupList = [];
+    const formData = new FormData();
+
+    formData.append("meId", $meId.val());
+    formData.append("meName", $meName.val());
+    formData.append("meCaId", $meCaId.val());
+    formData.append("mePrice", parseInt($mePrice.val().replace(/,/g, ''), 10));
+    formData.append("meDescription", $meDescription.val().replace(/\n/g, '<br/>'));
+
+    if ($meImage) {
+        formData.append("meImage", $meImage);
+    }
+
+    formData.append("isDeleteImage", isDeleted);
+
     let hasInvalidOption = false;
 
     $("#menu-option-group-list > div").not("#menu-option-group-template").each(function (i, el) {
@@ -42,32 +73,23 @@ function createMenu() {
             return false;
         }
 
-        menuOptionGroupList.push({
-            "ogId": $ogId.val()
-        });
+        formData.append(`menuOptionGroupJunctionDtoList[${i}].ogId`, $ogId.val());
+
+        const mjId = $(el).data("id");
+        if (mjId !== undefined) {
+            formData.append(`menuOptionGroupJunctionDtoList[${i}].mjId`, mjId);
+        }
     });
+
+    formData.append("deleteOpIds", deleteMjIds);
 
     if (hasInvalidOption) {
         return;
     }
 
-    const formData = new FormData();
-    formData.append("meName", $meName.val());
-    formData.append("meCaId", $meCaId.val());
-    formData.append("mePrice", parseInt($mePrice.val().replace(/,/g, ''), 10));
-    formData.append("meDescription", $meDescription.val().replace(/\n/g, '<br/>'));
-
-    if ($meImage) {
-        formData.append("meImage", $meImage);
-    }
-
-    menuOptionGroupList.forEach((optionGroup, index) => {
-        formData.append(`menuOptionGroupJunctionDtoList[${index}].ogId`, optionGroup.ogId);
-    });
-
     $.ajax({
-        url: "/api/menu/create",
-        type: "POST",
+        url: "/api/menu/modify",
+        type: "PUT",
         processData: false,
         contentType: false,
         data: formData,

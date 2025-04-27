@@ -48,13 +48,18 @@ public enum ErrorCode {
 
     NOT_FOUND_CLOSING_FIXED(404, "330", "존재하지 않는 정기휴무 입니다"),
 
+    NOT_FOUND_MENU(404, "430", "존재하지 않는 메뉴 입니다"),
+
     NOT_FOUND_MENU_OPTION(403, "530", "존재하지 않는 메뉴 옵션입니다"),
 
     NOT_UNIQUE_MENU_OPTION_GROUP_NAME(404, "610", "메뉴옵션그룹명이 이미 존재합니다"),
     NOT_FOUND_MENU_OPTION_GROUP(404, "630", "존재하지 않는 메뉴옵션그룹입니댜"),
 
+    NOT_FOUND_MENU_OPTION_GROUP_JUNCTION(404, "730", "존재하지 않는 메뉴옵션그룹관계입니댜"),
+
     DATA_INTEGRITY_VIOLATION(401, "2000", "필수값이 비어있습니다"),
     IMAGE_SAVE_FAILED(404, "2010", "이미지 파일 저장을 실패했습니다"),
+    IMAGE_CHANGE_DELETE_FAILED(404, "2010", "이미지 파일 수정 혹은 삭제에 실패했습니다"),
     IMAGE_DOWNLOAD_FAILED(404, "2010", "이미지 파일을 가져오지 못했습니다"),
     NOT_FOUND_FILE(404, "2030", "파일을 찾지 못했습니다"),
     ECT_ERROR(500, "2050", "기타 서버 에러"),

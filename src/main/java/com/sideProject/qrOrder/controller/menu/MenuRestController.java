@@ -22,6 +22,14 @@ public class MenuRestController {
         return ApiResponse.ok("메뉴가 등록되었습니다");
     }
 
+    @PutMapping("/modify")
+    public ApiResponse<String> modifyMenu(@ModelAttribute MenuDto requestDto) {
+
+        menuService.modifyMenu(requestDto);
+
+        return ApiResponse.ok("메뉴가 수정되었습니다");
+    }
+
     @DeleteMapping("/delete")
     public ApiResponse<String> deleteMenu(@RequestBody MenuDto requestDto) {
 
