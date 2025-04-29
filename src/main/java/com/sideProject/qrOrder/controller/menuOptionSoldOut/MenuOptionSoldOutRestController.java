@@ -21,10 +21,10 @@ public class MenuOptionSoldOutRestController {
         return ApiResponse.ok("옵션이 품절처리 되었습니다");
     }
 
-    @DeleteMapping("/delete/{ogId}")
-    public ApiResponse<String> deleteMenuOptionSoldOut(@PathVariable Long ogId) {
+    @DeleteMapping("/delete/{osId}")
+    public ApiResponse<String> deleteMenuOptionSoldOut(@PathVariable Long osId) {
 
-        menuOptionSoldOutService.deleteMenuOptionSoldOut(ogId);
+        menuOptionSoldOutService.deleteMenuOptionSoldOut(osId);
 
         return ApiResponse.ok("옵션이 품절취소 되었습니다");
     }

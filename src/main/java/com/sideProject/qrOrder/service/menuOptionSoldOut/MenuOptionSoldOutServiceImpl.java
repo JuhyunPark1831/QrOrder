@@ -56,8 +56,8 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
 
     @Override
     @Transactional
-    public void deleteMenuOptionSoldOut(Long ogId) {
+    public void deleteMenuOptionSoldOut(Long osId) {
 
-        menuOptionSoldOutRepository.deleteById(ogId);
+        menuOptionSoldOutRepository.deleteById(osId);
     }
 }
