@@ -26,10 +26,16 @@ public class MenuOptionSoldOut extends BaseEntity {
     @Column(name = "OS_END", nullable = false)
     private LocalDateTime osEnd;
 
+    @ManyToOne
+    @JoinColumn(name = "OS_OP_ID")
+    private MenuOption osOp;
+
     @Builder
     public MenuOptionSoldOut(LocalDateTime osStart,
-                             LocalDateTime osEnd) {
+                             LocalDateTime osEnd,
+                             MenuOption osOp) {
         this.osStart = osStart;
         this.osEnd = osEnd;
+        this.osOp = osOp;
     }
 }

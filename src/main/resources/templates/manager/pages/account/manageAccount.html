@@ -44,7 +44,7 @@
                     </td>
                     <td class="py-1" th:text="${account.acName}">홍길동</td>
                     <td class="py-1" th:text="${account.acLoginId}">hong123</td>
-                    <td class="py-1" th:text="${#temporals.format(account.createdAt, 'yyyy년 M월 d일 H시 m분')}">2025년 8월 31일 18시 20분</td>
+                    <td class="py-1" th:text="${#temporals.format(account.createdAt, 'yyyy년 M월 d일 H시 mm분')}">2025년 8월 31일 18시 20분</td>
                 </tr>
                 </tbody>
             </table>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/manager/layouts/default}">
+
+<th:block layout:fragment="script">
+  <script th:src="@{/js/manager/common/infinitScroll.js}"></script>
+  <script th:src="@{/js/manager/menuOptionSoldOut/manageMenuOptionSoldOut.js}"></script>
+</th:block>
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+  <div class="col-12 mt-3 d-flex justify-content-start">
+    <button type="button" class="basic-tag-btn border-end" onclick="commonRedirect('/menu/sold-out/manage')">메뉴품절 관리</button>
+    <button type="button" class="basic-tag-btn active">옵션품절 관리</button>
+  </div>
+
+  <hr class="col-12 m-0 mb-3">
+
+  <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">옵션품절 관리</div>
+
+  <div class="col-6 my-4 d-flex justify-content-center align-items-center">
+    <div class="col-11 ms-3 position-relative">
+      <input type="text" id="search-word" class="col-12 basic-search-bar border border-2 border-secondary" placeholder="옵션그룹명 혹은 옵션명으로 검색">
+      <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+    </div>
+  </div>
+
+  <div id="loading-indicator" class="position-fixed top-50 start-50 translate-middle" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div id="menu-option-soldout-list" class="col-12 d-flex flex-column align-items-center gap-4">
+    <div class="basic-card col-7 mb-3 d-flex flex-column align-items-center" th:each="menuOptionGroup : ${menuOptionGroupList}">
+      <div class="col-12 px-3 py-2 mb-3 d-flex border-bottom border-2">
+        <div class="fs-5 fw-bold" th:text="${menuOptionGroup.ogName}"></div>
+      </div>
+      <div class="col-11 mb-3 d-flex flex-column align-items-center gap-1">
+        <div class="col-12 px-3 d-flex-column border-bottom"
+             th:each="menuOptionSoldOutDto : ${menuOptionGroup.menuOptionSoldOutDtoList}">
+          <div class="col-12 d-flex justify-content-between align-items-center">
+            <div th:text="${menuOptionSoldOutDto.opName}"></div>
+            <button type="button" class="btn btn-danger col-3 my-1 py-1 cs-p open-create-btn"
+                    th:if="${menuOptionSoldOutDto.osStart == null}"
+                    th:attr="data-id=${menuOptionSoldOutDto.osOpId}">품절 설정</button>
+            <button type="button" class="btn btn-secondary col-3 my-1 py-1 cs-p delete-btn"
+                    th:if="${menuOptionSoldOutDto.osStart != null}"
+                    th:attr="data-id=${menuOptionSoldOutDto.osId}">품절 취소</button>
+          </div>
+          <div class="col-12 text-end text-danger"
+               th:if="${menuOptionSoldOutDto.osStart != null}"
+               th:text="${#temporals.format(menuOptionSoldOutDto.osStart, 'yyyy년 M월 d일 H시 mm분')} + ' ~ ' +
+               ${#temporals.format(menuOptionSoldOutDto.osEnd, 'yyyy년 M월 d일 H시 mm분')}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 품절 설정 팝업 -->
+  <div class="d-none" id="create-soldout-pop">
+    <div class="basic-popup col-5 position-fixed top-50 start-50 translate-middle z-4">
+      <div class="col-12 pe-2 pb-2 mb-2 d-flex justify-content-between align-items-center">
+        <div class="ms-3 mt-2 fs-4 fw-bold">품절 처리</div>
+        <svg id="close-seq-pop-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-x-lg cs-p" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+        </svg>
+      </div>
+
+      <div class="col-12 d-flex flex-column gap-1">
+        <label class="ms-3 fw-semibold">품절 시작</label>
+        <div class="col-12 d-flex mb-2">
+          <div class="input-group p-2 text-center" id="osStartDate" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#osStartDate" readonly/>
+            <span class="input-group-text" data-td-target="#osStartDate" data-td-toggle="datetimepicker">
+            <i class="bi bi-calendar"></i>
+            </span>
+          </div>
+          <div class="input-group  p-2 text-center" id="osStartTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#osStartTime" readonly/>
+            <span class="input-group-text" data-td-target="#osStartTime" data-td-toggle="datetimepicker">
+            <i class="bi bi-clock"></i>
+          </span>
+          </div>
+        </div>
+
+        <label class="ms-3 fw-semibold">품절 종료</label>
+        <div class="col-12 d-flex mb-2">
+          <div class="input-group p-2 text-center" id="osEndDate" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#osEndDate" readonly/>
+            <span class="input-group-text" data-td-target="#osEndDate" data-td-toggle="datetimepicker">
+            <i class="bi bi-calendar"></i>
+            </span>
+          </div>
+          <div class="input-group  p-2 text-center" id="osEndTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#osEndTime" readonly/>
+            <span class="input-group-text" data-td-target="#osEndTime" data-td-toggle="datetimepicker">
+            <i class="bi bi-clock"></i>
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center gap-4">
+        <button type="button" id="close-btn" class="btn btn-secondary px-2 py-1 mb-3">취소</button>
+        <button type="button" id="create-btn" class="btn btn-danger px-2 py-1 mb-3">품절 설정</button>
+      </div>
+    </div>
+    <div id="create-soldout-pop-dark-area" class="w-100 h-100 position-fixed top-0 start-0 bg-black opacity-50 z-3"></div>
+  </div>
+</div>
+</html>
