@@ -1,9 +1,12 @@
 $(function () {
     $("#search-word").on("input", function () {
-        window.scrollTo(0, 0);
-        $("#menu-option-group-list").empty();
-        currentPage = 1;
-        scrollDown(currentPage);
+        if (!isLoading) {
+            isLoading = true;
+            window.scrollTo(0, 0);
+            $("#menu-option-group-list").empty();
+            currentPage = 1;
+            scrollDown(currentPage);
+        }
     });
 
     $(document).on("click", ".modify-btn", function () {

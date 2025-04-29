@@ -1,0 +1,63 @@
+package com.sideProject.qrOrder.service.menuOptionSoldOut;
+
+import com.sideProject.qrOrder.common.error.ApiCustomException;
+import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
+import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
+import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutResponseDto;
+import com.sideProject.qrOrder.entity.MenuOption;
+import com.sideProject.qrOrder.entity.MenuOptionGroup;
+import com.sideProject.qrOrder.entity.MenuOptionSoldOut;
+import com.sideProject.qrOrder.repository.menuOptionGroup.MenuOptionGroupRepository;
+import com.sideProject.qrOrder.repository.menuOptionSoldOut.MenuOptionSoldOutRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
+
+    private final MenuOptionGroupRepository menuOptionGroupRepository;
+    private final com.sideProject.qrOrder.repository.menuOption.MenuOptionRepository menuOptionRepository;
+    private final MenuOptionSoldOutRepository menuOptionSoldOutRepository;
+
+    @Override
+    @Transactional
+    public void createMenuOptionSoldOut(MenuOptionSoldOutDto requestDto) {
+
+        MenuOption menuOption = menuOptionRepository.findById(requestDto.getOsOpId()).orElseThrow(() ->
+                new ApiCustomException(ErrorCode.NOT_FOUND_MENU_OPTION));
+
+        menuOptionSoldOutRepository.deleteByOsOp_OpId(requestDto.getOsOpId());
+
+        menuOptionSoldOutRepository.save(MenuOptionSoldOut.builder()
+                .osStart(requestDto.getOsStart())
+                .osEnd(requestDto.getOsEnd())
+                .osOp(menuOption)
+                .build());
+    }
+
+    @Override
+    public Page<MenuOptionSoldOutResponseDto> selectMenuOptionSoldOut(Pageable pageable, MenuOptionSoldOutDto requestDto) {
+
+        Page<MenuOptionGroup> menuOptionGroupPage = menuOptionGroupRepository.findMenuOptionGroupList(pageable, MenuOptionGroupDto.builder()
+                .searchWord(requestDto == null ? null : requestDto.getSearchWord()).build());
+
+        return menuOptionGroupPage.map(menuOptionGroup -> MenuOptionSoldOutResponseDto.builder()
+                .ogId(menuOptionGroup.getOgId())
+                .ogName(menuOptionGroup.getOgName())
+                .menuOptionSoldOutDtoList(menuOptionRepository.findMenuOptionListWithSoldOutByOgId(menuOptionGroup.getOgId()))
+                .build());
+    }
+
+    @Override
+    @Transactional
+    public void deleteMenuOptionSoldOut(Long ogId) {
+
+        menuOptionSoldOutRepository.deleteById(ogId);
+    }
+}

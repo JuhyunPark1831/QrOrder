@@ -54,8 +54,8 @@
           <td class="py-1">
             <input type="checkbox" class="closing-check" />
           </td>
-          <td class="py-1" th:text="${#temporals.format(closing.clStart, 'yyyy년 M월 d일 H시 m분')}"></td>
-          <td class="py-1" th:text="${#temporals.format(closing.clEnd, 'yyyy년 M월 d일 H시 m분')}"></td>
+          <td class="py-1" th:text="${#temporals.format(closing.clStart, 'yyyy년 M월 d일 H시 mm분')}"></td>
+          <td class="py-1" th:text="${#temporals.format(closing.clEnd, 'yyyy년 M월 d일 H시 mm분')}"></td>
         </tr>
         </tbody>
       </table>

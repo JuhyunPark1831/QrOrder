@@ -127,6 +127,24 @@ const timePickerOptions = {
         format: 'HH:mm'
     }
 };
+const timePickerOptionsLater = {
+    display: {
+        components: {
+            calendar: false,
+            clock: true,
+            hours: true,
+            minutes: true,
+        },
+        buttons: {
+            close: true
+        }
+    },
+    stepping: 10,
+    defaultDate: new Date(roundedTime.getTime() + 10 * 60 * 1000),
+    localization: {
+        format: 'HH:mm'
+    }
+};
 function getNextRoundedTime(stepMinutes) {
     const now = new Date();
     const ms = 1000 * 60 * stepMinutes;
