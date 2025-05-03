@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface MenuOptionSoldOutRepository extends JpaRepository<MenuOptionSoldOut, Long> {
-    public void deleteByOsOp_OpId(Long opId);
+    public void deleteByOsOp_OpId(Long osId);
 }

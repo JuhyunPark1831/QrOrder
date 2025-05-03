@@ -19,7 +19,7 @@ $(function () {
         const opId = $(this).data("id");
         $("#create-soldout-pop").data("id", opId).removeClass("d-none");
     });
-    $("#close-btn").on("click", function () {
+    $("#close-btn, #close-create-soldout-pop").on("click", function () {
         $("#create-soldout-pop").addClass("d-none")
     });
 
@@ -139,8 +139,6 @@ function createMenuOptionSoldOut() {
         },
         error: function(xhr, status, error) {
             commonErrorCallBack(xhr, status, error);
-            hideLoadingIndicator();
-            isLoading = false;
         }
     });
 }

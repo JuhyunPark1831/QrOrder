@@ -57,6 +57,8 @@ public enum ErrorCode {
 
     NOT_FOUND_MENU_OPTION_GROUP_JUNCTION(404, "730", "존재하지 않는 메뉴옵션그룹관계입니댜"),
 
+    NOT_FOUND_MENU_SOLD_OUT(404, "1130", "존재하지 않는 메뉴품절정보입니다"),
+
     DATA_INTEGRITY_VIOLATION(401, "2000", "필수값이 비어있습니다"),
     IMAGE_SAVE_FAILED(404, "2010", "이미지 파일 저장을 실패했습니다"),
     IMAGE_CHANGE_DELETE_FAILED(404, "2010", "이미지 파일 수정 혹은 삭제에 실패했습니다"),

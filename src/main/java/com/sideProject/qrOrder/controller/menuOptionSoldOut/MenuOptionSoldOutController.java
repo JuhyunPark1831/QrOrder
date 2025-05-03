@@ -34,10 +34,10 @@ public class MenuOptionSoldOutController {
 
     @PostMapping("/replace/manage/search")
     public String manageMenuOptionSoldOutPageSearch(@PageableDefault(page = 0, size = 3) Pageable pageable,
-                                                    @RequestBody MenuOptionSoldOutDto menuOptionSoldOutDto,
+                                                    @RequestBody MenuOptionSoldOutDto requestDto,
                                                     Model model) {
 
-        Page<MenuOptionSoldOutResponseDto> menuOptionSoldOutResponseDtoPage = menuOptionSoldOutService.selectMenuOptionSoldOut(pageable, menuOptionSoldOutDto);
+        Page<MenuOptionSoldOutResponseDto> menuOptionSoldOutResponseDtoPage = menuOptionSoldOutService.selectMenuOptionSoldOut(pageable, requestDto);
 
         model.addAttribute("menuOptionGroupList", menuOptionSoldOutResponseDtoPage);
 
