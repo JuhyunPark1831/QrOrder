@@ -12,6 +12,8 @@ import com.sideProject.qrOrder.repository.menu.MenuRepository;
 import com.sideProject.qrOrder.repository.category.CategoryRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroup.MenuOptionGroupRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroupJunction.MenuOptionGroupJunctionRepository;
+import com.sideProject.qrOrder.repository.menuSoldOut.MenuSoldOutRepository;
+import com.sideProject.qrOrder.service.menuSoldOut.MenuSoldOutService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -31,6 +33,7 @@ public class MenuServiceImpl implements MenuService {
     @Value("${spring.dir.menuImagePath}")
     private String path;
 
+    private final MenuSoldOutRepository menuSoldOutRepository;
     private final CategoryRepository categoryRepository;
     private final MenuOptionGroupJunctionRepository menuOptionGroupJunctionRepository;
     private final MenuOptionGroupRepository menuOptionGroupRepository;
@@ -146,6 +149,18 @@ public class MenuServiceImpl implements MenuService {
 
         // 삭제된 옵션 그룹
         menuOptionGroupJunctionRepository.deleteAllById(requestDto.getDeleteMjIds());
+    }
+
+    @Override
+    @Transactional
+    public void modifyMeStatus(Long meId, MenuStatus meStatus) {
+
+        Menu menu = menuRepository.findById(meId).orElseThrow(() ->
+                new ApiCustomException(ErrorCode.NOT_FOUND_MENU));
+
+        menu.modifyMeStatus(meStatus);
+
+        menuSoldOutRepository.deleteByMsMe_MeId(meId);
     }
 
     @Override

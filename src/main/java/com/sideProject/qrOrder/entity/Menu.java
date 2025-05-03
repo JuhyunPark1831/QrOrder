@@ -61,6 +61,10 @@ public class Menu extends BaseEntity {
         this.meCa = category;
     }
 
+    public void modifyMeStatus(MenuStatus meStatus) {
+        this.meStatus = meStatus;
+    }
+
     public void changeMeImagePath(String meImagePath) {
         this.meImagePath = meImagePath;
     }
