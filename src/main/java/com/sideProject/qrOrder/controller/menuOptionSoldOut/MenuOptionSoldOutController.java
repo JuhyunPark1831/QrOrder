@@ -1,10 +1,8 @@
 package com.sideProject.qrOrder.controller.menuOptionSoldOut;
 
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
-import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutResponseDto;
 import com.sideProject.qrOrder.service.menuOptionSoldOut.MenuOptionSoldOutService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;

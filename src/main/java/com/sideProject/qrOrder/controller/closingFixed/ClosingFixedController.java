@@ -1,7 +1,5 @@
 package com.sideProject.qrOrder.controller.closingFixed;
 
-import com.sideProject.qrOrder.dto.closing.ClosingRequestDto;
-import com.sideProject.qrOrder.dto.closing.ClosingResponseDto;
 import com.sideProject.qrOrder.dto.closingFixed.ClosingFixedDto;
 import com.sideProject.qrOrder.service.closingFixed.ClosingFixedService;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/closing-fixed")

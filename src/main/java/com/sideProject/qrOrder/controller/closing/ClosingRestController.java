@@ -1,9 +1,7 @@
 package com.sideProject.qrOrder.controller.closing;
 
 import com.sideProject.qrOrder.common.response.ApiResponse;
-import com.sideProject.qrOrder.dto.category.CategoryRequestDto;
-import com.sideProject.qrOrder.dto.closing.ClosingRequestDto;
-import com.sideProject.qrOrder.service.category.CategoryService;
+import com.sideProject.qrOrder.dto.closing.ClosingDto;
 import com.sideProject.qrOrder.service.closing.ClosingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +16,7 @@ public class ClosingRestController {
     private final ClosingService closingService;
 
     @PostMapping("/create")
-    public ApiResponse<String> createClosing(@RequestBody ClosingRequestDto requestDto) {
+    public ApiResponse<String> createClosing(@RequestBody ClosingDto requestDto) {
 
         closingService.createClosing(requestDto);
 

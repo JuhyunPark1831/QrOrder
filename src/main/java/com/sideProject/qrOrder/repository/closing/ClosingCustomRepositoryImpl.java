@@ -1,13 +1,8 @@
 package com.sideProject.qrOrder.repository.closing;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sideProject.qrOrder.dto.category.CategoryRequestDto;
-import com.sideProject.qrOrder.dto.category.CategoryResponseDto;
-import com.sideProject.qrOrder.dto.closing.ClosingRequestDto;
-import com.sideProject.qrOrder.dto.closing.ClosingResponseDto;
-import com.sideProject.qrOrder.entity.Account;
+import com.sideProject.qrOrder.dto.closing.ClosingDto;
 import com.sideProject.qrOrder.entity.Closing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,10 +15,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.sideProject.qrOrder.entity.QAccount.account;
-import static com.sideProject.qrOrder.entity.QCategory.category;
 import static com.sideProject.qrOrder.entity.QClosing.closing;
-import static com.sideProject.qrOrder.entity.QMenu.menu;
 
 @Repository
 @RequiredArgsConstructor
@@ -32,7 +24,7 @@ public class ClosingCustomRepositoryImpl implements ClosingCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Page<Closing> findClosing(Pageable pageable, ClosingRequestDto requestDto) {
+    public Page<Closing> findClosing(Pageable pageable, ClosingDto requestDto) {
 
         BooleanBuilder builder = new BooleanBuilder();
 
