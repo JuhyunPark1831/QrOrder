@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MenuOptionCustomRepository {
 
-    public List<MenuOptionSoldOutDto> findMenuOptionListWithSoldOutByOgId(Long ogId);
+    public List<MenuOptionSoldOutDto> findMenuOptionSoldOutDtoListByOgId(Long ogId);
 }

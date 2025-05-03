@@ -26,7 +26,6 @@ public class ClosingServiceImpl implements ClosingService {
     @Override
     @Transactional
     public void createClosing(ClosingRequestDto requestDto) {
-
         closingRepository.save(Closing.builder()
                         .clStart(requestDto.getClStart())
                         .clEnd(requestDto.getClEnd())
@@ -44,7 +43,6 @@ public class ClosingServiceImpl implements ClosingService {
     @Override
     @Transactional
     public void deleteClosing(List<Long> clIds) {
-
         closingRepository.deleteAllById(clIds);
     }
 }

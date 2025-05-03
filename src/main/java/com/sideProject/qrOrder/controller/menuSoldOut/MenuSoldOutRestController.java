@@ -24,7 +24,7 @@ public class MenuSoldOutRestController {
     }
 
     @PutMapping("/modify/sold-out")
-    public ApiResponse<String> modifyAvailableMenuSoldOut(@RequestBody MenuSoldOutDto requestDto) {
+    public ApiResponse<String> modifyMenuStatusToSoldOut(@RequestBody MenuSoldOutDto requestDto) {
 
         menuSoldOutService.createMenuSoldOut(requestDto);
 
@@ -36,6 +36,6 @@ public class MenuSoldOutRestController {
 
         menuSoldOutService.deleteMenuSoldOut(msId);
 
-        return ApiResponse.ok("메뉴 품절취소 되었습니다");
+        return ApiResponse.ok("메뉴가 품절취소 되었습니다");
     }
 }

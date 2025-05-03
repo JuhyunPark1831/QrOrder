@@ -41,8 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Page<CategoryResponseDto> selectCategory(Pageable pageable, CategoryRequestDto requestDto) {
-
-        return categoryRepository.findCategory(pageable, requestDto);
+        return categoryRepository.findCategoryDtoList(pageable, requestDto);
     }
 
     @Override
@@ -59,9 +58,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void modifyCategorySeq(List<CategoryRequestDto> requestDtoList) {
+    public void modifyCategorySeq(List<CategoryRequestDto> reorderedList) {
 
-        for (CategoryRequestDto requestDto : requestDtoList) {
+        for (CategoryRequestDto requestDto : reorderedList) {
             categoryRepository.findById(requestDto.getCaId())
                     .ifPresent(category -> {
                         category.modifyCaSeq(requestDto.getCaSeq());

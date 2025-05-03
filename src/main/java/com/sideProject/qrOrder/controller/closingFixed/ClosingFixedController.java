@@ -25,9 +25,11 @@ public class ClosingFixedController {
     private final ClosingFixedService closingFixedService;
 
     @GetMapping("/manage")
-    public String manageClosingFixedPage(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+    public String manageClosingFixedPage(Model model,
+                                         @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         Page<ClosingFixedDto> closingFixedDtoPage = closingFixedService.selectClosingFixed(pageable);
+
         model.addAttribute("closingFixedList", closingFixedDtoPage);
         model.addAttribute("currentPage", closingFixedDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", closingFixedDtoPage.getTotalPages());
@@ -36,9 +38,11 @@ public class ClosingFixedController {
     }
 
     @GetMapping("/replace/manage/search")
-    public String manageClosingFixedPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+    public String manageClosingFixedPageSearch(Model model,
+                                               @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         Page<ClosingFixedDto> closingFixedDtoPage = closingFixedService.selectClosingFixed(pageable);
+
         model.addAttribute("closingFixedList", closingFixedDtoPage);
         model.addAttribute("currentPage", closingFixedDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", closingFixedDtoPage.getTotalPages());

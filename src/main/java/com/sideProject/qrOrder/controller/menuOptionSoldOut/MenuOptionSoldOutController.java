@@ -22,24 +22,20 @@ public class MenuOptionSoldOutController {
     private final MenuOptionSoldOutService menuOptionSoldOutService;
 
     @GetMapping("/manage")
-    public String manageMenuOptionSoldOutPage(@PageableDefault(page = 0, size = 3) Pageable pageable,
-                                              Model model) {
+    public String manageMenuOptionSoldOutPage(Model model,
+                                              @PageableDefault(page = 0, size = 3) Pageable pageable) {
 
-        Page<MenuOptionSoldOutResponseDto> menuOptionSoldOutResponseDtoPage = menuOptionSoldOutService.selectMenuOptionSoldOut(pageable, null);
-
-        model.addAttribute("menuOptionGroupList", menuOptionSoldOutResponseDtoPage);
+        model.addAttribute("menuOptionGroupList", menuOptionSoldOutService.selectMenuOptionSoldOut(pageable, null));
 
         return "/manager/pages/menuOptionSoldOut/manageMenuOptionSoldOut";
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageMenuOptionSoldOutPageSearch(@PageableDefault(page = 0, size = 3) Pageable pageable,
-                                                    @RequestBody MenuOptionSoldOutDto requestDto,
-                                                    Model model) {
+    public String manageMenuOptionSoldOutPageSearch(Model model,
+                                                    @PageableDefault(page = 0, size = 3) Pageable pageable,
+                                                    @RequestBody MenuOptionSoldOutDto requestDto) {
 
-        Page<MenuOptionSoldOutResponseDto> menuOptionSoldOutResponseDtoPage = menuOptionSoldOutService.selectMenuOptionSoldOut(pageable, requestDto);
-
-        model.addAttribute("menuOptionGroupList", menuOptionSoldOutResponseDtoPage);
+        model.addAttribute("menuOptionGroupList", menuOptionSoldOutService.selectMenuOptionSoldOut(pageable, requestDto));
 
         return "/manager/fragments/menuOptionSoldOut/menuOptionSoldOutFragment :: menu-option-soldout-fragment";
     }

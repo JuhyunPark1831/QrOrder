@@ -26,12 +26,14 @@ public class ClosingController {
     private final ClosingService closingService;
 
     @GetMapping("/manage")
-    public String manageClosingPage(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+    public String manageClosingPage(Model model,
+                                    @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         Page<ClosingResponseDto> closingResponseDtoPage = closingService.selectClosing(pageable, ClosingRequestDto.builder()
                 .clStartSearch(LocalDate.now())
                 .clEndSearch(LocalDate.now().plusYears(1))
                 .build());
+
         model.addAttribute("closingList", closingResponseDtoPage);
         model.addAttribute("currentPage", closingResponseDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", closingResponseDtoPage.getTotalPages());
@@ -40,9 +42,12 @@ public class ClosingController {
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageClosingPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody ClosingRequestDto requestDto, Model model) {
+    public String manageClosingPageSearch(Model model,
+                                          @PageableDefault(page = 0, size = 10) Pageable pageable,
+                                          @RequestBody ClosingRequestDto requestDto) {
 
         Page<ClosingResponseDto> closingResponseDtoPage = closingService.selectClosing(pageable, requestDto);
+
         model.addAttribute("closingList", closingResponseDtoPage);
         model.addAttribute("currentPage", closingResponseDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", closingResponseDtoPage.getTotalPages());

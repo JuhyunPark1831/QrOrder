@@ -26,7 +26,6 @@ public class ClosingFixedServiceImpl implements ClosingFixedService {
     @Override
     @Transactional
     public void createClosingFixed(ClosingFixedDto requestDto) {
-
         closingFixedRepository.save(ClosingFixed.builder()
                         .cfWeekNum(requestDto.getCfWeekNum())
                         .cfWeekDay(requestDto.getCfWeekDay())
@@ -57,7 +56,6 @@ public class ClosingFixedServiceImpl implements ClosingFixedService {
     @Override
     @Transactional
     public void deleteClosingFixed(List<Long> cfIds) {
-
         closingFixedRepository.deleteAllById(cfIds);
     }
 }

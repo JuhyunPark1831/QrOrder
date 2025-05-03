@@ -63,7 +63,6 @@ public class MenuSoldOutServiceImpl implements MenuSoldOutService {
     @Override
     @Transactional
     public void deleteMenuSoldOut(Long msId) {
-
         menuSoldOutRepository.deleteById(msId);
     }
 }

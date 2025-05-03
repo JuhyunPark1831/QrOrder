@@ -50,14 +50,13 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
         return menuOptionGroupPage.map(menuOptionGroup -> MenuOptionSoldOutResponseDto.builder()
                 .ogId(menuOptionGroup.getOgId())
                 .ogName(menuOptionGroup.getOgName())
-                .menuOptionSoldOutDtoList(menuOptionRepository.findMenuOptionListWithSoldOutByOgId(menuOptionGroup.getOgId()))
+                .menuOptionSoldOutDtoList(menuOptionRepository.findMenuOptionSoldOutDtoListByOgId(menuOptionGroup.getOgId()))
                 .build());
     }
 
     @Override
     @Transactional
     public void deleteMenuOptionSoldOut(Long osId) {
-
         menuOptionSoldOutRepository.deleteById(osId);
     }
 }

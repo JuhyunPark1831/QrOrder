@@ -29,16 +29,18 @@ public class MenuSoldOutController {
     public String manageMenuSoldOutPage(Model model) {
 
         model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
         model.addAttribute("menuSoldOutList", menuSoldOutService.selectMenuSoldOut(Pageable.unpaged(), null));
 
         return "/manager/pages/menuSoldOut/manageMenuSoldOut";
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageMenuSoldOutPageSearch(@RequestBody MenuSoldOutDto requestDto,
-                                              Model model) {
+    public String manageMenuSoldOutPageSearch(Model model,
+                                              @RequestBody MenuSoldOutDto requestDto) {
 
         model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
         model.addAttribute("menuSoldOutList", menuSoldOutService.selectMenuSoldOut(Pageable.unpaged(), requestDto));
 
         return "/manager/pages/menuSoldOut/manageMenuSoldOut :: #menu-sold-out-list";

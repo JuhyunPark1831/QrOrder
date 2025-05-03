@@ -18,37 +18,39 @@ public class MenuOptionGroupController {
     private final MenuOptionGroupService menuOptionGroupService;
 
     @GetMapping("/create")
-    public String createMenuOptionPage() {
+    public String createMenuOptionGroupPage() {
         return "/manager/pages/menuOptionGroup/createMenuOptionGroup";
     }
 
+    @GetMapping("/modify/{ogId}")
+    public String modifyMenuOptionGroupPage(Model model,
+                                       @PathVariable Long ogId) {
+
+        model.addAttribute("menuOptionDetail", menuOptionGroupService.selectMenuOptionGroupDetail(ogId));
+
+        return "/manager/pages/menuOptionGroup/modifyMenuOptionGroup";
+    }
+
     @GetMapping("/manage")
-    public String manageMenuOptionPage(@PageableDefault(page = 0, size = 3) Pageable pageable, Model model) {
+    public String manageMenuOptionGroupPage(Model model,
+                                            @PageableDefault(page = 0, size = 3) Pageable pageable) {
 
         Page<MenuOptionGroupDto> menuOptionGroupResponseDtoPage = menuOptionGroupService.selectMenuOptionGroup(pageable, null);
+
         model.addAttribute("menuOptionGroupList", menuOptionGroupResponseDtoPage);
-        model.addAttribute("currentPage", menuOptionGroupResponseDtoPage.getPageable().getPageNumber());
-        model.addAttribute("totalPage", menuOptionGroupResponseDtoPage.getTotalPages());
         
         return "/manager/pages/menuOptionGroup/manageMenuOptionGroup";
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageMenuOptionPageSearch(@PageableDefault(page = 0, size = 3) Pageable pageable, @RequestBody MenuOptionGroupDto requestDto, Model model) {
+    public String manageMenuOptionGroupPageSearch(Model model,
+                                             @PageableDefault(page = 0, size = 3) Pageable pageable,
+                                             @RequestBody MenuOptionGroupDto requestDto) {
 
         Page<MenuOptionGroupDto> menuOptionGroupResponseDtoPage = menuOptionGroupService.selectMenuOptionGroup(pageable, requestDto);
+
         model.addAttribute("menuOptionGroupList", menuOptionGroupResponseDtoPage);
-        model.addAttribute("currentPage", menuOptionGroupResponseDtoPage.getPageable().getPageNumber());
-        model.addAttribute("totalPage", menuOptionGroupResponseDtoPage.getTotalPages());
 
         return "/manager/fragments/menuOptionGroup/menuOptionGroupFragment :: menu-option-group-fragment";
-    }
-
-    @GetMapping("/modify/{ogId}")
-    public String modifyMenuOptionPage(@PathVariable Long ogId, Model model) {
-
-        model.addAttribute("menuOptionDetail", menuOptionGroupService.selectMenuOptionGroupDetail(ogId));
-
-        return "/manager/pages/menuOptionGroup/modifyMenuOptionGroup";
     }
 }

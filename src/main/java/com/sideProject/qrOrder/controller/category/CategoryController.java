@@ -24,9 +24,11 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/manage")
-    public String manageCategoryPage(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+    public String manageCategoryPage(Model model,
+                                     @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         Page<CategoryResponseDto> categoryResponseDtoPage = categoryService.selectCategory(pageable, null);
+
         model.addAttribute("categoryList", categoryResponseDtoPage);
         model.addAttribute("currentPage", categoryResponseDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", categoryResponseDtoPage.getTotalPages());
@@ -35,9 +37,12 @@ public class CategoryController {
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageCategoryPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody CategoryRequestDto requestDto, Model model) {
+    public String manageCategoryPageSearch(Model model,
+                                           @PageableDefault(page = 0, size = 10) Pageable pageable,
+                                           @RequestBody CategoryRequestDto requestDto) {
 
         Page<CategoryResponseDto> categoryResponseDtoPage = categoryService.selectCategory(pageable, requestDto);
+
         model.addAttribute("categoryList", categoryResponseDtoPage);
         model.addAttribute("currentPage", categoryResponseDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", categoryResponseDtoPage.getTotalPages());

@@ -17,9 +17,10 @@ public class AccountRestController {
     public final AccountService accountService;
 
     @PostMapping("/login")
-    public ApiResponse<String> loginProc(HttpServletResponse response, @RequestBody AccountRequestDto requestDto) {
+    public ApiResponse<String> loginProc(@RequestBody AccountRequestDto requestDto,
+                                         HttpServletResponse response) {
 
-        accountService.login(response, requestDto);
+        accountService.login(requestDto, response);
 
         return ApiResponse.ok("로그인 성공");
     }
