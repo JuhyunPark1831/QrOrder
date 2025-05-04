@@ -2,6 +2,7 @@ package com.sideProject.qrOrder.service.menuOptionGroup;
 
 import com.sideProject.qrOrder.common.error.ApiCustomException;
 import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.dto.menuOption.MenuOptionDto;
 import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.entity.MenuOption;
@@ -86,7 +87,7 @@ public class MenuOptionGroupServiceImpl implements MenuOptionGroupService {
     public MenuOptionGroupDto selectMenuOptionGroupDetail(Long ogId) {
 
         MenuOptionGroup menuOptionGroup = menuOptionGroupRepository.findById(ogId).orElseThrow(() ->
-                new ApiCustomException(ErrorCode.NOT_FOUND_MENU_OPTION_GROUP));
+                new ViewCustomException(ErrorCode.NOT_FOUND_MENU_OPTION_GROUP));
 
         List<MenuOption> menuOptionList = menuOptionRepository.findByOpOg_OgIdIn(List.of(menuOptionGroup.getOgId()));
 
