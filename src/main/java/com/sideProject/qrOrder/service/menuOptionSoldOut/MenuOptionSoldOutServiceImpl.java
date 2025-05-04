@@ -4,7 +4,7 @@ import com.sideProject.qrOrder.common.error.ApiCustomException;
 import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
-import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutResponseDto;
+import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutListDto;
 import com.sideProject.qrOrder.entity.MenuOption;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.entity.MenuOptionSoldOut;
@@ -42,22 +42,21 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
     }
 
     @Override
-    public Page<MenuOptionSoldOutResponseDto> selectMenuOptionSoldOut(Pageable pageable, MenuOptionSoldOutDto requestDto) {
+    public Page<MenuOptionSoldOutListDto> selectMenuOptionSoldOut(Pageable pageable, MenuOptionSoldOutDto requestDto) {
 
         Page<MenuOptionGroup> menuOptionGroupPage = menuOptionGroupRepository.findMenuOptionGroupList(pageable, MenuOptionGroupDto.builder()
                 .searchWord(requestDto == null ? null : requestDto.getSearchWord()).build());
 
-        return menuOptionGroupPage.map(menuOptionGroup -> MenuOptionSoldOutResponseDto.builder()
+        return menuOptionGroupPage.map(menuOptionGroup -> MenuOptionSoldOutListDto.builder()
                 .ogId(menuOptionGroup.getOgId())
                 .ogName(menuOptionGroup.getOgName())
-                .menuOptionSoldOutDtoList(menuOptionRepository.findMenuOptionListWithSoldOutByOgId(menuOptionGroup.getOgId()))
+                .menuOptionSoldOutDtoList(menuOptionRepository.findMenuOptionSoldOutDtoListByOgId(menuOptionGroup.getOgId()))
                 .build());
     }
 
     @Override
     @Transactional
     public void deleteMenuOptionSoldOut(Long osId) {
-
         menuOptionSoldOutRepository.deleteById(osId);
     }
 }

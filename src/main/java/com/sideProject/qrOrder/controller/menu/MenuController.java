@@ -25,9 +25,22 @@ public class MenuController {
     public String createMenuPage(Model model) {
 
         model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
         model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(Pageable.unpaged(), null));
 
         return "/manager/pages/menu/createMenu";
+    }
+
+    @GetMapping("/modify/{meId}")
+    public String modifyMenuPage(Model model,
+                                 @PathVariable Long meId) {
+
+        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
+        model.addAttribute("menuDetail", menuService.selectMenuDetail(meId));
+        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(Pageable.unpaged(), null));
+
+        return "/manager/pages/menu/modifyMenu";
     }
 
     @GetMapping("/manage")
@@ -35,31 +48,19 @@ public class MenuController {
 
         model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
 
-        Page<MenuDto> menuResponseDtoPage = menuService.selectMenu(Pageable.unpaged(), null);
-        model.addAttribute("menuList", menuResponseDtoPage);
+        model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), null));
 
         return "/manager/pages/menu/manageMenu";
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageMenuPageSearch(@RequestBody MenuDto requestDto, Model model) {
+    public String manageMenuPageSearch(Model model,
+                                       @RequestBody MenuDto requestDto) {
 
         model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
 
-        Page<MenuDto> menuResponseDtoPage = menuService.selectMenu(Pageable.unpaged(), requestDto);
-        model.addAttribute("menuList", menuResponseDtoPage);
+        model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), requestDto));
 
         return "/manager/pages/menu/manageMenu :: #menu-list";
-    }
-
-    @GetMapping("/modify/{meId}")
-    public String modifyMenuPage(@PathVariable Long meId, Model model) {
-
-        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
-        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(Pageable.unpaged(), null));
-
-        model.addAttribute("menuDetail", menuService.selectMenuDetail(meId));
-
-        return "/manager/pages/menu/modifyMenu";
     }
 }

@@ -29,9 +29,11 @@ public class AccountController {
     }
 
     @GetMapping("/manage")
-    public String manageAccountPage(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+    public String manageAccountPage(Model model,
+                                    @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         Page<AccountResponseDto> accountResponseDtoPage = accountService.selectAccount(pageable, null);
+
         model.addAttribute("accountList", accountResponseDtoPage);
         model.addAttribute("currentPage", accountResponseDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", accountResponseDtoPage.getTotalPages());
@@ -40,9 +42,12 @@ public class AccountController {
     }
 
     @PostMapping("/replace/manage/search")
-    public String manageAccountPageSearch(@PageableDefault(page = 0, size = 10) Pageable pageable, @RequestBody AccountRequestDto requestDto, Model model) {
+    public String manageAccountPageSearch(Model model,
+                                          @PageableDefault(page = 0, size = 10) Pageable pageable,
+                                          @RequestBody AccountRequestDto requestDto) {
 
         Page<AccountResponseDto> accountResponseDtoPage = accountService.selectAccount(pageable, requestDto);
+
         model.addAttribute("accountList", accountResponseDtoPage);
         model.addAttribute("currentPage", accountResponseDtoPage.getPageable().getPageNumber());
         model.addAttribute("totalPage", accountResponseDtoPage.getTotalPages());

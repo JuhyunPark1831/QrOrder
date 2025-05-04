@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface AccountService {
 
-    // 인증
-    public void login(HttpServletResponse response, AccountRequestDto requestDto);
+    // 인가, 인증
+    public void login(AccountRequestDto requestDto, HttpServletResponse response);
     public JwtResponseDto refresh(String refreshToken);
 
     // 계정 관리

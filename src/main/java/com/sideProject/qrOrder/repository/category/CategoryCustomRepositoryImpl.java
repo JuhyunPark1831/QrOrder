@@ -32,7 +32,7 @@ public class CategoryCustomRepositoryImpl implements CategoryCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Page<CategoryResponseDto> findCategory(Pageable pageable, CategoryRequestDto requestDto) {
+    public Page<CategoryResponseDto> findCategoryDtoList(Pageable pageable, CategoryRequestDto requestDto) {
 
         BooleanBuilder builder = new BooleanBuilder();
 

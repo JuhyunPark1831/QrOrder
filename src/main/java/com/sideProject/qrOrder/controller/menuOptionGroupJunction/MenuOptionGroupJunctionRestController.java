@@ -17,7 +17,6 @@ public class MenuOptionGroupJunctionRestController {
 
     @PostMapping("/find/menu-name")
     public ApiResponse<List<String>> findMenuNameByMenuOptionGroup(@RequestBody MenuOptionGroupDto requestDto) {
-
         return ApiResponse.ok(menuOptionGroupJunctionService.findMenuByMenuOptionGroup(requestDto.getOgId()));
     }
 }

@@ -12,7 +12,7 @@ public interface CategoryService {
     public void createCategory(CategoryRequestDto requestDto);
     public Page<CategoryResponseDto> selectCategory(Pageable pageable, CategoryRequestDto requestDto);
     public void modifyCategoryName(CategoryRequestDto requestDto);
-    public void modifyCategorySeq(List<CategoryRequestDto> requestDtoList);
+    public void modifyCategorySeq(List<CategoryRequestDto> reorderedList);
     public void deleteCategory(List<Long> caIds);
     public void checkCategory(CategoryRequestDto requestDto);
 }

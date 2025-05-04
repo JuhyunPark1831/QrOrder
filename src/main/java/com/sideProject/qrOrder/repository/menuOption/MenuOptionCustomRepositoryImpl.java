@@ -19,7 +19,7 @@ public class MenuOptionCustomRepositoryImpl implements MenuOptionCustomRepositor
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<MenuOptionSoldOutDto> findMenuOptionListWithSoldOutByOgId(Long ogId) {
+    public List<MenuOptionSoldOutDto> findMenuOptionSoldOutDtoListByOgId(Long ogId) {
 
         return jpaQueryFactory
                 .select(Projections.constructor(

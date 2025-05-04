@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface CategoryCustomRepository {
 
-    public Page<CategoryResponseDto> findCategory(Pageable pageable, CategoryRequestDto requestDto);
+    public Page<CategoryResponseDto> findCategoryDtoList(Pageable pageable, CategoryRequestDto requestDto);
     public void shiftDownCaSeq(List<Long> caIds);
 }

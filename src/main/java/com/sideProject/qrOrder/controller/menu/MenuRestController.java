@@ -32,7 +32,7 @@ public class MenuRestController {
     }
 
     @PutMapping("/modify/available/{meId}")
-    public ApiResponse<String> modifyAvailableMenu(@PathVariable Long meId) {
+    public ApiResponse<String> modifyMenuStatusToAvailable(@PathVariable Long meId) {
 
         menuService.modifyMeStatus(meId, MenuStatus.AVAILABLE);
 
@@ -40,7 +40,7 @@ public class MenuRestController {
     }
 
     @PutMapping("/modify/hidden/{meId}")
-    public ApiResponse<String> modifyHiddenMenu(@PathVariable Long meId) {
+    public ApiResponse<String> modifyMenuStatusToHidden(@PathVariable Long meId) {
 
         menuService.modifyMeStatus(meId, MenuStatus.HIDDEN);
 

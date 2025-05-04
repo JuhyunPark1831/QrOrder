@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public void login(HttpServletResponse response, AccountRequestDto requestDto) {
+    public void login(AccountRequestDto requestDto, HttpServletResponse response) {
 
         Account loginAccount = accountRepository.findByAcLoginId(requestDto.getAcLoginId()).orElseThrow(() ->
                 new ApiCustomException(ErrorCode.NOT_FOUND_ACCOUNT));
@@ -92,7 +92,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional
     public void deleteAccount(List<Long> acIds) {
-
         accountRepository.deleteAllById(acIds);
     }
 

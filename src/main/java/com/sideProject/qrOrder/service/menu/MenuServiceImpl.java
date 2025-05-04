@@ -108,20 +108,20 @@ public class MenuServiceImpl implements MenuService {
         Menu menu = menuRepository.findById(requestDto.getMeId()).orElseThrow(() ->
                 new ApiCustomException(ErrorCode.NOT_FOUND_MENU));
 
-        menu.update(requestDto, categoryRepository.findById(requestDto.getMeCaId()).orElseThrow(() ->
+        menu.modify(requestDto, categoryRepository.findById(requestDto.getMeCaId()).orElseThrow(() ->
                 new ApiCustomException(ErrorCode.NOT_FOUND_CATEGORY)));
 
         // 이미지 처리
         if (requestDto.isDeleteImage()) {
             fileUtil.deleteImage(path + File.separator + menu.getMeName());
-            menu.changeMeImagePath(null);
+            menu.modifyMeImagePath(null);
         }
         if (requestDto.getMeImage() != null) {
             fileUtil.deleteImage(path + File.separator + menu.getMeName());
             String imagePath = requestDto.getMeImage() == null ?
                     null : fileUtil.saveImage(requestDto.getMeImage(), path + File.separator + requestDto.getMeName());
 
-            menu.changeMeImagePath(imagePath);
+            menu.modifyMeImagePath(imagePath);
         }
 
         // 옵션그룹 처리
