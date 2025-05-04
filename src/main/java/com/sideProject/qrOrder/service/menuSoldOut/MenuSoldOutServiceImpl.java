@@ -56,7 +56,6 @@ public class MenuSoldOutServiceImpl implements MenuSoldOutService {
                 .menuSoldOut(menuSoldOutRepository.findByMsMe_MeId(menu.getMeId()).orElse(null))
                 .build());
 
-        //todo: 뷰에러 관련 처리
         //todo: 스케줄러 품절 취소 처리
     }
 

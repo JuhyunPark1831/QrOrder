@@ -35,9 +35,7 @@ public class MenuOptionGroupController {
     public String manageMenuOptionGroupPage(Model model,
                                             @PageableDefault(page = 0, size = 3) Pageable pageable) {
 
-        Page<MenuOptionGroupDto> menuOptionGroupResponseDtoPage = menuOptionGroupService.selectMenuOptionGroup(pageable, null);
-
-        model.addAttribute("menuOptionGroupList", menuOptionGroupResponseDtoPage);
+        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(pageable, null));
         
         return "/manager/pages/menuOptionGroup/manageMenuOptionGroup";
     }
@@ -47,9 +45,7 @@ public class MenuOptionGroupController {
                                              @PageableDefault(page = 0, size = 3) Pageable pageable,
                                              @RequestBody MenuOptionGroupDto requestDto) {
 
-        Page<MenuOptionGroupDto> menuOptionGroupResponseDtoPage = menuOptionGroupService.selectMenuOptionGroup(pageable, requestDto);
-
-        model.addAttribute("menuOptionGroupList", menuOptionGroupResponseDtoPage);
+        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(pageable, requestDto));
 
         return "/manager/fragments/menuOptionGroup/menuOptionGroupFragment :: menu-option-group-fragment";
     }

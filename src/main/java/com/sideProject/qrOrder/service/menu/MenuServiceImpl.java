@@ -2,6 +2,7 @@ package com.sideProject.qrOrder.service.menu;
 
 import com.sideProject.qrOrder.common.error.ApiCustomException;
 import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.common.util.FileUtil;
 import com.sideProject.qrOrder.dto.MenuOptionGroupJunctionDto;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
@@ -81,7 +82,7 @@ public class MenuServiceImpl implements MenuService {
     public MenuDto selectMenuDetail(Long meId) {
 
         Menu menu = menuRepository.findById(meId).orElseThrow(() ->
-                new ApiCustomException(ErrorCode.NOT_FOUND_MENU));
+                new ViewCustomException(ErrorCode.NOT_FOUND_MENU));
 
         List<MenuOptionGroupJunction> menuOptionGroupJunctionList = menuOptionGroupJunctionRepository.findByMjMe_MeId(menu.getMeId());
 
