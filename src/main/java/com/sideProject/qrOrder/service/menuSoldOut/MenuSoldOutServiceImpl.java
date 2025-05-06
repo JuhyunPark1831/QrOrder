@@ -2,10 +2,10 @@ package com.sideProject.qrOrder.service.menuSoldOut;
 
 import com.sideProject.qrOrder.common.error.ApiCustomException;
 import com.sideProject.qrOrder.common.error.ErrorCode;
-import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
 import com.sideProject.qrOrder.dto.menuSoldOut.MenuSoldOutDto;
 import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.Menu;
 import com.sideProject.qrOrder.entity.MenuSoldOut;
 import com.sideProject.qrOrder.repository.menu.MenuRepository;
@@ -37,9 +37,8 @@ public class MenuSoldOutServiceImpl implements MenuSoldOutService {
                 .msStart(requestDto.getMsStart())
                 .msEnd(requestDto.getMsEnd())
                 .msMe(menu)
+                .msStatus(SoldOutStatus.WAITING)
                 .build());
-
-        menu.modifyMeStatus(MenuStatus.SOLD_OUT);
     }
 
     @Override
