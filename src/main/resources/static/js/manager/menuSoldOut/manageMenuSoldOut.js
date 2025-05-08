@@ -145,7 +145,7 @@ function createMenuSoldOut() {
 
 function modifyMenuStatusAvailable(meId) {
 
-    if(!confirm("메뉴를 판매중으로 처리하겠습니까?")) {
+    if(!confirm("메뉴를 판매중으로 변경하겠습니까?")) {
         return;
     }
 
