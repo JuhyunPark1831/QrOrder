@@ -41,13 +41,24 @@
           <div class="col-12 px-3 py-2 d-flex justify-content-between">
             <div class="col-8 fs-5 fw-bold" th:text="${menuSoldOut.meName}"></div>
             <div class="col-4 d-flex justify-content-end gap-3">
-              <button type="button" class="btn btn-success col-6 cs-p hide-btn" th:if="${menuSoldOut.meStatus.toString() == 'AVAILABLE'}">숨김</button>
-              <button type="button" class="btn btn-danger col-6 cs-p sold-out-btn" th:if="${menuSoldOut.meStatus.toString() == 'AVAILABLE'}">품절</button>
+              <button type="button" class="btn btn-success col-6 cs-p hide-btn" th:if="${menuSoldOut.meStatus.toString() == 'AVAILABLE' && menuSoldOut.msId == null}">숨김</button>
+              <button type="button" class="btn btn-danger col-6 cs-p sold-out-btn" th:if="${menuSoldOut.meStatus.toString() == 'AVAILABLE' && menuSoldOut.msId == null}">품절</button>
               <button type="button" class="btn btn-secondary col-6 cs-p cancel-hide-btn" th:if="${menuSoldOut.meStatus.toString() == 'HIDDEN'}">숨김취소</button>
-              <button type="button" class="btn btn-secondary col-6 cs-p cancel-sold-out-btn" th:if="${menuSoldOut.meStatus.toString() == 'SOLD_OUT'}">품절취소</button>
+              <button type="button" class="btn btn-danger col-6 cs-p sold-out-btn" th:if="${menuSoldOut.meStatus.toString() == 'AVAILABLE' && menuSoldOut.msId != null}" disabled>품절예정</button>
+              <button type="button" class="btn btn-danger col-6 cs-p sold-out-btn" th:if="${menuSoldOut.meStatus.toString() == 'SOLD_OUT'}" disabled>품절중</button>
             </div>
           </div>
-          <div class="col-12 text-danger text-end" th:if="${menuSoldOut.msId != null}"></div>
+          <div class="col-12 px-3 d-flex justify-content-end gap-2"
+               th:if="${menuSoldOut.msId != null}">
+            <div class="text-danger"
+                 th:text="${#temporals.format(menuSoldOut.msStart, 'yyyy년 M월 d일 H시 mm분')}">
+            </div>
+            <div class="text-danger">-</div>
+            <div class="text-danger"
+                 th:text="${#temporals.format(menuSoldOut.msEnd, 'yyyy년 M월 d일 H시 mm분')}">
+            </div>
+            <button type="button" class="btn btn-danger ms-2 px-1 py-0 fs-7 cancel-sold-out-btn">취소</button>
+          </div>
         </div>
       </div>
     </div>

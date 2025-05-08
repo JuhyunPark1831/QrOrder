@@ -56,6 +56,7 @@ function createMenu() {
     formData.append("meCaId", $meCaId.val());
     formData.append("mePrice", parseInt($mePrice.val().replace(/,/g, ''), 10));
     formData.append("meDescription", $meDescription.val().replace(/\n/g, '<br/>'));
+    formData.append("isDeleteImage", false);
 
     if ($meImage) {
         formData.append("meImage", $meImage);
