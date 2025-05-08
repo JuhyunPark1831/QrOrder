@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
                         .requestMatchers(
                                 "/test",
+                                "/client/**",
                                 "/account/login",
                                 "/api/account/login",
                                 "/error",
