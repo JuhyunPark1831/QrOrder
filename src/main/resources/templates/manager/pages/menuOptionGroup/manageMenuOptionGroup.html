@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/manager/layouts/default}">
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/manager/common/infinitScroll.js}"></script>
+    <script th:src="@{/js/manager/menuOptionGroup/manageMenuOptionGroup.js}"></script>
+</th:block>
+
+<div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
+
+    <div class="col-12 mt-3 d-flex justify-content-start">
+        <button type="button" class="basic-tag-btn border-end" onclick="commonRedirect('/menu-option-group/create')">옵션그룹추가</button>
+        <button type="button" class="basic-tag-btn active">옵션그룹관리</button>
+    </div>
+
+    <hr class="col-12 m-0 mb-3">
+
+    <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">옵션관리</div>
+
+    <div class="col-6 my-4 d-flex justify-content-between align-items-center">
+        <div class="col-12 position-relative">
+            <input type="text" id="search-word"
+                   class="col-12 basic-search-bar border border-2 border-secondary"
+                   placeholder="옵션그룹명 혹은 옵션명으로 검색">
+            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-secondary"></i>
+        </div>
+    </div>
+
+    <div id="loading-indicator" class="position-fixed top-50 start-50 translate-middle" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div class="col-12 d-flex flex-column align-items-center gap-4" id="menu-option-group-list">
+        <div class="basic-card col-7 mb-3 d-flex flex-column align-items-center"
+             th:each="menuOptionGroup : ${menuOptionGroupList}" th:attr="data-id=${menuOptionGroup.ogId}">
+            <div class="col-12 px-3 py-2 mb-3 d-flex justify-content-between border-bottom border-2">
+                <div class="fs-5 fw-bold" th:text="${menuOptionGroup.ogName}"></div>
+                <div class="d-flex gap-2">
+                    <div class="align-content-center text-primary fs-7"
+                         th:text="${menuOptionGroup.ogMinSelect == 0} ? '' : '최소 ' + ${menuOptionGroup.ogMinSelect} + '개'">
+                    </div>
+                    <div class="align-content-center text-primary fs-7"
+                         th:text="${menuOptionGroup.ogMaxSelect == 0} ? '' : '최대 ' + ${menuOptionGroup.ogMaxSelect} + '개'">
+                    </div>
+                    <button type="button" class="modify-btn btn btn-primary px-2 py-1">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="delete-btn btn btn-danger px-2 p-1">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-11 mb-3 d-flex flex-column align-items-center gap-1">
+                <div class="col-12 px-3 d-flex justify-content-between border-bottom"
+                     th:each="menuOption : ${menuOptionGroup.menuOptionDtoList}" th:attr="data-id=${menuOption.opId}">
+                    <div th:text="${menuOption.opName}"></div>
+                    <div class="fw-bold" th:text="'+' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메뉴 옵션 그룹 삭제 팝업 -->
+    <div class="d-none" id="delete-pop">
+        <div class="basic-popup col-4 position-fixed top-50 start-50 translate-middle z-4 rounded">
+            <div class="col-12 mb-2 text-center">
+                <div class="fs-5 fw-semibold">정말 삭제하시겠습니까?</div>
+            </div>
+            <div id="menu-list-div" class="px-3 py-2 d-flex flex-column gap-2 border rounded">
+                <div class="text-secondary fw-bold">
+                    다음 메뉴에서 해당 옵션이 제거됩니다
+                </div>
+                <div id="menu-list"></div>
+            </div>
+            <div class="col-12 pt-2 d-flex justify-content-center gap-3">
+                <button type="button" id="close-delete-pop-btn" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i>
+                    취소
+                </button>
+                <button type="button" id="delete-btn" class="btn btn-danger">
+                    <i class="bi bi-trash3-fill"></i>
+                    삭제
+                </button>
+            </div>
+        </div>
+        <div id="delete-pop-dark-area" class="w-100 h-100 position-fixed top-0 start-0 bg-black opacity-50 z-3"></div>
+    </div>
+</div>
+</html>

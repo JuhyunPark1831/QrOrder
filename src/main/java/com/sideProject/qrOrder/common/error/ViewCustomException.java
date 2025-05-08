@@ -6,12 +6,9 @@ import lombok.Getter;
 public class ViewCustomException extends RuntimeException {
 
     private final ErrorCode errorCode;
-    private final String redirectURL;
 
-    public ViewCustomException(ErrorCode errorCode,
-                               String redirectURL) {
+    public ViewCustomException(ErrorCode errorCode) {
         super(errorCode.getMessage());
         this.errorCode = errorCode;
-        this.redirectURL = redirectURL;
     }
 }

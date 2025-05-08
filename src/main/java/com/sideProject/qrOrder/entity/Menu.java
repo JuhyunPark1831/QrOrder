@@ -1,5 +1,6 @@
 package com.sideProject.qrOrder.entity;
 
+import com.sideProject.qrOrder.dto.menu.MenuDto;
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
 import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
 import jakarta.persistence.*;
@@ -39,7 +40,7 @@ public class Menu extends BaseEntity {
     private Category meCa;
 
     @Builder
-    public Menu (String meName,
+    public Menu(String meName,
                  int mePrice,
                  MenuStatus meStatus,
                  String meDescription,
@@ -51,5 +52,20 @@ public class Menu extends BaseEntity {
         this.meDescription = meDescription;
         this.meImagePath = meImagePath;
         this.meCa = meCa;
+    }
+
+    public void modify(MenuDto menuDto, Category category) {
+        this.meName = menuDto.getMeName();
+        this.mePrice = menuDto.getMePrice();
+        this.meDescription = menuDto.getMeDescription();
+        this.meCa = category;
+    }
+
+    public void modifyMeStatus(MenuStatus meStatus) {
+        this.meStatus = meStatus;
+    }
+
+    public void modifyMeImagePath(String meImagePath) {
+        this.meImagePath = meImagePath;
     }
 }

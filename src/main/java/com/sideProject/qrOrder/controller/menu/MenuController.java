@@ -1,0 +1,66 @@
+package com.sideProject.qrOrder.controller.menu;
+
+import com.sideProject.qrOrder.dto.menu.MenuDto;
+import com.sideProject.qrOrder.service.category.CategoryService;
+import com.sideProject.qrOrder.service.menu.MenuService;
+import com.sideProject.qrOrder.service.menuOptionGroup.MenuOptionGroupService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/menu")
+@RequiredArgsConstructor
+public class MenuController {
+
+    private final CategoryService categoryService;
+    private final MenuOptionGroupService menuOptionGroupService;
+    private final MenuService menuService;
+
+    @GetMapping("/create")
+    public String createMenuPage(Model model) {
+
+        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
+        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(Pageable.unpaged(), null));
+
+        return "/manager/pages/menu/createMenu";
+    }
+
+    @GetMapping("/modify/{meId}")
+    public String modifyMenuPage(Model model,
+                                 @PathVariable Long meId) {
+
+        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
+        model.addAttribute("menuDetail", menuService.selectMenuDetail(meId));
+        model.addAttribute("menuOptionGroupList", menuOptionGroupService.selectMenuOptionGroup(Pageable.unpaged(), null));
+
+        return "/manager/pages/menu/modifyMenu";
+    }
+
+    @GetMapping("/manage")
+    public String manageMenuPage(Model model) {
+
+        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
+        model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), null));
+
+        return "/manager/pages/menu/manageMenu";
+    }
+
+    @PostMapping("/replace/manage/search")
+    public String manageMenuPageSearch(Model model,
+                                       @RequestBody MenuDto requestDto) {
+
+        model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
+
+        model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), requestDto));
+
+        return "/manager/pages/menu/manageMenu :: #menu-list";
+    }
+}

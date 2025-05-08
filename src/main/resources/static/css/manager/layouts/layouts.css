@@ -2,9 +2,6 @@ body {
     background-color: #e8e8e8;
     font-family: 'Pretendard', sans-serif !important;
 }
-td {
-    cursor: pointer;
-}
 textarea {
     height: 6.25em !important;
     resize: none;
@@ -110,7 +107,11 @@ header {
     background-color: #ffffff;
     font-weight: 600;
 }
-.sub-btn.active {
+.sub-btn:hover {
+    border: 2px #ffffff solid;
+    background-color: #cccccc;
+}
+.sub-btn:disabled {
     background-color: #ebebeb;
     border: 2px #777777 solid;
     color: #777777;
@@ -202,4 +203,9 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.page-link:disabled {
+    background-color: #f2f2f2;
+    cursor: unset;
 }

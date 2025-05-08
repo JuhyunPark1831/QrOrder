@@ -10,91 +10,102 @@
 <div layout:fragment="content" class="container col-8 p-0 d-flex flex-column align-items-center bg-white">
 
   <div class="col-12 mt-3 d-flex justify-content-start">
-    <button type="button" class="basic-tag-btn border-end">임시휴무 관리</button>
+    <button type="button" class="basic-tag-btn border-end" onclick="commonRedirect('/closing/manage')">임시휴무 관리</button>
     <button type="button" class="basic-tag-btn active">정기휴무 관리</button>
   </div>
 
   <hr class="col-12 m-0 mb-3">
   <div class="col-11 py-3 ps-3 fs-4 fw-bold text-start border-bottom border-dark border-3">정기휴무 관리</div>
   <div class="col-12 mt-3 text-secondary text-center">
-    * 해당 월에 가장 처음있는 요일이 첫번째 입니다.<br>
-    예시) 당월 1일이 월요일이면 두번째 월요일은 당월 7일, 두번째 화요일은 당월 8일 입니다.
+    * 해당 월에 가장 처음있는 요일이 1번째 입니다.<br>
+    예시) 당월 1일이 월요일이면 2번째 월요일은 당월 7일, 2번째 화요일은 당월 8일 입니다.
   </div>
-  <div class="bg-table col-6 mt-2 mb-5 p-3 shadow-sm">
-    <table class="col-12">
-      <thead>
-      <tr class="border-bottom">
-        <th class="col-1 pb-2">
-          <input type="checkbox" />
-        </th>
-        <th class="col-4 pb-2">번째</th>
-        <th class="col-4 pb-2">요일</th>
-        <th class="col-4 pb-2">상태</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="py-1">
-          <input type="checkbox" />
-        </td>
-        <td class="py-1">
-          2번째
-        </td>
-        <td class="py-1">
-          월요일
-        </td>
-        <td class="py-1">
-          <button type="button" class="btn btn-success py-0 rounded-pill">사용중</button>
-        </td>
-      </tr>
-      <tr>
-        <td class="py-1">
-          <input type="checkbox" />
-        </td>
-        <td class="py-1">
-          2번째
-        </td>
-        <td class="py-1">
-          월요일
-        </td>
-        <td class="py-1">
-          <button type="button" class="btn btn-secondary py-0 rounded-pill">미사용중</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="bg-table col-10 mt-2 mb-5 p-3 shadow-sm">
+    <div class="col-12" id="closing-fixed-list">
+      <table class="col-12 mb-3">
+        <thead>
+        <tr class="border-bottom">
+          <th class="col-1 pb-2">
+            <input type="checkbox" />
+          </th>
+          <th class="col-2 pb-2">번째</th>
+          <th class="col-2 pb-2">요일</th>
+          <th class="col-2 pb-2">시작시간</th>
+          <th class="col-2 pb-2">종료시간</th>
+          <th class="col-2 pb-2">상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="closingFixed : ${closingFixedList}" th:attr="data-id=${closingFixed.cfId}">
+          <td class="py-1">
+            <input type="checkbox" class="closing-fixed-check"/>
+          </td>
+          <td class="py-1" th:text="${closingFixed.cfWeekNum == -1} ? '전체' : ${closingFixed.cfWeekNum} + '번째'"></td>
+          <td class="py-1" th:text="${closingFixed.cfWeekDay.koreanName}"></td>
+          <td class="py-1" th:text="${closingFixed.cfStartTime}"></td>
+          <td class="py-1" th:text="${closingFixed.cfEndTime}"></td>
+          <td class="py-1">
+            <button type="button"
+                    class="btn py-0 rounded-pill cfUseStatus-btn"
+                    th:classappend="${closingFixed.cfUseStatus.toString() == 'USING'} ? 'btn-success' : 'btn-secondary'"
+                    th:text="${closingFixed.cfUseStatus.toString() == 'USING'} ? '사용중' : '미사용중'">
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div th:if="${closingFixedList.totalElements == 0}" class="col-12 mt-3 text-center text-secondary">
+        휴무 정보를 찾을 수 없습니다
+      </div>
+      <div th:if="${closingFixedList.totalElements != 0}" th:include="manager/fragments/pagination :: pagination(${currentPage}, ${totalPage})"></div>
+    </div>
     <div id="create-div" class="col-12 mt-3 p-2 d-flex flex-column align-items-center bg-white border d-none">
-      <div class="col-11 d-flex justify-content-between">
-        <div class="col-3 d-flex flex-column align-items-center">
+      <div class="col-12 d-flex justify-content-between">
+        <div class="col-2 d-flex flex-column align-items-center gap-2">
           <label for="cfWeekNum">번째</label>
           <select id="cfWeekNum" class="form-select">
-            <option>1번째</option>
-            <option>2번째</option>
-            <option>3번째</option>
-            <option>4번째</option>
-            <option>5번째</option>
+            <option value="-1">전체</option>
+            <option value="1">1번째</option>
+            <option value="2">2번째</option>
+            <option value="3">3번째</option>
+            <option value="4">4번째</option>
+            <option value="5">5번째</option>
           </select>
         </div>
-        <div class="col-3 d-flex flex-column align-items-center">
+        <div class="col-2 d-flex flex-column align-items-center gap-2">
           <label for="cfWeekDay">요일</label>
           <select id="cfWeekDay" class="form-select">
-            <option>1번째</option>
-            <option>2번째</option>
-            <option>3번째</option>
-            <option>4번째</option>
-            <option>5번째</option>
+            <option value="ALL_DAY">전체</option>
+            <option value="MONDAY">월요일</option>
+            <option value="TUESDAY">화요일</option>
+            <option value="WEDNESDAY">수요일</option>
+            <option value="THURSDAY">목요일</option>
+            <option value="FRIDAY">금요일</option>
+            <option value="SATURDAY">토요일</option>
+            <option value="SUNDAY">일요일</option>
           </select>
         </div>
         <div class="col-3 d-flex flex-column align-items-center">
-          <label for="cfStatus">상태</label>
-          <select id="cfStatus" class="form-select">
-            <option>사용</option>
-            <option>미사용</option>
-          </select>
+          <label for="cfStartTime">시작시간</label>
+          <div class="input-group  p-2 text-center" id="cfStartTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#cfStartTime" readonly/>
+            <span class="input-group-text" data-td-target="#cfStartTime" data-td-toggle="datetimepicker">
+            <i class="bi bi-clock"></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-3 d-flex flex-column align-items-center">
+          <label for="cfEndTime">종료시간</label>
+          <div class="input-group  p-2 text-center" id="cfEndTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input type="text" class="form-control" data-td-target="#cfEndTime" readonly/>
+            <span class="input-group-text" data-td-target="#cfEndTime" data-td-toggle="datetimepicker">
+            <i class="bi bi-clock"></i>
+            </span>
+          </div>
         </div>
       </div>
       <div class="col-12 mt-3 d-flex justify-content-center gap-3">
-        <button type="button" class="btn btn-primary px-2 py-1">
+        <button type="button" id="create-btn" class="btn btn-primary px-2 py-1">
           <i class="bi bi-floppy fs-5 py-1"></i>
           저장
         </button>
@@ -105,7 +116,7 @@
       </div>
     </div>
     <div class="col-12 d-flex justify-content-between gap-3">
-      <button type="button" class="btn btn-danger px-2 pt-1 pb-0 mt-3">
+      <button type="button" id="delete-btn" class="btn btn-danger px-2 pt-1 pb-0 mt-3">
         <i class="bi bi-trash3-fill"></i>
         삭제
       </button>

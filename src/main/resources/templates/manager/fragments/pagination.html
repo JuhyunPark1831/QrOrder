@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div th:fragment="pagination(currentPage, totalPage)" class="col-12">
+    <div class="pagination pagination-sm d-flex flex-row justify-content-center gap-2" id="pagination" th:with="startPage=${(currentPage - (currentPage % 5) + 1)}, endPage=${startPage + 4}">
+        <button type="button" class="page-link cs-p rounded-2"
+                th:disabled="${currentPage <= 4}"
+                th:onclick="'viewPage('+${currentPage - (currentPage % 5) - 4}+')'">
+            이전
+        </button>
+        <button class="page-link cs-p rounded-2"
+             th:each="i : ${#numbers.sequence(startPage, endPage)}"
+             th:if="${i <= totalPage}"
+             th:text="${i}"
+             th:disabled="${i == (currentPage + 1)} ? 'current-page'"
+             th:onclick="'viewPage('+${i}+')'">
+        </button>
+        <button type="button"
+                class="page-link cs-p rounded-2"
+                th:disabled="${(currentPage + 1 == totalPage)}"
+                th:onclick="'viewPage('+${(currentPage - (currentPage % 5) + 5) >= totalPage ? totalPage : (currentPage - (currentPage % 5) + 6)}+')'">
+            다음
+        </button>
+    </div>
+</div>
+</body>
+</html>
