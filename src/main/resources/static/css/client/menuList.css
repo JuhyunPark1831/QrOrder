@@ -1,0 +1,10 @@
+.menu-detail-pop {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    display: block !important;
+}
+.menu-detail-pop.show {
+    transform: translateY(0);
+    opacity: 1;
+}

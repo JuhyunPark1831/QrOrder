@@ -1,4 +1,6 @@
 $(function () {
+
+    // 하단 바 처리
     let lastScrollTop = 0;
     const $bottomBar = $('.bottom-bar');
 
@@ -23,4 +25,27 @@ $(function () {
     }, 100); // 100ms 간격
 
     $(window).on('scroll', handleScroll);
+
+
+    $(".menu-card").on("click", function () {
+
+        const meId = $(this).data("id");
+
+        $.ajax({
+            url: "/client/replace/menu/pop/" + meId,
+            type: "GET",
+            success: function(fragment) {
+                $("#menu-detail-pop").replaceWith(fragment);
+                const $popup = $(".menu-detail-pop");
+                $popup.removeClass("show");
+
+                requestAnimationFrame(() => {
+                    $popup.addClass("show");
+                });
+            },
+            error: function(xhr, status, error) {
+                commonErrorCallBack(xhr, status, error);
+            }
+        });
+    });
 });
