@@ -25,6 +25,8 @@ public class ClientController {
 
         model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), null));
 
+        model.addAttribute("menuDetail", null);
+
         return "/client/pages/menuList";
     }
 
@@ -32,7 +34,7 @@ public class ClientController {
     public String menuPopOpen(Model model,
                                @PathVariable Long meId) {
 
-        model.addAttribute("menuDetail", menuService.selectMenuDetail(meId));
+        model.addAttribute("menuDetail", menuService.selectMenuDetailClient(meId));
 
         return "/client/pages/menuList :: #menu-detail-pop";
     }

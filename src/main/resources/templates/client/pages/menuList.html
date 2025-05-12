@@ -50,20 +50,18 @@
 
     <!-- 메뉴 상세 팝업 -->
     <div id="menu-detail-pop">
-        <div class="w-100 h-100 position-fixed top-0 start-0 z-3 overflow-scroll bg-default menu-detail-pop">
+        <div class="w-100 h-100 position-fixed top-0 start-0 z-3 overflow-scroll bg-default menu-detail-pop"
+             th:if="${menuDetail != null}">
             <div class="col-12 d-flex flex-column" style="margin-bottom: 7rem">
                 <div class="col-12 bg-white">
-                    <i class="bi bi-arrow-left-circle p-2 ps-3 fs-1"></i>
+                    <i id="close-menu-detail-pop" class="bi bi-arrow-left-circle p-2 ps-3 fs-1"></i>
                 </div>
                 <div class="menu-img-div col-12 d-flex align-items-center overflow-hidden">
                     <img src="/images/test.png" class="w-100">
                 </div>
                 <div class="py-2 px-3 d-flex flex-column gap-2 bg-white">
-                    <div class="ps-1 fs-4 fw-semibold">고기만 500g</div>
-                    <div class="text-secondary">
-                        혼자서도 푸짐하게, 고기만 500g 배터지게 먹는 고기 <br>
-                        정말 딱 고기만 나가는 구성입니다. 오해 없으시길 바래요.
-                    </div>
+                    <div class="ps-1 fs-4 fw-semibold" th:text="${menuDetail.meName}"></div>
+                    <div class="text-secondary" th:utext="${menuDetail.meDescription}"></div>
                 </div>
                 <div class="col-12 mt-1 d-flex flex-column gap-1">
                     <div class="col-12 p-3 bg-white">
@@ -72,9 +70,9 @@
                             <div class="fs-6 text-secondary">(필수)</div>
                         </div>
                         <div class="col-12 d-flex justify-content-between">
-                            <div class="fs-5 fw-semibold">고기만 500g</div>
+                            <div class="fs-5 fw-semibold" th:text="${menuDetail.meName}"></div>
                             <div class="d-flex align-items-center gap-2">
-                                <div class="fs-5 fw-semibold">19,900원</div>
+                                <div class="fs-5 fw-semibold" th:text="${menuDetail.mePrice}"></div>
                                 <input type="radio" class="form-select-size m-0 border-2" checked/>
                             </div>
                         </div>

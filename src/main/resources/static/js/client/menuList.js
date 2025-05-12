@@ -48,4 +48,8 @@ $(function () {
             }
         });
     });
+
+    $(document).on("click", "#close-menu-detail-pop", function () {
+        $(".menu-detail-pop").removeClass("show");
+    });
 });
