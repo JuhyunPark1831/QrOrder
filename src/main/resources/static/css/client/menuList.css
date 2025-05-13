@@ -1,0 +1,13 @@
+.menu-detail-pop {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    display: block !important;
+}
+.menu-detail-pop.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+.menu-detail-pop.no-transition {
+    transition: none !important;
+}
