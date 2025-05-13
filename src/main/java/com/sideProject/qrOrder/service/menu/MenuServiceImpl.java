@@ -5,12 +5,16 @@ import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.common.util.FileUtil;
 import com.sideProject.qrOrder.dto.MenuOptionGroupJunctionDto;
+import com.sideProject.qrOrder.dto.client.MenuClientDto;
+import com.sideProject.qrOrder.dto.client.MenuOptionGroupClientDto;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
 import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
 import com.sideProject.qrOrder.entity.Menu;
+import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.entity.MenuOptionGroupJunction;
 import com.sideProject.qrOrder.repository.menu.MenuRepository;
 import com.sideProject.qrOrder.repository.category.CategoryRepository;
+import com.sideProject.qrOrder.repository.menuOption.MenuOptionRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroup.MenuOptionGroupRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroupJunction.MenuOptionGroupJunctionRepository;
 import com.sideProject.qrOrder.repository.menuSoldOut.MenuSoldOutRepository;
@@ -38,6 +42,7 @@ public class MenuServiceImpl implements MenuService {
     private final CategoryRepository categoryRepository;
     private final MenuOptionGroupJunctionRepository menuOptionGroupJunctionRepository;
     private final MenuOptionGroupRepository menuOptionGroupRepository;
+    private final MenuOptionRepository menuOptionRepository;
     private final MenuRepository menuRepository;
 
     private final FileUtil fileUtil;
@@ -99,6 +104,35 @@ public class MenuServiceImpl implements MenuService {
                                 .ogId(menuOptionGroupJunction.getMjOg().getOgId())
                                 .build())
                         .toList())
+                .build();
+    }
+
+    @Override
+    public MenuClientDto selectMenuDetailClient(Long meId) {
+
+        Menu menu = menuRepository.findById(meId).orElseThrow(() ->
+                new ViewCustomException(ErrorCode.NOT_FOUND_MENU));
+
+        List<MenuOptionGroup> menuOptionGroupList = menuOptionGroupJunctionRepository.findByMjMe_MeId(menu.getMeId()).stream()
+                .map(MenuOptionGroupJunction::getMjOg)
+                .toList();
+
+        List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList = menuOptionGroupList.stream()
+                .map(menuOptionGroup -> MenuOptionGroupClientDto.builder()
+                        .ogId(menuOptionGroup.getOgId())
+                        .ogName(menuOptionGroup.getOgName())
+                        .ogMinSelect(menuOptionGroup.getOgMinSelect())
+                        .ogMaxSelect(menuOptionGroup.getOgMaxSelect())
+                        .menuOptionClientDtoList(menuOptionRepository.findMenuOptionClientDtoListByOgId(menuOptionGroup.getOgId()))
+                        .build()).toList();
+
+        return MenuClientDto.builder()
+                .meId(menu.getMeId())
+                .meName(menu.getMeName())
+                .mePrice(menu.getMePrice())
+                .meDescription(menu.getMeDescription())
+                .meImagePath(menu.getMeImagePath())
+                .menuOptionGroupClientDtoList(menuOptionGroupClientDtoList)
                 .build();
     }
 

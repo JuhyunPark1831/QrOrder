@@ -2,6 +2,7 @@ package com.sideProject.qrOrder.repository.menuOption;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.sideProject.qrOrder.dto.client.MenuOptionClientDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,21 @@ public class MenuOptionCustomRepositoryImpl implements MenuOptionCustomRepositor
                 .on(menuOptionSoldOut.osOp.opId.eq(menuOption.opId)
                         .and(menuOptionSoldOut.osEnd.gt(LocalDateTime.now()))
                 )
+                .where(menuOption.opOg.ogId.eq(ogId))
+                .fetch();
+    }
+
+    @Override
+    public List<MenuOptionClientDto> findMenuOptionClientDtoListByOgId(Long ogId) {
+
+        return jpaQueryFactory
+                .select(Projections.constructor(
+                        MenuOptionClientDto.class,
+                        menuOption.opId,
+                        menuOption.opName,
+                        menuOption.opPrice
+                ))
+                .from(menuOption)
                 .where(menuOption.opOg.ogId.eq(ogId))
                 .fetch();
     }
