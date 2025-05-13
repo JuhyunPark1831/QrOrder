@@ -16,7 +16,7 @@ public class MenuClientDto {
     private int mePrice;
     private String meDescription;
     private String meImagePath;
-    private List<MenuOptionGroupClientDto> optionGroupClientDtoList;
+    private List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList;
 
     @Builder
     public MenuClientDto(Long meId,
@@ -24,14 +24,14 @@ public class MenuClientDto {
                          int mePrice,
                          String meDescription,
                          String meImagePath,
-                         List<MenuOptionGroupClientDto> optionGroupClientDtoList) {
+                         List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList) {
         this.meId = meId;
         this.meName = meName;
         this.mePrice = mePrice;
         this.meDescription = meDescription;
         this.meImagePath = meImagePath;
-        this.optionGroupClientDtoList = optionGroupClientDtoList == null
+        this.menuOptionGroupClientDtoList = menuOptionGroupClientDtoList == null
                 ? List.of()
-                : List.copyOf(optionGroupClientDtoList);
+                : List.copyOf(menuOptionGroupClientDtoList);
     }
 }

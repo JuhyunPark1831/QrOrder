@@ -132,7 +132,7 @@ public class MenuServiceImpl implements MenuService {
                 .mePrice(menu.getMePrice())
                 .meDescription(menu.getMeDescription())
                 .meImagePath(menu.getMeImagePath())
-                .optionGroupClientDtoList(menuOptionGroupClientDtoList)
+                .menuOptionGroupClientDtoList(menuOptionGroupClientDtoList)
                 .build();
     }
 
