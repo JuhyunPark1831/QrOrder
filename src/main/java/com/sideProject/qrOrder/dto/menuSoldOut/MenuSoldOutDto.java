@@ -1,6 +1,6 @@
 package com.sideProject.qrOrder.dto.menuSoldOut;
 
-import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.MenuSoldOut;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -19,7 +19,7 @@ public class MenuSoldOutDto {
     private Long msMeId;
     private String meName;
     private Long meCaId;
-    private MenuStatus meStatus;
+    private SoldOutStatus meStatus;
     private String searchWord;
 
     @Builder
@@ -27,7 +27,7 @@ public class MenuSoldOutDto {
                           Long msMeId,
                           String meName,
                           Long meCaId,
-                          MenuStatus meStatus,
+                          SoldOutStatus meStatus,
                           String searchWord) {
 
         if (menuSoldOut != null){
