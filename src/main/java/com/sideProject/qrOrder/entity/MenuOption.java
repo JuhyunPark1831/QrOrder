@@ -2,6 +2,7 @@ package com.sideProject.qrOrder.entity;
 
 import com.sideProject.qrOrder.dto.menuOption.MenuOptionDto;
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -25,6 +26,9 @@ public class MenuOption extends BaseEntity {
     @Column(name = "OP_PRICE")
     private int opPrice;
 
+    @Column(name = "OP_STATUS", nullable = false)
+    private SoldOutStatus opStatus;
+
     @ManyToOne
     @JoinColumn(name = "OP_OG_ID", nullable = false)
     private MenuOptionGroup opOg;
@@ -32,14 +36,20 @@ public class MenuOption extends BaseEntity {
     @Builder
     public MenuOption(String opName,
                        int opPrice,
+                       SoldOutStatus opStatus,
                        MenuOptionGroup opOg) {
         this.opName = opName;
         this.opPrice = opPrice;
+        this.opStatus = opStatus;
         this.opOg = opOg;
     }
 
     public void modify(MenuOptionDto requestDto) {
         this.opName = requestDto.getOpName();
         this.opPrice = requestDto.getOpPrice();
+    }
+
+    public void modifyOpStatus(SoldOutStatus status) {
+        this.opStatus = status;
     }
 }
