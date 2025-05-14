@@ -1,7 +1,7 @@
 package com.sideProject.qrOrder.entity;
 
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
-import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutProgressStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -28,7 +28,7 @@ public class MenuSoldOut extends BaseEntity {
     private LocalDateTime msEnd;
 
     @Column(name = "MS_PROCESSED", nullable = false)
-    private SoldOutStatus msStatus;
+    private SoldOutProgressStatus msStatus;
 
     @ManyToOne
     @JoinColumn(name = "MS_ME_ID", nullable = false)
@@ -37,7 +37,7 @@ public class MenuSoldOut extends BaseEntity {
     @Builder
     public MenuSoldOut(LocalDateTime msStart,
                        LocalDateTime msEnd,
-                       SoldOutStatus msStatus,
+                       SoldOutProgressStatus msStatus,
                        Menu msMe) {
         this.msStart = msStart;
         this.msEnd = msEnd;
@@ -45,7 +45,7 @@ public class MenuSoldOut extends BaseEntity {
         this.msMe = msMe;
     }
 
-    public void modifyMsStatus(SoldOutStatus meStatus) {
+    public void modifyMsStatus(SoldOutProgressStatus meStatus) {
         this.msStatus = meStatus;
     }
 }

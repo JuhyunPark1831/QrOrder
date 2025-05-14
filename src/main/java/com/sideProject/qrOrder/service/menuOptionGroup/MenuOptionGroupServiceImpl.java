@@ -5,6 +5,7 @@ import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.dto.menuOption.MenuOptionDto;
 import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.MenuOption;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.repository.menuOption.MenuOptionRepository;
@@ -47,6 +48,7 @@ public class MenuOptionGroupServiceImpl implements MenuOptionGroupService {
             menuOptionRepository.save(MenuOption.builder()
                     .opName(menuOptionDto.getOpName())
                     .opPrice(menuOptionDto.getOpPrice())
+                    .opStatus(SoldOutStatus.AVAILABLE)
                     .opOg(menuOptionGroup)
                     .build());
         }
@@ -119,6 +121,7 @@ public class MenuOptionGroupServiceImpl implements MenuOptionGroupService {
                 menuOptionRepository.save(MenuOption.builder()
                         .opName(menuOptionDto.getOpName())
                         .opPrice(menuOptionDto.getOpPrice())
+                        .opStatus(SoldOutStatus.AVAILABLE)
                         .opOg(menuOptionGroup)
                         .build());
             } else {

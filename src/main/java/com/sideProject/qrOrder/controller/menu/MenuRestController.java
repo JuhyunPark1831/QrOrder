@@ -2,10 +2,9 @@ package com.sideProject.qrOrder.controller.menu;
 
 import com.sideProject.qrOrder.common.response.ApiResponse;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
-import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.service.menu.MenuService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,7 +33,7 @@ public class MenuRestController {
     @PutMapping("/modify/available/{meId}")
     public ApiResponse<String> modifyMenuStatusToAvailable(@PathVariable Long meId) {
 
-        menuService.modifyMeStatus(meId, MenuStatus.AVAILABLE);
+        menuService.modifyMeStatus(meId, SoldOutStatus.AVAILABLE);
 
         return ApiResponse.ok("메뉴가 판매중처리 되었습니다");
     }
@@ -42,7 +41,7 @@ public class MenuRestController {
     @PutMapping("/modify/hidden/{meId}")
     public ApiResponse<String> modifyMenuStatusToHidden(@PathVariable Long meId) {
 
-        menuService.modifyMeStatus(meId, MenuStatus.HIDDEN);
+        menuService.modifyMeStatus(meId, SoldOutStatus.HIDDEN);
 
         return ApiResponse.ok("메뉴가 숨김처리 되었습니다");
     }

@@ -2,7 +2,7 @@ package com.sideProject.qrOrder.entity;
 
 import com.sideProject.qrOrder.dto.menu.MenuDto;
 import com.sideProject.qrOrder.entity.Common.BaseEntity;
-import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -27,7 +27,7 @@ public class Menu extends BaseEntity {
     private int mePrice;
 
     @Column(name = "ME_STATUS", nullable = false)
-    private MenuStatus meStatus;
+    private SoldOutStatus meStatus;
 
     @Column(name = "ME_DESCRIPTION")
     private String meDescription;
@@ -42,7 +42,7 @@ public class Menu extends BaseEntity {
     @Builder
     public Menu(String meName,
                  int mePrice,
-                 MenuStatus meStatus,
+                 SoldOutStatus meStatus,
                  String meDescription,
                  String meImagePath,
                  Category meCa) {
@@ -61,7 +61,7 @@ public class Menu extends BaseEntity {
         this.meCa = category;
     }
 
-    public void modifyMeStatus(MenuStatus meStatus) {
+    public void modifyMeStatus(SoldOutStatus meStatus) {
         this.meStatus = meStatus;
     }
 
