@@ -27,6 +27,7 @@ public class MenuOptionCustomRepositoryImpl implements MenuOptionCustomRepositor
                         MenuOptionSoldOutDto.class,
                         menuOption.opId,
                         menuOption.opName,
+                        menuOption.opStatus,
                         menuOptionSoldOut.osId,
                         menuOptionSoldOut.osStart,
                         menuOptionSoldOut.osEnd

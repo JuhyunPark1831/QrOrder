@@ -1,26 +1,34 @@
 <div class="basic-card col-7 mb-3 d-flex flex-column align-items-center"
      th:each="menuOptionGroup : ${menuOptionGroupList}"
      th:fragment="menu-option-soldout-fragment">
-  <input type="hidden" id="ogId" th:value="${menuOptionGroup.ogId}" />
   <div class="col-12 px-3 py-2 mb-3 d-flex border-bottom border-2">
     <div class="fs-5 fw-bold" th:text="${menuOptionGroup.ogName}"></div>
   </div>
   <div class="col-11 mb-3 d-flex flex-column align-items-center gap-1">
     <div class="col-12 px-3 d-flex-column border-bottom"
-         th:each="menuOptionSoldOutDto : ${menuOptionGroup.menuOptionSoldOutDtoList}">
+         th:each="menuOptionSoldOutDto : ${menuOptionGroup.menuOptionSoldOutDtoList}"
+         th:attr="data-id=${menuOptionSoldOutDto.osOpId}">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div th:text="${menuOptionSoldOutDto.opName}"></div>
-        <button type="button" class="btn btn-danger col-3 my-1 py-1 cs-p open-create-btn"
-                th:if="${menuOptionSoldOutDto.osStart == null}"
-                th:attr="data-id=${menuOptionSoldOutDto.osOpId}">품절 설정</button>
-        <button type="button" class="btn btn-secondary col-3 my-1 py-1 cs-p delete-btn"
-                th:if="${menuOptionSoldOutDto.osStart != null}"
-                th:attr="data-id=${menuOptionSoldOutDto.osId}">품절 취소</button>
+        <div class="col-6 d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-success col-4 my-1 py-1 cs-p hide-btn"
+                  th:if="${menuOptionSoldOutDto.opStatus.toString() == 'AVAILABLE' && menuOptionSoldOutDto.osId == null}">숨김</button>
+          <button type="button" class="btn btn-danger col-4 my-1 py-1 cs-p open-create-btn"
+                  th:if="${menuOptionSoldOutDto.opStatus.toString() == 'AVAILABLE' && menuOptionSoldOutDto.osId == null}">품절</button>
+          <button type="button" class="btn btn-secondary col-4 my-1 py-1 cs-p cancel-hide-btn"
+                  th:if="${menuOptionSoldOutDto.opStatus.toString() == 'HIDDEN'}">숨김취소</button>
+          <button type="button" class="btn btn-danger col-4 my-1 py-1 cs-p"
+                  th:if="${menuOptionSoldOutDto.opStatus.toString() == 'AVAILABLE' && menuOptionSoldOutDto.osId != null}" disabled>품절예정</button>
+          <button type="button" class="btn btn-danger col-4 my-1 py-1 cs-p"
+                  th:if="${menuOptionSoldOutDto.opStatus.toString() == 'SOLD_OUT'}" disabled>품절중</button>
+        </div>
       </div>
-      <div class="col-12 text-end text-danger"
-           th:if="${menuOptionSoldOutDto.osStart != null}"
-           th:text="${#temporals.format(menuOptionSoldOutDto.osStart, 'yyyy년 M월 d일 H시 mm분')} + ' ~ ' +
-               ${#temporals.format(menuOptionSoldOutDto.osEnd, 'yyyy년 M월 d일 H시 mm분')}"></div>
+      <div class="my-2 d-flex justify-content-end gap-2" th:if="${menuOptionSoldOutDto.osStart != null}">
+        <div class="text-danger" th:text="${#temporals.format(menuOptionSoldOutDto.osStart, 'yyyy년 M월 d일 H시 mm분')}"></div>
+        <div class="text-danger">-</div>
+        <div class="text-danger" th:text="${#temporals.format(menuOptionSoldOutDto.osEnd, 'yyyy년 M월 d일 H시 mm분')}"></div>
+        <button type="button" class="btn btn-danger ms-2 px-1 py-0 fs-7 cancel-sold-out-btn" th:attr="data-id=${menuOptionSoldOutDto.osOpId}">취소</button>
+      </div>
     </div>
   </div>
 </div>
