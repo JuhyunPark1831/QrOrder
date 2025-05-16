@@ -48,6 +48,3 @@ public class ClientController {
         return "/client/pages/orderList";
     }
 }
-
-//todo: 메뉴 관리 페이지 메뉴 상태 체크
-//todo: 메뉴 옵션에서 최소 1개 이상 선택해야되는 옵션 그룹일 때 품절 못하게 처리
