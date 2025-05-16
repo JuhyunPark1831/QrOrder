@@ -15,15 +15,16 @@
     <div class="col-12 d-flex flex-column gap-2" style="margin-bottom: 9rem">
         <div class="col-12 d-flex flex-column bg-white" th:each="category : ${categoryList}">
             <div class="ps-3 mt-3 fs-3 fw-semibold" th:text="${category.caName}"></div>
-            <div class="col-12 p-3 d-flex justify-content-between border-bottom menu-card"
+            <div class="col-12 p-3 d-flex justify-content-between position-relative border-bottom menu-card"
                  th:each="menu : ${menuList}"
                  th:if="${menu.meCaId == category.caId}"
-                 th:data-id="${menu.meId}">
-                <div class="col-6 d-flex flex-column justify- content-between">
-                    <div class="fs-5" th:text="${menu.meName}"></div>
-                    <div class="text-secondary text-truncate" th:utext="${menu.meDescription}"></div>
-                    <div class="fs-5 fw-semibold" th:text="${#numbers.formatInteger(menu.mePrice, 1, 'COMMA')} + '원 ~ '"></div>
-                </div>
+                 th:data-id="${menu.meId}"
+                 th:style="${menu.meStatus.toString() == 'SOLD_OUT'} ? 'pointer-events: none; opacity: 0.6; cursor: not-allowed;' : ''">
+            <div class="col-6 d-flex flex-column justify- content-between">
+                <div class="fs-5" th:text="${menu.meName + (menu.meStatus.toString() == 'SOLD_OUT' ? ' (품절)' : '')}"></div>
+                <div class="text-secondary text-truncate" th:utext="${menu.meDescription}"></div>
+                <div class="fs-5 fw-semibold" th:text="${#numbers.formatInteger(menu.mePrice, 1, 'COMMA')} + '원 ~ '"></div>
+            </div>
                 <div class="img-div">
                     <img class="w-100 h-100 rounded border"
                          th:if="${menu.meImagePath != null}"
