@@ -27,6 +27,8 @@ function initSelectWrapper() {
 
         if ($(e.target).is('input')) return;
 
+        if ($input.prop('disabled')) return;
+
         const $group = $input.closest('.menu-option-group');
         const maxSelect = parseInt($group.data('max-select'), 10) || 0;
 
@@ -61,6 +63,8 @@ function initMenuCardClick() {
                     history.pushState({ popup: true }, '', '');
                 });
                 calculateMePrice();
+
+                applyDefaultRadioCheck();
             },
             error: commonErrorCallBack
         });
@@ -206,4 +210,13 @@ function setCartInfo() {
 
     animateNumber($("#total-price"), 0, currentPrice);
     $("#total-count").text(currentCount);
+}
+
+function applyDefaultRadioCheck() {
+    $('.menu-option-group').each(function () {
+        const $firstEnabledRadio = $(this).find('input[type="radio"]:not(:disabled)').first();
+        if ($firstEnabledRadio.length > 0) {
+            $firstEnabledRadio.prop('checked', true);
+        }
+    });
 }

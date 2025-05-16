@@ -100,24 +100,28 @@
 
                             <div class="col-12 mb-1 d-flex justify-content-between select-wrapper"
                                  th:each="menuOption, iterStat : ${menuOptionGroup.menuOptionClientDtoList}"
-                                 th:if="${menuOptionGroup.ogMaxSelect == 1}">
-                                <div class="fs-5 fw-semibold" th:text="${menuOption.opName}"></div>
+                                 th:if="${menuOptionGroup.ogMaxSelect == 1}"
+                                 th:style="${menuOption.opStatus.toString() == 'SOLD_OUT'} ? 'pointer-events: none; opacity: 0.6; cursor: not-allowed;' : ''">
+                                <div class="fs-5 fw-semibold" th:text="${menuOption.opName + (menuOption.opStatus.toString() == 'SOLD_OUT' ? ' (품절)' : '')}"></div>
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="fs-5 fw-semibold" th:text="'+ ' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'"></div>
                                     <input type="radio" class="form-select-size m-0 border-2" th:name="${menuOptionGroup.ogName}"
                                            th:attr="checked=${iterStat.index == 0}"
-                                           th:value="${menuOption.opId}"/>
+                                           th:value="${menuOption.opId}"
+                                           th:disabled="${menuOption.opStatus.toString() == 'SOLD_OUT'}"/>
                                 </div>
                             </div>
 
                             <div class="col-12 mb-1 d-flex justify-content-between select-wrapper"
                                  th:each="menuOption : ${menuOptionGroup.menuOptionClientDtoList}"
-                                 th:if="${menuOptionGroup.ogMaxSelect != 1}">
-                                <div class="fs-5 fw-semibold" th:text="${menuOption.opName}"></div>
+                                 th:if="${menuOptionGroup.ogMaxSelect != 1}"
+                                 th:style="${menuOption.opStatus.toString() == 'SOLD_OUT'} ? 'pointer-events: none; opacity: 0.6; cursor: not-allowed;' : ''">
+                                <div class="fs-5 fw-semibold" th:text="${menuOption.opName + (menuOption.opStatus.toString() == 'SOLD_OUT' ? ' (품절)' : '')}"></div>
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="fs-5 fw-semibold" th:text="'+ ' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'"></div>
                                     <input type="checkbox" class="form-select-size m-0 border-2"
-                                           th:value="${menuOption.opId}"/>
+                                           th:value="${menuOption.opId}"
+                                           th:disabled="${menuOption.opStatus.toString() == 'SOLD_OUT'}"/>
                                 </div>
                             </div>
                         </div>

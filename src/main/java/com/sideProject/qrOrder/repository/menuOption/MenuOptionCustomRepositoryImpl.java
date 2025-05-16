@@ -49,7 +49,8 @@ public class MenuOptionCustomRepositoryImpl implements MenuOptionCustomRepositor
                         MenuOptionClientDto.class,
                         menuOption.opId,
                         menuOption.opName,
-                        menuOption.opPrice
+                        menuOption.opPrice,
+                        menuOption.opStatus
                 ))
                 .from(menuOption)
                 .where(menuOption.opOg.ogId.eq(ogId))
