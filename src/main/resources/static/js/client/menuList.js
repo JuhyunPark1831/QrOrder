@@ -1,5 +1,6 @@
 $(function () {
     initScrollHandler();
+    initSelectWrapper();
     initMenuCardClick();
     initOptionSelectHandler();
     initAddMenuHandler();
@@ -17,6 +18,31 @@ function initPopStateHandler() {
         } else {
             history.back();
         }
+    });
+}
+
+function initSelectWrapper() {
+    $(document).on("click", ".select-wrapper", function (e) {
+        const $input = $(this).find('input');
+
+        if ($(e.target).is('input')) return;
+
+        const $group = $input.closest('.menu-option-group');
+        const maxSelect = parseInt($group.data('max-select'), 10) || 0;
+
+        if ($input.attr('type') === 'checkbox') {
+            if (!$input.prop('checked')) {
+                const checkedCount = $group.find('input[type="checkbox"]:checked').length;
+                if (checkedCount >= maxSelect && maxSelect > 0) {
+                    return;
+                }
+            }
+            $input.prop('checked', !$input.prop('checked'));
+        } else if ($input.attr('type') === 'radio') {
+            $input.prop('checked', true);
+        }
+
+        calculateMePrice();
     });
 }
 

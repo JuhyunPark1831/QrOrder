@@ -90,7 +90,7 @@
                              th:each="menuOptionGroup : ${menuDetail.menuOptionGroupClientDtoList}"
                              th:attr="data-min-select=${menuOptionGroup.ogMinSelect}, data-max-select=${menuOptionGroup.ogMaxSelect}">
                             <div class="mb-3 d-flex justify-content-between fs-4 fw-semibold gap-1">
-                                <div th:text="${menuOptionGroup.ogName}">찰진 흑미밥 선택</div>
+                                <div th:text="${menuOptionGroup.ogName}"></div>
                                 <div class="d-flex">
                                     <div class="fs-6 text-secondary" th:if="${menuOptionGroup.ogMinSelect > 0}">(필수)</div>
                                     <div class="fs-6 text-secondary" th:if="${menuOptionGroup.ogMaxSelect > 1}"
@@ -98,24 +98,24 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 mb-1 d-flex justify-content-between"
+                            <div class="col-12 mb-1 d-flex justify-content-between select-wrapper"
                                  th:each="menuOption, iterStat : ${menuOptionGroup.menuOptionClientDtoList}"
                                  th:if="${menuOptionGroup.ogMaxSelect == 1}">
                                 <div class="fs-5 fw-semibold" th:text="${menuOption.opName}"></div>
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="fs-5 fw-semibold" th:text="'+ ' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'">+ 0원</div>
-                                    <input type="radio" class="form-select-size m-0 border-2" name="test"
+                                    <div class="fs-5 fw-semibold" th:text="'+ ' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'"></div>
+                                    <input type="radio" class="form-select-size m-0 border-2" th:name="${menuOptionGroup.ogName}"
                                            th:attr="checked=${iterStat.index == 0}"
                                            th:value="${menuOption.opId}"/>
                                 </div>
                             </div>
 
-                            <div class="col-12 mb-1 d-flex justify-content-between"
+                            <div class="col-12 mb-1 d-flex justify-content-between select-wrapper"
                                  th:each="menuOption : ${menuOptionGroup.menuOptionClientDtoList}"
                                  th:if="${menuOptionGroup.ogMaxSelect != 1}">
                                 <div class="fs-5 fw-semibold" th:text="${menuOption.opName}"></div>
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="fs-5 fw-semibold" th:text="'+ ' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'">+ 0원</div>
+                                    <div class="fs-5 fw-semibold" th:text="'+ ' + ${#numbers.formatInteger(menuOption.opPrice, 1, 'COMMA')} + '원'"></div>
                                     <input type="checkbox" class="form-select-size m-0 border-2"
                                            th:value="${menuOption.opId}"/>
                                 </div>
