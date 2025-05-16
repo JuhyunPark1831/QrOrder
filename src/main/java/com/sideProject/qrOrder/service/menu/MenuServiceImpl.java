@@ -8,7 +8,7 @@ import com.sideProject.qrOrder.dto.MenuOptionGroupJunctionDto;
 import com.sideProject.qrOrder.dto.client.MenuClientDto;
 import com.sideProject.qrOrder.dto.client.MenuOptionGroupClientDto;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
-import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.Menu;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.entity.MenuOptionGroupJunction;
@@ -18,7 +18,6 @@ import com.sideProject.qrOrder.repository.menuOption.MenuOptionRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroup.MenuOptionGroupRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroupJunction.MenuOptionGroupJunctionRepository;
 import com.sideProject.qrOrder.repository.menuSoldOut.MenuSoldOutRepository;
-import com.sideProject.qrOrder.service.menuSoldOut.MenuSoldOutService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -28,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -54,7 +52,7 @@ public class MenuServiceImpl implements MenuService {
         Menu menu = menuRepository.save(Menu.builder()
                 .meName(requestDto.getMeName())
                 .mePrice(requestDto.getMePrice())
-                .meStatus(MenuStatus.AVAILABLE)
+                .meStatus(SoldOutStatus.AVAILABLE)
                 .meDescription(requestDto.getMeDescription())
                 .meImagePath(requestDto.getMeImage() == null ?
                         null : fileUtil.saveImage(requestDto.getMeImage(), path + File.separator + requestDto.getMeName()))
@@ -188,7 +186,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional
-    public void modifyMeStatus(Long meId, MenuStatus meStatus) {
+    public void modifyMeStatus(Long meId, SoldOutStatus meStatus) {
 
         Menu menu = menuRepository.findById(meId).orElseThrow(() ->
                 new ApiCustomException(ErrorCode.NOT_FOUND_MENU));

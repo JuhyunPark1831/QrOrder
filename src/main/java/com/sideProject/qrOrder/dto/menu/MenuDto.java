@@ -1,7 +1,7 @@
 package com.sideProject.qrOrder.dto.menu;
 
 import com.sideProject.qrOrder.dto.MenuOptionGroupJunctionDto;
-import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.Menu;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -24,7 +24,7 @@ public class MenuDto {
     private String meImagePath;
     private boolean isDeleteImage;
     private List<MenuOptionGroupJunctionDto> menuOptionGroupJunctionDtoList;
-    private MenuStatus meStatus;
+    private SoldOutStatus meStatus;
     private String searchWord;
     private List<Long> deleteMjIds;
 
@@ -38,7 +38,7 @@ public class MenuDto {
                    String meImagePath,
                    boolean isDeleteImage,
                    List<MenuOptionGroupJunctionDto> menuOptionGroupJunctionDtoList,
-                   MenuStatus meStatus,
+                   SoldOutStatus meStatus,
                    String searchWord,
                    List<Long> deleteOpIds) {
         this.meId = meId;

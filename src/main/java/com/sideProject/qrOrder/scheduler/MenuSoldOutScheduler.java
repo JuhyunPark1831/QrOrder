@@ -1,9 +1,7 @@
 package com.sideProject.qrOrder.scheduler;
 
-import com.sideProject.qrOrder.common.error.ApiCustomException;
-import com.sideProject.qrOrder.common.error.ErrorCode;
-import com.sideProject.qrOrder.entity.Common.ENUM.MenuStatus;
 import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutProgressStatus;
 import com.sideProject.qrOrder.entity.Menu;
 import com.sideProject.qrOrder.entity.MenuSoldOut;
 import com.sideProject.qrOrder.repository.menu.MenuRepository;
@@ -13,7 +11,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -33,27 +30,27 @@ public class MenuSoldOutScheduler {
 
     private void activateScheduledSoldOutMenus() {
 
-        List<MenuSoldOut> menuSoldOutList = menuSoldOutRepository.findByMsStatusAndDateTimeAfter(SoldOutStatus.WAITING);
+        List<MenuSoldOut> menuSoldOutList = menuSoldOutRepository.findByMsStatusAndDateTimeAfter(SoldOutProgressStatus.WAITING);
 
-        menuSoldOutList.forEach(menuSoldOut -> menuSoldOut.modifyMsStatus(SoldOutStatus.SOLD_OUT));
+        menuSoldOutList.forEach(menuSoldOut -> menuSoldOut.modifyMsStatus(SoldOutProgressStatus.SOLD_OUT));
         List<Long> menuIds = menuSoldOutList.stream()
                 .map(ms -> ms.getMsMe().getMeId())
                 .toList();
 
         List<Menu> menus = menuRepository.findAllById(menuIds);
-        menus.forEach(menu -> menu.modifyMeStatus(MenuStatus.SOLD_OUT));
+        menus.forEach(menu -> menu.modifyMeStatus(SoldOutStatus.SOLD_OUT));
     }
 
     private void deactivateExpiredSoldOutMenus() {
 
-        List<MenuSoldOut> menuSoldOutList = menuSoldOutRepository.findByMsStatusAndDateTimeAfter(SoldOutStatus.SOLD_OUT);
+        List<MenuSoldOut> menuSoldOutList = menuSoldOutRepository.findByMsStatusAndDateTimeAfter(SoldOutProgressStatus.SOLD_OUT);
 
         List<Long> menuIds = menuSoldOutList.stream()
                 .map(ms -> ms.getMsMe().getMeId())
                 .toList();
 
         List<Menu> menus = menuRepository.findAllById(menuIds);
-        menus.forEach(menu -> menu.modifyMeStatus(MenuStatus.AVAILABLE));
+        menus.forEach(menu -> menu.modifyMeStatus(SoldOutStatus.AVAILABLE));
 
         menuSoldOutRepository.deleteAll(menuSoldOutList);
     }

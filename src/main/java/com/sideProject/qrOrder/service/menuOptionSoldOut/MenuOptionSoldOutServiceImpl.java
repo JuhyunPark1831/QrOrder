@@ -5,6 +5,7 @@ import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutListDto;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutProgressStatus;
 import com.sideProject.qrOrder.entity.MenuOption;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.entity.MenuOptionSoldOut;
@@ -37,6 +38,7 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
         menuOptionSoldOutRepository.save(MenuOptionSoldOut.builder()
                 .osStart(requestDto.getOsStart())
                 .osEnd(requestDto.getOsEnd())
+                .osStatus(SoldOutProgressStatus.WAITING)
                 .osOp(menuOption)
                 .build());
     }

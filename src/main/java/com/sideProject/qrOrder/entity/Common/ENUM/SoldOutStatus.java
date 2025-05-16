@@ -1,6 +1,7 @@
 package com.sideProject.qrOrder.entity.Common.ENUM;
 
 public enum SoldOutStatus {
-    WAITING,
+    AVAILABLE,        // 판매중
+    HIDDEN,
     SOLD_OUT
 }
