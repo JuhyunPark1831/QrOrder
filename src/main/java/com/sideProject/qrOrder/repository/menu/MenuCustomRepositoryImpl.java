@@ -38,6 +38,10 @@ public class MenuCustomRepositoryImpl implements MenuCustomRepository {
             builder.and(menu.meName.containsIgnoreCase(requestDto.getSearchWord()));
         }
 
+        if (requestDto != null && requestDto.getMeStatus() != null) {
+            builder.and(menu.meStatus.ne(requestDto.getMeStatus()));
+        }
+
         JPAQuery<Menu> query = jpaQueryFactory
                 .selectFrom(menu)
                 .where(builder)
