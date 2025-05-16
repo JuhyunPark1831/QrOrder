@@ -1,5 +1,7 @@
 package com.sideProject.qrOrder.controller.client;
 
+import com.sideProject.qrOrder.dto.menu.MenuDto;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.service.category.CategoryService;
 import com.sideProject.qrOrder.service.menu.MenuService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +25,9 @@ public class ClientController {
 
         model.addAttribute("categoryList", categoryService.selectCategory(Pageable.unpaged(), null));
 
-        model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), null));
+        model.addAttribute("menuList", menuService.selectMenu(Pageable.unpaged(), MenuDto.builder()
+                .meStatus(SoldOutStatus.HIDDEN)
+                .build()));
 
         model.addAttribute("menuDetail", null);
 
