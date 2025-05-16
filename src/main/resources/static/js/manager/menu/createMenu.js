@@ -81,4 +81,3 @@ function createMenu() {
         }
     });
 }
-//todo: 메뉴 사진 수정 시 처리 방법 설계

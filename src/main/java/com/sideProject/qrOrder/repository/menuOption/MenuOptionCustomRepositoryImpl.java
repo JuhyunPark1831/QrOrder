@@ -4,6 +4,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sideProject.qrOrder.dto.client.MenuOptionClientDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -49,10 +50,12 @@ public class MenuOptionCustomRepositoryImpl implements MenuOptionCustomRepositor
                         MenuOptionClientDto.class,
                         menuOption.opId,
                         menuOption.opName,
-                        menuOption.opPrice
+                        menuOption.opPrice,
+                        menuOption.opStatus
                 ))
                 .from(menuOption)
-                .where(menuOption.opOg.ogId.eq(ogId))
+                .where(menuOption.opOg.ogId.eq(ogId)
+                        .and(menuOption.opStatus.ne(SoldOutStatus.HIDDEN)))
                 .fetch();
     }
 }
