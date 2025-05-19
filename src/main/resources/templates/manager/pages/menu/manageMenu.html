@@ -55,8 +55,7 @@
                             <div class="col-12 position-relative">
                                 <div th:if="${menu.meStatus.toString() == 'AVAILABLE'}" class="col-3 p-0 rounded-pill bg-primary text-white text-center">판매중</div>
                                 <div th:if="${menu.meStatus.toString() == 'HIDDEN'}" class="col-3 p-0 rounded-pill bg-secondary text-white text-center">숨김</div>
-                                <div th:if="${menu.meStatus.toString() == 'TEMPORARILY_OUT'}" class="col-3 p-0 rounded-pill bg-success text-white text-center">임시품절</div>
-                                <div th:if="${menu.meStatus.toString() == 'PERMANENTLY_OUT'}" class="col-3 p-0 rounded-pill bg-danger text-white text-center">품절</div>
+                                <div th:if="${menu.meStatus.toString() == 'SOLD_OUT'}" class="col-3 p-0 rounded-pill bg-danger text-white text-center">품절중</div>
                             </div>
                             <div class="col-12 my-2 text-start text-secondary"
                                  th:utext="${menu.meDescription}">

@@ -85,7 +85,14 @@ function createMenuOptionGroup() {
     let options = [];
     let hasInvalidOption = false;
 
-    $("#menu-option-list > div").each(function (i, el) {
+    const menuOptionListDiv = $("#menu-option-list > div");
+
+    if ($ogMinSelectCheck.is(":checked") && menuOptionListDiv.length < parseInt($ogMinSelect.val(), 10)) {
+        alert("옵션의 개수가 옵션 최소 선택 개수보다 많아야합니다");
+        return;
+    }
+
+    menuOptionListDiv.each(function (i, el) {
         const $name = $(el).find(".option-name");
         const $price = $(el).find(".option-price");
 

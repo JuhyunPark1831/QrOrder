@@ -53,9 +53,11 @@ public enum ErrorCode {
     NOT_FOUND_MENU_OPTION(403, "530", "존재하지 않는 메뉴 옵션입니다"),
 
     NOT_UNIQUE_MENU_OPTION_GROUP_NAME(404, "610", "메뉴옵션그룹명이 이미 존재합니다"),
-    NOT_FOUND_MENU_OPTION_GROUP(404, "630", "존재하지 않는 메뉴옵션그룹입니댜"),
+    NOT_FOUND_MENU_OPTION_GROUP(404, "630", "존재하지 않는 메뉴옵션그룹입니다"),
 
-    NOT_FOUND_MENU_OPTION_GROUP_JUNCTION(404, "730", "존재하지 않는 메뉴옵션그룹관계입니댜"),
+    NOT_FOUND_MENU_OPTION_GROUP_JUNCTION(404, "730", "존재하지 않는 메뉴옵션그룹관계입니다"),
+
+    INSUFFICIENT_MENU_OPTION_SELECTION(404, "810", "최소 선택 옵션 개수보다 선택 가능한 개수가 적어집니다. 품절이 불가능합니다."),
 
     NOT_FOUND_MENU_SOLD_OUT(404, "1130", "존재하지 않는 메뉴품절정보입니다"),
 
