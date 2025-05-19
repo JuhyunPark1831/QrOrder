@@ -1,6 +1,11 @@
 body {
+    color: #000000;
     background-color: #e8e8e8;
     font-family: 'Pretendard', sans-serif !important;
+}
+button {
+    font-family: 'Pretendard', sans-serif !important;
+    color: #000000;
 }
 input:focus, select:focus {
     outline:none;
@@ -29,6 +34,16 @@ header {
 }
 
 /* component */
+.basic-btn {
+    border: unset;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    background-color: #95d0cc;
+}
+.basic-btn:hover {
+    color: #ffffff;
+    background-color: #5a7e7b;
+}
 .bottom-bar {
     transition: transform 0.3s ease;
 }
