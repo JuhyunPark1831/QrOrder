@@ -53,4 +53,15 @@ public class ClosingCustomRepositoryImpl implements ClosingCustomRepository {
 
         return new PageImpl<>(content, pageable, total);
     }
+
+    @Override
+    public Optional<Closing> findClosingByDateTimeBetweenStartAndEnd(LocalDateTime dateTime) {
+        return Optional.ofNullable(jpaQueryFactory
+                .selectFrom(closing)
+                .where(
+                        closing.clStart.loe(dateTime),
+                        closing.clEnd.goe(dateTime)
+                )
+                .fetchOne());
+    }
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -57,5 +58,10 @@ public class ClosingFixedServiceImpl implements ClosingFixedService {
     @Transactional
     public void deleteClosingFixed(List<Long> cfIds) {
         closingFixedRepository.deleteAllById(cfIds);
+    }
+
+    @Override
+    public boolean checkNowIsClosingFixed() {
+        return closingFixedRepository.findClosingFixedByDateTimeBetweenStartAndEnd(LocalDateTime.now()).isPresent();
     }
 }
