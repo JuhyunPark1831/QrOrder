@@ -40,7 +40,7 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
         menuOptionSoldOutRepository.deleteByOsOp_OpId(requestDto.getOsOpId());
 
         MenuOptionGroup menuOptionGroup = menuOption.getOpOg();
-        if (menuOptionRepository.countByOpOg_OgId(menuOptionGroup.getOgId()) - menuOptionSoldOutRepository.countByOsOp_OpOg_OgId(menuOptionGroup.getOgId()) - 1 < menuOptionGroup.getOgMinSelect()) {
+        if (menuOptionRepository.countNotSoldOutMenuOptions(menuOptionGroup.getOgId()) - 1 < menuOptionGroup.getOgMinSelect()) {
             throw new ApiCustomException(ErrorCode.INSUFFICIENT_MENU_OPTION_SELECTION);
         }
 

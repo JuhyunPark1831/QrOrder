@@ -154,6 +154,7 @@ function createMenuOptionSoldOut() {
         },
         error: function (xhr, status, error) {
             commonErrorCallBack(xhr, status, error);
+            $("#create-soldout-pop").addClass("d-none");
         }
     });
 }
