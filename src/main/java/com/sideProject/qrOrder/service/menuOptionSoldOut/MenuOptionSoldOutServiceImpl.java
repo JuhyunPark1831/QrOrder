@@ -6,9 +6,11 @@ import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutDto;
 import com.sideProject.qrOrder.dto.menuOptionSoldOut.MenuOptionSoldOutListDto;
 import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutProgressStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.MenuOption;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.entity.MenuOptionSoldOut;
+import com.sideProject.qrOrder.repository.menuOption.MenuOptionRepository;
 import com.sideProject.qrOrder.repository.menuOptionGroup.MenuOptionGroupRepository;
 import com.sideProject.qrOrder.repository.menuOptionSoldOut.MenuOptionSoldOutRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +19,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
 
     private final MenuOptionGroupRepository menuOptionGroupRepository;
-    private final com.sideProject.qrOrder.repository.menuOption.MenuOptionRepository menuOptionRepository;
+    private final MenuOptionRepository menuOptionRepository;
     private final MenuOptionSoldOutRepository menuOptionSoldOutRepository;
 
     @Override
@@ -35,6 +39,12 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
 
         menuOptionSoldOutRepository.deleteByOsOp_OpId(requestDto.getOsOpId());
 
+        MenuOptionGroup menuOptionGroup = menuOption.getOpOg();
+        if (menuOptionRepository.countNotSoldOutMenuOptions(menuOptionGroup.getOgId()) - 1 < menuOptionGroup.getOgMinSelect()) {
+            throw new ApiCustomException(ErrorCode.INSUFFICIENT_MENU_OPTION_SELECTION);
+        }
+
+        //todo: 쿼리 수정
         menuOptionSoldOutRepository.save(MenuOptionSoldOut.builder()
                 .osStart(requestDto.getOsStart())
                 .osEnd(requestDto.getOsEnd())

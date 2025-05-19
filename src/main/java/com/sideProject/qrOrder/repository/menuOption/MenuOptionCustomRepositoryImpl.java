@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static com.sideProject.qrOrder.entity.QMenuOption.menuOption;
 import static com.sideProject.qrOrder.entity.QMenuOptionSoldOut.menuOptionSoldOut;
@@ -19,6 +20,21 @@ import static com.sideProject.qrOrder.entity.QMenuOptionSoldOut.menuOptionSoldOu
 public class MenuOptionCustomRepositoryImpl implements MenuOptionCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
+
+    @Override
+    public long countNotSoldOutMenuOptions(Long ogId) {
+
+        return  Optional.ofNullable(
+                jpaQueryFactory
+                        .select(menuOption.count())
+                        .from(menuOption)
+                        .leftJoin(menuOptionSoldOut)
+                        .on(menuOption.opId.eq(menuOptionSoldOut.osOp.opId))
+                        .where(menuOption.opOg.ogId.eq(ogId)
+                                .and(menuOptionSoldOut.osOp.opId.isNull()))
+                        .fetchOne()
+        ).orElse(0L);
+    }
 
     @Override
     public List<MenuOptionSoldOutDto> findMenuOptionSoldOutDtoListByOgId(Long ogId) {
