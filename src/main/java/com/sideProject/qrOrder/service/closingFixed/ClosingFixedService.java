@@ -12,4 +12,5 @@ public interface ClosingFixedService {
     public Page<ClosingFixedDto> selectClosingFixed(Pageable pageable);
     public void modifyClosingFixedUseStatus(ClosingFixedDto requestDto);
     public void deleteClosingFixed(List<Long> cfIds);
+    public boolean checkNowIsClosingFixed();
 }

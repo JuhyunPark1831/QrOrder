@@ -3,6 +3,9 @@ package com.sideProject.qrOrder.entity.Common.ENUM;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 @Getter
 @AllArgsConstructor
 public enum WeekDay {
