@@ -52,4 +52,9 @@ public class ClientController {
     public String orderListPage() {
         return "/client/pages/orderList";
     }
+
+    @GetMapping("/closing")
+    public String closingPage() {
+        return "/client/pages/closing";
+    }
 }

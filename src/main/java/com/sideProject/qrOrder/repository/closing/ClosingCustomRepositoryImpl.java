@@ -58,9 +58,8 @@ public class ClosingCustomRepositoryImpl implements ClosingCustomRepository {
     public Optional<Closing> findClosingByDateTimeBetweenStartAndEnd(LocalDateTime dateTime) {
         return Optional.ofNullable(jpaQueryFactory
                 .selectFrom(closing)
-                .where(
-                        closing.clStart.loe(dateTime),
-                        closing.clEnd.goe(dateTime)
+                .where(closing.clStart.loe(dateTime)
+                        .and(closing.clEnd.goe(dateTime))
                 )
                 .fetchOne());
     }

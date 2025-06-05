@@ -19,7 +19,7 @@ public class ClosingInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         if (closingService.checkNowIsClosing() || closingFixedService.checkNowIsClosingFixed()) {
-            response.sendRedirect("/account/manage");
+            response.sendRedirect("/client/closing");
             return false;
         }
 
