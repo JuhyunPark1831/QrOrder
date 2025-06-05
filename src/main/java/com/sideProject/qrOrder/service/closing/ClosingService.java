@@ -11,4 +11,5 @@ public interface ClosingService {
     public void createClosing(ClosingDto requestDto);
     public Page<ClosingDto> selectClosing(Pageable pageable, ClosingDto requestDto);
     public void deleteClosing(List<Long> clIds);
+    public boolean checkNowIsClosing();
 }

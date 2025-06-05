@@ -44,13 +44,15 @@ public class MenuOptionSoldOutServiceImpl implements MenuOptionSoldOutService {
             throw new ApiCustomException(ErrorCode.INSUFFICIENT_MENU_OPTION_SELECTION);
         }
 
-        //todo: 쿼리 수정
         menuOptionSoldOutRepository.save(MenuOptionSoldOut.builder()
                 .osStart(requestDto.getOsStart())
                 .osEnd(requestDto.getOsEnd())
                 .osStatus(SoldOutProgressStatus.WAITING)
                 .osOp(menuOption)
                 .build());
+
+        //todo: 정오, 자정 처리
+        //todo: fixed 날 바뀔 때 추가
     }
 
     @Override

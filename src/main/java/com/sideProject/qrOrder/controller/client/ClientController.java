@@ -20,6 +20,11 @@ public class ClientController {
     private final CategoryService categoryService;
     private final MenuService menuService;
 
+    @GetMapping
+    public String index() {
+        return "client/pages/index";
+    }
+
     @GetMapping("/menuList")
     public String menuListPage(Model model) {
 
@@ -46,5 +51,10 @@ public class ClientController {
     @GetMapping("/orderList")
     public String orderListPage() {
         return "/client/pages/orderList";
+    }
+
+    @GetMapping("/closing")
+    public String closingPage() {
+        return "/client/pages/closing";
     }
 }

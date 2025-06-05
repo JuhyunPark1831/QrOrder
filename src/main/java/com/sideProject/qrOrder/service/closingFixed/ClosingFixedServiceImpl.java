@@ -2,10 +2,12 @@ package com.sideProject.qrOrder.service.closingFixed;
 
 import com.sideProject.qrOrder.common.error.ApiCustomException;
 import com.sideProject.qrOrder.common.error.ErrorCode;
+import com.sideProject.qrOrder.common.util.DateUtil;
 import com.sideProject.qrOrder.dto.closingFixed.ClosingFixedDto;
 import com.sideProject.qrOrder.entity.Category;
 import com.sideProject.qrOrder.entity.ClosingFixed;
 import com.sideProject.qrOrder.entity.Common.ENUM.UseStatus;
+import com.sideProject.qrOrder.entity.Common.ENUM.WeekDay;
 import com.sideProject.qrOrder.repository.closingFixed.ClosingFixedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,6 +26,8 @@ import java.util.List;
 public class ClosingFixedServiceImpl implements ClosingFixedService {
 
     private final ClosingFixedRepository closingFixedRepository;
+
+    private final DateUtil dateUtil;
 
     @Override
     @Transactional
@@ -57,5 +63,12 @@ public class ClosingFixedServiceImpl implements ClosingFixedService {
     @Transactional
     public void deleteClosingFixed(List<Long> cfIds) {
         closingFixedRepository.deleteAllById(cfIds);
+    }
+
+    @Override
+    public boolean checkNowIsClosingFixed() {
+
+        return closingFixedRepository.findClosingFixedByDateTimeBetweenStartAndEnd(dateUtil.getWeekDayNum(LocalDate.now()),
+                dateUtil.getWeekDay(LocalDate.now())).isPresent();
     }
 }
