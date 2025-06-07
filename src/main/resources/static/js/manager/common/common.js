@@ -124,7 +124,8 @@ const timePickerOptions = {
     stepping: 10,
     defaultDate: roundedTime,
     localization: {
-        format: 'HH:mm'
+        format: 'HH:mm',
+        hourCycle: 'h23'
     }
 };
 const timePickerOptionsLater = {
