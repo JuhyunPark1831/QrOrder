@@ -76,7 +76,7 @@ function createClosingFixed() {
     }
 
     if ($cfStartTime.val() >= $cfEndTime.val()) {
-        alert('종료시간이 시작시간보다 빠릅니다');
+        alert('휴무 시작 시각은 종료 시각보다 앞서야 합니다.');
         $cfStartTime.focus();
         return;
     }
