@@ -1,16 +1,20 @@
 package com.sideProject.qrOrder.controller.client;
 
+import com.sideProject.qrOrder.dto.client.CartInfoDto;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
+import com.sideProject.qrOrder.dto.menuOptionGroup.MenuOptionGroupDto;
 import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.service.category.CategoryService;
 import com.sideProject.qrOrder.service.menu.MenuService;
+import com.sideProject.qrOrder.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/client")
@@ -19,6 +23,7 @@ public class ClientController {
 
     private final CategoryService categoryService;
     private final MenuService menuService;
+    private final OrderService orderService;
 
     @GetMapping
     public String index() {
@@ -51,6 +56,15 @@ public class ClientController {
     @GetMapping("/orderList")
     public String orderListPage() {
         return "/client/pages/orderList";
+    }
+
+    @PostMapping("/replace/order-list")
+    public String orderListPageFragment(Model model,
+                                        @RequestBody List<CartInfoDto> requestDtoList) {
+
+        model.addAttribute("orderList", orderService.getOrderListByCartInfo(requestDtoList));
+
+        return "/client/fragments/orderListFragment :: order-list-fragment";
     }
 
     @GetMapping("/closing")

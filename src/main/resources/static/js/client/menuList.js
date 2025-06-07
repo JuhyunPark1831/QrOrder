@@ -173,6 +173,7 @@ function animateNumber($element, start, end, duration = 500) {
 }
 
 function addMenu() {
+
     const meId = $("#meId").val();
 
     const selectedRadios = $('input[type="radio"]:checked').slice(1).map(function () {
@@ -183,15 +184,35 @@ function addMenu() {
         return $(this).val();
     }).get();
 
-    const allSelectedOptionIds = [...selectedRadios, ...selectedCheckboxes];
+    const allSelectedOptionIds = [...selectedRadios, ...selectedCheckboxes].map(id => parseInt(id));
+    const menuId = parseInt(meId);
 
-    localStorage.setItem(meId, JSON.stringify(allSelectedOptionIds));
+    const quantity = 1;
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const existingItem = cart.find(item =>
+        item.menuId === menuId &&
+        JSON.stringify(item.optionIds.sort()) === JSON.stringify(allSelectedOptionIds.sort())
+    );
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            meId: menuId,
+            opIds: allSelectedOptionIds,
+            quantity: quantity
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     $(".menu-detail-pop").removeClass("show");
-
     calculateTotalPrice();
     setCartInfo();
 }
+
 
 function calculateTotalPrice() {
 
