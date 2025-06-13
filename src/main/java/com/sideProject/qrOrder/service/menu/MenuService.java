@@ -12,6 +12,7 @@ public interface MenuService {
     public Page<MenuDto> selectMenu(Pageable pageable, MenuDto requestDto);
     public MenuDto selectMenuDetail(Long meId);
     public MenuClientDto selectMenuDetailClient(Long meId);
+
     public void modifyMenu(MenuDto requestDto);
     public void modifyMeStatus(Long meId, SoldOutStatus meStatus);
     public void deleteMenu(MenuDto requestDto);

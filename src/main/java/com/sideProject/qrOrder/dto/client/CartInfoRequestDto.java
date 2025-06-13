@@ -9,16 +9,16 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CartInfoDto {
+public class CartInfoRequestDto {
 
     private Long meId;
     private List<Long> opIds;
     private int quantity;
 
     @Builder
-    public CartInfoDto(Long meId,
-                       List<Long> opIds,
-                       int quantity) {
+    public CartInfoRequestDto(Long meId,
+                              List<Long> opIds,
+                              int quantity) {
         this.meId = meId;
         this.opIds = opIds;
         this.quantity = quantity;
