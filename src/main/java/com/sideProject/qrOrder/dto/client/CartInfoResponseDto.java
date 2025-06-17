@@ -12,14 +12,20 @@ import java.util.List;
 public class CartInfoResponseDto {
 
     private Long meId;
+    private String meName;
+    private int mePrice;
     private List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList;
     private int totalPrice;
 
     @Builder
     public CartInfoResponseDto(Long meId,
+                               String meName,
+                               int mePrice,
                                List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList,
                                int totalPrice) {
         this.meId = meId;
+        this.meName = meName;
+        this.mePrice = mePrice;
         this.menuOptionGroupClientDtoList = menuOptionGroupClientDtoList;
         this.totalPrice = totalPrice;
     }

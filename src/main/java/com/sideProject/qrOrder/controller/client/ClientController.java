@@ -58,7 +58,7 @@ public class ClientController {
     public String orderListPageFragment(Model model,
                                         @RequestBody List<CartInfoRequestDto> requestDtoList) {
 
-//        model.addAttribute("orderList", menuService.getCartInfo(requestDtoList));
+        model.addAttribute("orderList", menuService.getCartInfo(requestDtoList));
 
         return "/client/fragments/orderListFragment :: order-list-fragment";
     }

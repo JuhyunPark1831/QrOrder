@@ -5,6 +5,8 @@ import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.common.util.FileUtil;
 import com.sideProject.qrOrder.dto.MenuOptionGroupJunctionDto;
+import com.sideProject.qrOrder.dto.client.CartInfoRequestDto;
+import com.sideProject.qrOrder.dto.client.CartInfoResponseDto;
 import com.sideProject.qrOrder.dto.client.MenuClientDto;
 import com.sideProject.qrOrder.dto.client.MenuOptionGroupClientDto;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
@@ -132,6 +134,13 @@ public class MenuServiceImpl implements MenuService {
                 .meImagePath(menu.getMeImagePath())
                 .menuOptionGroupClientDtoList(menuOptionGroupClientDtoList)
                 .build();
+    }
+
+    @Override
+    public List<CartInfoResponseDto> getCartInfo(List<CartInfoRequestDto> requestDtoList) {
+
+        List<CartInfoResponseDto> result = List
+        return null;
     }
 
     @Override
