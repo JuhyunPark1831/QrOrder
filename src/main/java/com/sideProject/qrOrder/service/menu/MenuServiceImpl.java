@@ -5,13 +5,11 @@ import com.sideProject.qrOrder.common.error.ErrorCode;
 import com.sideProject.qrOrder.common.error.ViewCustomException;
 import com.sideProject.qrOrder.common.util.FileUtil;
 import com.sideProject.qrOrder.dto.MenuOptionGroupJunctionDto;
-import com.sideProject.qrOrder.dto.client.CartInfoRequestDto;
-import com.sideProject.qrOrder.dto.client.CartInfoResponseDto;
-import com.sideProject.qrOrder.dto.client.MenuClientDto;
-import com.sideProject.qrOrder.dto.client.MenuOptionGroupClientDto;
+import com.sideProject.qrOrder.dto.client.*;
 import com.sideProject.qrOrder.dto.menu.MenuDto;
 import com.sideProject.qrOrder.entity.Common.ENUM.SoldOutStatus;
 import com.sideProject.qrOrder.entity.Menu;
+import com.sideProject.qrOrder.entity.MenuOption;
 import com.sideProject.qrOrder.entity.MenuOptionGroup;
 import com.sideProject.qrOrder.entity.MenuOptionGroupJunction;
 import com.sideProject.qrOrder.repository.menu.MenuRepository;
@@ -28,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -139,7 +138,32 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<CartInfoResponseDto> getCartInfo(List<CartInfoRequestDto> requestDtoList) {
 
-        List<CartInfoResponseDto> result = List
+        List<CartInfoResponseDto> result = new ArrayList<>();
+
+        for (CartInfoRequestDto requestDto : requestDtoList) {
+
+            int totalPrice = 0;
+            List<MenuOptionClientDto> optionResult = new ArrayList<>();
+
+            Menu menu = menuRepository.findById(requestDto.getMeId()).orElseThrow(() ->
+                            new ApiCustomException(ErrorCode.NOT_FOUND_MENU));
+
+            for (Long opId : requestDto.getOpIds()) {
+                MenuOption menuOption = menuOptionRepository.findById(opId).orElseThrow(() ->
+                        new ApiCustomException(ErrorCode.NOT_FOUND_MENU_OPTION));
+                totalPrice += menuOption.getOpPrice();
+            }
+
+            result.add(CartInfoResponseDto.builder()
+                            .meId(menu.getMeId())
+                            .meName(menu.getMeName())
+                            .mePrice(menu.getMePrice())
+                            .menuOptionGroupClientDtoList()
+                            .totalPrice(totalPrice)
+                            .quantity(requestDto.getQuantity())
+                    .build());
+        }
+
         return null;
     }
 

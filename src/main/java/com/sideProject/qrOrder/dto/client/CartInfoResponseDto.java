@@ -16,17 +16,20 @@ public class CartInfoResponseDto {
     private int mePrice;
     private List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList;
     private int totalPrice;
+    private int quantity;
 
     @Builder
     public CartInfoResponseDto(Long meId,
                                String meName,
                                int mePrice,
                                List<MenuOptionGroupClientDto> menuOptionGroupClientDtoList,
-                               int totalPrice) {
+                               int totalPrice,
+                               int quantity) {
         this.meId = meId;
         this.meName = meName;
         this.mePrice = mePrice;
         this.menuOptionGroupClientDtoList = menuOptionGroupClientDtoList;
         this.totalPrice = totalPrice;
+        this.quantity = quantity;
     }
 }
