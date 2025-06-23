@@ -93,6 +93,8 @@
                                 <div th:text="${menuOptionGroup.ogName}"></div>
                                 <div class="d-flex">
                                     <div class="fs-6 text-secondary" th:if="${menuOptionGroup.ogMinSelect > 0}">(필수)</div>
+                                    <div class="fs-6 text-secondary" th:if="${menuOptionGroup.ogMinSelect > 1}"
+                                         th:text="'(최소 ' + ${menuOptionGroup.ogMinSelect} + ')'"></div>
                                     <div class="fs-6 text-secondary" th:if="${menuOptionGroup.ogMaxSelect > 1}"
                                          th:text="'(최대 ' + ${menuOptionGroup.ogMaxSelect} + ')'"></div>
                                 </div>

@@ -26,8 +26,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -142,29 +142,24 @@ public class MenuServiceImpl implements MenuService {
 
         for (CartInfoRequestDto requestDto : requestDtoList) {
 
-            int totalPrice = 0;
-            List<MenuOptionClientDto> optionResult = new ArrayList<>();
-
             Menu menu = menuRepository.findById(requestDto.getMeId()).orElseThrow(() ->
                             new ApiCustomException(ErrorCode.NOT_FOUND_MENU));
 
-            for (Long opId : requestDto.getOpIds()) {
-                MenuOption menuOption = menuOptionRepository.findById(opId).orElseThrow(() ->
-                        new ApiCustomException(ErrorCode.NOT_FOUND_MENU_OPTION));
-                totalPrice += menuOption.getOpPrice();
-            }
+            int totalPrice = menuOptionRepository.findAllById(requestDto.getOpIds()).stream()
+                    .mapToInt(MenuOption::getOpPrice)
+                    .sum();
 
             result.add(CartInfoResponseDto.builder()
                             .meId(menu.getMeId())
                             .meName(menu.getMeName())
                             .mePrice(menu.getMePrice())
-                            .menuOptionGroupClientDtoList()
+                            .menuOptionGroupClientDtoList(getMenuOptionCartInfo(menu.getMeId(), requestDto.getOpIds()))
                             .totalPrice(totalPrice)
                             .quantity(requestDto.getQuantity())
                     .build());
         }
 
-        return null;
+        return result;
     }
 
     @Override
@@ -235,5 +230,44 @@ public class MenuServiceImpl implements MenuService {
 
         menuOptionGroupJunctionRepository.deleteByMjMe_MeId(requestDto.getMeId());
         menuRepository.deleteById(requestDto.getMeId());
+    }
+
+    public List<MenuOptionGroupClientDto> getMenuOptionCartInfo(Long menuId, List<Long> opIds) {
+
+        List<MenuOption> menuOptionList = menuOptionRepository.findAllById(opIds);;
+
+        Map<Long, List<MenuOption>> groupedByGroupId = menuOptionList.stream()
+                .collect(Collectors.groupingBy(opt -> opt.getOpOg().getOgId()));
+
+        List<MenuOptionGroupJunction> junctions = menuOptionGroupJunctionRepository.findByMjMe_MeId(menuId);
+
+        return junctions.stream()
+                .sorted(Comparator.comparingInt(MenuOptionGroupJunction::getMjSeq))
+                .map(junction -> {
+                    MenuOptionGroup menuOptionGroup = junction.getMjOg();
+                    Long ogId = menuOptionGroup.getOgId();
+
+                    List<MenuOption> optionsInGroup = groupedByGroupId.get(ogId);
+
+                    if (optionsInGroup == null || optionsInGroup.isEmpty()) {
+                        return null;
+                    }
+
+                    List<MenuOptionClientDto> menuOptionClientDtos = optionsInGroup.stream()
+                            .map(option -> MenuOptionClientDto.builder()
+                                    .opId(option.getOpId())
+                                    .opName(option.getOpName())
+                                    .opPrice(option.getOpPrice())
+                                    .build())
+                            .toList();
+
+                    return MenuOptionGroupClientDto.builder()
+                            .ogId(ogId)
+                            .ogName(menuOptionGroup.getOgName())
+                            .menuOptionClientDtoList(menuOptionClientDtos)
+                            .build();
+                })
+                .filter(Objects::nonNull)
+                .toList();
     }
 }

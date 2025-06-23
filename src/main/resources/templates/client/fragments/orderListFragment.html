@@ -1,12 +1,17 @@
 <div class="col-12"
      th:fragment="order-list-fragment">
   <div class="p-3 d-flex justify-content-between bg-white border-bottom"
-  th:each="${orderList.menuList}">
+       th:each="order : ${orderList}">
     <div class="col-7 d-flex flex-column">
-      <div class="mb-2 fs-5 fw-semibold">장인의 고기만500g</div>
-      <div class="col-12 mb-2 text-secondary text-wrap text-break">
-        가격: 10,000원<br>
-        찰진 흑미밥선택: 찰진 흑미밥 2개 (2000원) / 찰진 흑미밥 1개 (1,000원) / 찰진 흑미밥 선택안함
+      <div class="mb-2 fs-5 fw-semibold" th:text="${order.meName}"></div>
+      <div class="col-12 text-secondary text-wrap text-break" th:text="'가격: ' + ${#numbers.formatInteger(order.mePrice, 1, 'COMMA')} + '원'"></div>
+      <div class="col-12 mb-2 text-secondary text-wrap text-break"
+           th:each="menuOptionGroupClientDto : ${order.menuOptionGroupClientDtoList}">
+        <span th:text="${menuOptionGroupClientDto.ogName} + ': '"></span>
+        <span th:each="menuOptionClientDto, stat : ${menuOptionClientDtoList}">
+          <span th:text="${menuOptionClientDto.opName} + ': ' + ${#numbers.formatInteger(menuOptionClientDto.opPrice, 1, 'COMMA')} + '원'"></span>
+          <span th:if="${!stat.last}"> / </span>
+        </span>
       </div>
       <div class="d-flex gap-3">
         <i class="bi bi-x-square fs-4 text-danger"></i>
@@ -30,6 +35,7 @@
   </div>
   <div class="p-3 mt-2 d-flex justify-content-between bg-white fs-5">
     <div>전체결제금액</div>
-    <div th:text="${#numbers.formatInteger(orderList.totalPrice, 1, 'COMMA')}">33,300원</div>
+<!--    <div th:text="${#numbers.formatInteger(orderList.totalPrice, 1, 'COMMA')}">33,300원</div>-->
+    <div>33,300원</div>
   </div>
 </div>

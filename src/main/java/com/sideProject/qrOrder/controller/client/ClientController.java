@@ -42,7 +42,7 @@ public class ClientController {
 
     @GetMapping("/replace/menu/pop/{meId}")
     public String menuPopOpen(Model model,
-                               @PathVariable Long meId) {
+                              @PathVariable Long meId) {
 
         model.addAttribute("menuDetail", menuService.selectMenuDetailClient(meId));
 
